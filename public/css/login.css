@@ -1,0 +1,460 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lexend', sans-serif;
+}
+
+body {
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+/* Container principal */
+.secao-login-principal {
+    display: flex;
+    min-height: 100vh;
+    position: relative;
+    background-color: #ffffff;
+}
+
+/* Container do vídeo - MAIOR */
+.container-video {
+    flex: 0 0 40%;
+    position: relative;
+    overflow: hidden;
+}
+
+.container-video video {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Container do formulário de login - MAIOR */
+.container-login {
+    flex: 1;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.conteudo-login {
+    width: 100%;
+    max-width: 600px;
+    background: #ffffff;
+    padding: 3rem 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo */
+.logotipo {
+    height: 70px;
+    margin-bottom: 2.5rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Títulos */
+h1 {
+    font-size: 32px;
+    font-weight: 600;
+    color: #1a1a1a;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
+}
+
+.subtitulo {
+    font-size: 16px;
+    color: #666;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+}
+
+/* Formulário */
+.formulario-login {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.campo-entrada {
+    padding: 1.2rem 1.5rem;
+    border: 2px solid #e1e5e9;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 300;
+    transition: all 0.3s ease;
+    background: #fafbfc;
+}
+
+.campo-entrada:focus {
+    outline: none;
+    border-color: #dc3545;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+}
+
+.campo-entrada::placeholder {
+    color: #9ca3af;
+    font-weight: 300;
+}
+
+/* Opções do formulário */
+.opcoes-formulario {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.lembrar-me {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.lembrar-me input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #dc3545;
+}
+
+.lembrar-me label {
+    font-size: 14px;
+    color: #666;
+    font-weight: 300;
+    cursor: pointer;
+}
+
+.link-cadastro p {
+    font-size: 14px;
+    color: #666;
+    font-weight: 300;
+}
+
+.link {
+    color: #dc3545;
+    cursor: pointer;
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+.link:hover {
+    color: #c82333;
+    text-decoration: underline;
+}
+
+/* Botão de login */
+.botao-login {
+    padding: 1.2rem;
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+}
+
+.botao-login:hover {
+    background: linear-gradient(135deg, #c82333, #bd2130);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(220, 53, 69, 0.3);
+}
+
+.botao-login:active {
+    transform: translateY(0);
+}
+
+/* Divisor */
+.divisor {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.linha {
+    flex: 1;
+    height: 1px;
+    background: #e1e5e9;
+}
+
+.divisor p {
+    color: #9ca3af;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+/* Botão do Google */
+.botao-google {
+    width: 100%;
+    padding: 1.2rem;
+    background: #ffffff;
+    border: 2px solid #e1e5e9;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    font-weight: 400;
+    color: #1a1a1a;
+}
+
+.botao-google:hover {
+    background: #ffffff;
+    border-color: #dc3545;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.1);
+}
+
+.botao-google img {
+    width: 20px;
+    height: 20px;
+}
+
+/* Responsividade */
+@media (max-width: 1200px) {
+    .container-video {
+        flex: 0 0 40%;
+    }
+    
+    .conteudo-login {
+        max-width: 380px;
+        padding: 2.5rem 2rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .container-video {
+        flex: 0 0 45%;
+    }
+    
+    .conteudo-login {
+        max-width: 350px;
+        padding: 2rem 1.5rem;
+    }
+    
+    h1 {
+        font-size: 28px;
+    }
+    
+    .logotipo {
+        height: 60px;
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .secao-login-principal {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .container-video {
+        display: none;
+    }
+    
+    .container-login {
+        flex: 1;
+        width: 100%;
+        min-height: 100vh;
+        padding: 2rem 1.5rem;
+        background: #ffffff;
+    }
+    
+    .conteudo-login {
+        max-width: 100%;
+        width: 100%;
+        padding: 2rem 1.5rem;
+        margin: 0;
+        box-shadow: none;
+    }
+    
+    h1 {
+        font-size: 26px;
+    }
+    
+    .opcoes-formulario {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        overflow: auto;
+    }
+    
+    .secao-login-principal {
+        min-height: 100vh;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .container-video {
+        display: none;
+    }
+    
+    .container-login {
+        flex: 1;
+        width: 100%;
+        min-height: 100vh;
+        padding: 1.5rem 1rem;
+        background: #ffffff;
+    }
+    
+    .conteudo-login {
+        padding: 1.5rem 1.25rem;
+        border-radius: 16px;
+        box-shadow: none;
+    }
+    
+    .logotipo {
+        height: 50px;
+        margin-bottom: 1.5rem;
+    }
+    
+    h1 {
+        font-size: 24px;
+        margin-bottom: 0.5rem;
+    }
+    
+    .subtitulo {
+        font-size: 14px;
+        margin-bottom: 2rem;
+    }
+    
+    .formulario-login {
+        gap: 1.25rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .campo-entrada {
+        padding: 1rem 1.25rem;
+        font-size: 16px; /* Evita zoom no iOS */
+    }
+    
+    .opcoes-formulario {
+        gap: 0.5rem;
+    }
+    
+    .lembrar-me label,
+    .link-cadastro p {
+        font-size: 13px;
+    }
+    
+    .botao-login,
+    .botao-google {
+        padding: 1rem;
+        font-size: 15px;
+    }
+    
+    .divisor {
+        margin: 1.5rem 0;
+    }
+}
+
+@media (max-width: 360px) {
+    .container-login {
+        padding: 1rem 0.75rem;
+    }
+    
+    .conteudo-login {
+        padding: 1.25rem 1rem;
+    }
+    
+    .logotipo {
+        height: 45px;
+    }
+    
+    h1 {
+        font-size: 22px;
+    }
+    
+    .campo-entrada {
+        padding: 0.875rem 1rem;
+    }
+    
+    .botao-login,
+    .botao-google {
+        padding: 0.875rem;
+        font-size: 14px;
+    }
+}
+
+/* Animações de entrada */
+@keyframes entradaFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.conteudo-login {
+    animation: entradaFadeUp 0.6s ease-out;
+}
+
+/* Melhorias de acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+
+/* Estados de foco melhorados para acessibilidade */
+.campo-entrada:focus,
+.botao-login:focus,
+.botao-google:focus,
+.lembrar-me input:focus {
+    outline: 2px solid #dc3545;
+    outline-offset: 2px;
+}
+
+/* Hover states melhorados */
+.lembrar-me:hover label {
+    color: #dc3545;
+}
+
+.link-cadastro:hover .link {
+    color: #c82333;
+}
+
+/* Animação sutil no logo */
+.logotipo {
+    transition: transform 0.3s ease;
+}
+
+.logotipo:hover {
+    transform: scale(1.05);
+}

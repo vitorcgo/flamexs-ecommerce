@@ -25,7 +25,7 @@
             </div>
             
             <div class="secao-usuario">
-                <a href=""><img src="./images/user.svg" alt=""></a>
+                <a href="/login"><img src="./images/user.svg" alt=""></a>
                 <a href=""><img src="./images/carrinho.svg" alt=""></a>
             </div>
 
@@ -76,6 +76,12 @@
             <!-- Faixa de Frete Grátis -->
     <div id="faixa-frete-gratis" class="faixa-frete-gratis">
         <div class="conteudo-faixa-rolante">
+            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
+            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
+            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
+            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
+            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
+            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
             <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
             <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
             <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
