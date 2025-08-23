@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Lexend;
+}
+
+/* Barra de navegação */
+.barra-navegacao {
+    display: flex;
+justify-content: space-around;
+    align-items: center;
+    padding: 2rem 2rem;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+
+}
+
+/* Seção de busca */
+.secao-busca {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+}
+
+.secao-busca input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    background: rgba(217, 217, 217, 0.19);
+    border-radius: 100px;
+    width: 250px;
+    height: 44px;
+    font-size: 15px;
+}
+
+/* Links de navegação */
+.links-navegacao {
+    display: flex;
+    gap: 1rem;
+}
+
+.links-navegacao a {
+    text-decoration: none;
+    color: #000000;
+    padding: 0.5rem;
+    font-size: 20px;
+    font-weight: 200;
+    letter-spacing: -0.36px;
+}
+
+.links-navegacao a:hover {
+    color: #007bff;
+}
+
+/* Seção do logo */
+.secao-logo img {
+    height: 85px;
+}
+
+/* Seção do usuário */
+.secao-usuario {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+

@@ -1,0 +1,62 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Barra de navegação */
+.barra-navegacao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Seção de busca */
+.secao-busca {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.secao-busca input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Links de navegação */
+.links-navegacao {
+    display: flex;
+    gap: 1rem;
+}
+
+.links-navegacao a {
+    text-decoration: none;
+    color: #333;
+    padding: 0.5rem;
+}
+
+.links-navegacao a:hover {
+    color: #007bff;
+}
+
+/* Seção do logo */
+.secao-logo img {
+    height: 40px;
+}
+
+/* Seção do usuário */
+.secao-usuario {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.secao-usuario img {
+    width: 24px;
+    height: 24px;
+}
