@@ -1,0 +1,407 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Lexend;
+}
+
+/* Barra de navegação */
+.barra-navegacao {
+    display: flex;
+justify-content: space-around;
+    align-items: center;
+    padding: 2rem 2rem;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+
+}
+
+/* Seção de busca */
+.secao-busca {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+}
+
+.secao-busca input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    background: rgba(217, 217, 217, 0.19);
+    border-radius: 100px;
+    width: 250px;
+    height: 44px;
+    font-size: 15px;
+}
+
+/* Links de navegação */
+.links-navegacao {
+    display: flex;
+    gap: 1rem;
+}
+
+.links-navegacao a {
+    text-decoration: none;
+    color: #000000;
+    padding: 0.5rem;
+    font-size: 20px;
+    font-weight: 200;
+    letter-spacing: -0.36px;
+}
+
+.links-navegacao a:hover {
+    color: #007bff;
+}
+
+/* Seção do logo */
+.secao-logo img {
+    height: 85px;
+}
+
+/* Seção do usuário */
+.secao-usuario {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+/* Carrossel de Banners */
+#carrossel-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+#carrossel-banners {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+.banner-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.banner-slide.ativo {
+    opacity: 1;
+}
+
+.banner-slide img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+#indicadores-carrossel {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.indicador {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.indicador.ativo {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.botao-navegacao {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 10;
+    border-radius: 50px;
+}
+
+.botao-navegacao:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+#botao-anterior {
+    left: 20px;
+}
+
+#botao-proximo {
+    right: 20px;
+}
+
+/* Faixa de Frete Grátis */
+.faixa-frete-gratis {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+}
+
+.conteudo-faixa-rolante {
+    display: inline-block;
+    animation: rolar-faixa 45s linear infinite;
+}
+
+.texto-frete {
+    display: inline-block;
+    padding-right: 100px;
+    font-size: 14px;
+    font-weight: 200;
+    letter-spacing: 1px;
+}
+
+@keyframes rolar-faixa {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Menu Mobile */
+.botao-menu-mobile {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.linha-menu {
+    width: 100%;
+    height: 3px;
+    background-color: #000;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+.botao-menu-mobile.ativo .linha-menu:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.botao-menu-mobile.ativo .linha-menu:nth-child(2) {
+    opacity: 0;
+}
+
+.botao-menu-mobile.ativo .linha-menu:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+.menu-mobile {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 80%;
+    height: 100vh;
+    background-color: #f8f9fa;
+    z-index: 1000;
+    transition: left 0.3s ease;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.menu-mobile.ativo {
+    left: 0;
+}
+
+.menu-mobile-conteudo {
+    padding: 80px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.menu-mobile-conteudo a {
+    text-decoration: none;
+    color: #000;
+    font-size: 18px;
+    font-weight: 300;
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+    transition: color 0.3s ease;
+}
+
+.menu-mobile-conteudo a:hover {
+    color: #007bff;
+}
+
+.menu-mobile-conteudo a:last-child {
+    border-bottom: none;
+}
+
+body.menu-aberto {
+    overflow: hidden;
+}
+
+body.menu-aberto::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .barra-navegacao {
+        padding: 1rem;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .links-navegacao {
+        display: none;
+    }
+
+    .botao-menu-mobile {
+        display: flex;
+        order: 3;
+        margin-left: 1rem;
+    }
+
+    .secao-logo {
+        order: 1;
+        flex: 1;
+    }
+
+    .secao-logo img {
+        height: 60px;
+    }
+
+    .secao-usuario {
+        order: 2;
+        gap: 0.8rem;
+        margin-right: 0.5rem;
+    }
+
+    .secao-usuario img {
+        width: 24px;
+        height: 24px;
+    }
+
+    /* Carrossel responsivo */
+    .botao-navegacao {
+        padding: 10px 15px;
+        font-size: 16px;
+    }
+
+    #botao-anterior {
+        left: 10px;
+    }
+
+    #botao-proximo {
+        right: 10px;
+    }
+
+    #indicadores-carrossel {
+        bottom: 10px;
+    }
+
+    .indicador {
+        width: 10px;
+        height: 10px;
+    }
+
+    /* Faixa de frete responsiva */
+    .faixa-frete-gratis {
+        padding: 12px 0;
+    }
+
+    .texto-frete {
+        font-size: 13px;
+        padding-right: 80px;
+    }
+
+    .conteudo-faixa-rolante {
+        animation: rolar-faixa 35s linear infinite;
+    }
+}
+
+@media (max-width: 480px) {
+    .barra-navegacao {
+        padding: 0.5rem;
+    }
+
+    .secao-logo img {
+        height: 50px;
+    }
+
+    .secao-usuario img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .botao-navegacao {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+
+    #botao-anterior {
+        left: 5px;
+    }
+
+    #botao-proximo {
+        right: 5px;
+    }
+
+    .menu-mobile {
+        width: 90%;
+    }
+
+    .menu-mobile-conteudo {
+        padding: 60px 15px 15px;
+    }
+
+    .menu-mobile-conteudo a {
+        font-size: 16px;
+        padding: 12px 0;
+    }
+
+    /* Faixa de frete para mobile pequeno */
+    .faixa-frete-gratis {
+        padding: 10px 0;
+    }
+
+    .texto-frete {
+        font-size: 12px;
+        padding-right: 60px;
+        letter-spacing: 0.5px;
+    }
+
+    .conteudo-faixa-rolante {
+        animation: rolar-faixa 25s linear infinite;
+    }
+}
+
