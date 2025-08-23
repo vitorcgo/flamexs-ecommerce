@@ -1,6 +1,4 @@
-<<<<<<< Updated upstream
-<!-- Padrão -->
-=======
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -93,4 +91,4 @@
     <script src="js/menu-mobile.js"></script>
 </body>
 </html>
->>>>>>> Stashed changes
+
