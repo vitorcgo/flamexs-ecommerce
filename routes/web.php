@@ -33,3 +33,11 @@ Route::get('/troca', function () {
 Route::get('/contato', function () {
     return view('contato');
 });
+
+Route::get('/login', function () {
+    return view('login');
+});
+
+Route::get('/cadastro', function () {
+    return view('cadastro');
+});
