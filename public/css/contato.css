@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem;
+
+}
+
+container h1 {
+    color: #000;
+    font-family: Lexend;
+    font-size: 70px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%;
+    /* 105px */
+    letter-spacing: -1.4px;
+}
+
+p {
+    max-width: 50%;
+    padding: 2rem;
+
+}
