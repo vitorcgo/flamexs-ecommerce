@@ -103,6 +103,8 @@
     background-color: rgba(0, 0, 0, 0.05);
 }
 
+/* FAQ ATIVO */
+
 .faq-pergunta.ativo .faq-icone {
     transform: rotate(180deg);
     color: #000000;
