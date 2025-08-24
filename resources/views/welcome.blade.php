@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/welcome.css">
+    <link rel="stylesheet" href="css/produtos.css">
+    <link rel="stylesheet" href="css/modal-carrinho.css">
+    <link rel="stylesheet" href="css/faq.css">
+    <link rel="stylesheet" href="css/footer.css">
     <title>Flamexs - Loja Virtual</title>
 </head>
 <body>
@@ -16,17 +20,20 @@
             </div>
             
             <div class="links-navegacao">
-                <a href="#">Início</a>
-                <a href="#">Produtos</a>
-                <a href="#">Sobre nós</a>
-                <a href="#">FAQ</a>
-                <a href="#">Trocas e Devoluções</a>
-                <a href="#">Contato</a>
+                <a href="/">Início</a>
+                <a href="/produtos">Produtos</a>
+                <a href="/sobre">Sobre nós</a>
+                <a href="#faq">FAQ</a>
+                <a href="/troca">Trocas e Devoluções</a>
+                <a href="/contato">Contato</a>
             </div>
             
             <div class="secao-usuario">
                 <a href="/login"><img src="./images/user.svg" alt=""></a>
-                <a href=""><img src="./images/carrinho.svg" alt=""></a>
+                <a href="#" id="icone-carrinho" style="position: relative;">
+                    <img src="./images/carrinho.svg" alt="">
+                    <span class="contador-carrinho" id="contador-carrinho">0</span>
+                </a>
             </div>
 
             <button id="botao-menu-mobile" class="botao-menu-mobile">
@@ -38,12 +45,12 @@
 
         <div id="menu-mobile" class="menu-mobile">
             <div class="menu-mobile-conteudo">
-                <a href="#">Início</a>
-                <a href="#">Produtos</a>
-                <a href="#">Sobre nós</a>
-                <a href="#">FAQ</a>
-                <a href="#">Trocas e Devoluções</a>
-                <a href="#">Contato</a>
+                <a href="/">Início</a>
+                <a href="/produtos">Produtos</a>
+                <a href="/sobre">Sobre nós</a>
+                <a href="#faq">FAQ</a>
+                <a href="/troca">Trocas e Devoluções</a>
+                <a href="/contato">Contato</a>
             </div>
         </div>
     </header>
@@ -91,10 +98,349 @@
         </div>
     </div>
 
+    <!-- Categorias -->
+    <div class="container-categorias">
+        <h1>CATEGORIAS</h1>
+        <section class="secao-categorias">
+            <div class="carrossel-categorias">
+                <div class="lista-categorias">
+                    <div class="primeira-linha">
+                        <div class="card-categoria">
+                            <a href="#"><img src="./images/camisetas.png" alt="Camisetas"></a>
+                        </div>
+                        <div class="card-categoria">
+                            <a href="#"><img src="./images/regatas.png" alt="Regatas"></a>
+                        </div>
+                        <div class="card-categoria">
+                            <a href="#"><img src="./images/blusas.png" alt="Blusas"></a>
+                        </div>
+                    </div>
+                    <div class="segunda-linha">
+                        <div class="card-categoria">
+                            <a href="#"><img src="./images/calças.png" alt="Calças"></a>
+                        </div>
+                        <div class="card-categoria">
+                            <a href="#"><img src="./images/shorts.png" alt="Shorts"></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mini-botoes-categoria">
+                    <button class="mini-botao proximo" id="mini-proximo">›</button>
+                </div>
+            </div>
+        </section>
+    </div>
 
+    <!-- Produtos -->
+    <section id="sessao-produtos">
+        <h2 class="titulo-produtos">PRODUTOS</h2>
+        <div class="grid-produtos">
+            <div class="produto">
+                <div class="produto-imagem-container">
+                    <img src="./images/1.png" alt="Produto 1" class="produto-imagem">
+                </div>
+                <div class="produto-info">
+                    <h3 class="produto-nome">CAMISETA BÁSICA</h3>
+                    <p class="produto-preco">R$ 49,90</p>
+                    <p class="produto-tamanhos">P, M, G, GG</p>
+                </div>
+                <div class="produto-botoes">
+                    <button class="botao-comprar">COMPRAR AGORA</button>
+                    <button class="botao-carrinho">ADICIONAR AO CARRINHO</button>
+                </div>
+            </div>
+            
+            <div class="produto">
+                <div class="produto-imagem-container">
+                    <img src="./images/1.png" alt="Produto 2" class="produto-imagem">
+                </div>
+                <div class="produto-info">
+                    <h3 class="produto-nome">REGATA ESPORTIVA</h3>
+                    <p class="produto-preco">R$ 39,90</p>
+                    <p class="produto-tamanhos">P, M, G</p>
+                </div>
+                <div class="produto-botoes">
+                    <button class="botao-comprar">COMPRAR AGORA</button>
+                    <button class="botao-carrinho">ADICIONAR AO CARRINHO</button>
+                </div>
+            </div>
+            
+            <div class="produto">
+                <div class="produto-imagem-container">
+                    <img src="./images/1.png" alt="Produto 3" class="produto-imagem">
+                </div>
+                <div class="produto-info">
+                    <h3 class="produto-nome">BLUSA FEMININA</h3>
+                    <p class="produto-preco">R$ 59,90</p>
+                    <p class="produto-tamanhos">PP, P, M, G</p>
+                </div>
+                <div class="produto-botoes">
+                    <button class="botao-comprar">COMPRAR AGORA</button>
+                    <button class="botao-carrinho">ADICIONAR AO CARRINHO</button>
+                </div>
+            </div>
+            
+            <div class="produto">
+                <div class="produto-imagem-container">
+                    <img src="./images/1.png" alt="Produto 4" class="produto-imagem">
+                </div>
+                <div class="produto-info">
+                    <h3 class="produto-nome">CALÇA JEANS</h3>
+                    <p class="produto-preco">R$ 89,90</p>
+                    <p class="produto-tamanhos">36, 38, 40, 42, 44</p>
+                </div>
+                <div class="produto-botoes">
+                    <button class="botao-comprar">COMPRAR AGORA</button>
+                    <button class="botao-carrinho">ADICIONAR AO CARRINHO</button>
+                </div>
+            </div>
+            
+            <div class="produto">
+                <div class="produto-imagem-container">
+                    <img src="./images/1.png" alt="Produto 5" class="produto-imagem">
+                </div>
+                <div class="produto-info">
+                    <h3 class="produto-nome">SHORTS CASUAL</h3>
+                    <p class="produto-preco">R$ 34,90</p>
+                    <p class="produto-tamanhos">P, M, G, GG</p>
+                </div>
+                <div class="produto-botoes">
+                    <button class="botao-comprar">COMPRAR AGORA</button>
+                    <button class="botao-carrinho">ADICIONAR AO CARRINHO</button>
+                </div>
+            </div>
+            
+            <div class="produto">
+                <div class="produto-imagem-container">
+                    <img src="./images/1.png" alt="Produto 6" class="produto-imagem">
+                </div>
+                <div class="produto-info">
+                    <h3 class="produto-nome">VESTIDO ELEGANTE</h3>
+                    <p class="produto-preco">R$ 79,90</p>
+                    <p class="produto-tamanhos">PP, P, M, G, GG</p>
+                </div>
+                <div class="produto-botoes">
+                    <button class="botao-comprar">COMPRAR AGORA</button>
+                    <button class="botao-carrinho">ADICIONAR AO CARRINHO</button>
+                </div>
+            </div>
+            
+            <div class="produto">
+                <div class="produto-imagem-container">
+                    <img src="./images/1.png" alt="Produto 7" class="produto-imagem">
+                </div>
+                <div class="produto-info">
+                    <h3 class="produto-nome">JAQUETA JEANS</h3>
+                    <p class="produto-preco">R$ 99,90</p>
+                    <p class="produto-tamanhos">P, M, G, GG, XG</p>
+                </div>
+                <div class="produto-botoes">
+                    <button class="botao-comprar">COMPRAR AGORA</button>
+                    <button class="botao-carrinho">ADICIONAR AO CARRINHO</button>
+                </div>
+            </div>
+            
+            <div class="produto">
+                <div class="produto-imagem-container">
+                    <img src="./images/1.png" alt="Produto 8" class="produto-imagem">
+                </div>
+                <div class="produto-info">
+                    <h3 class="produto-nome">TÊNIS ESPORTIVO</h3>
+                    <p class="produto-preco">R$ 129,90</p>
+                    <p class="produto-tamanhos">37, 38, 39, 40, 41, 42, 43</p>
+                </div>
+                <div class="produto-botoes">
+                    <button class="botao-comprar">COMPRAR AGORA</button>
+                    <button class="botao-carrinho">ADICIONAR AO CARRINHO</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+        <div class="container-faq">
+            <div class="faq-header">
+                <h2 class="faq-titulo">PERGUNTAS FREQUENTES</h2>
+                <p class="faq-descricao">Encontre respostas para as perguntas mais comuns sobre nossos produtos e processo de compra.</p>
+            </div>
+            
+            <div class="faq-lista">
+                <div class="faq-item">
+                    <button class="faq-pergunta" data-faq="1">
+                        <span>Quais formas de pagamento a loja aceita?</span>
+                        <span class="faq-icone">▼</span>
+                    </button>
+                    <div class="faq-resposta" id="faq-1">
+                        <p>Aceitamos cartões de crédito, débito, PIX e boleto bancário.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-pergunta" data-faq="2">
+                        <span>Quanto tempo demora para meu pedido chegar?</span>
+                        <span class="faq-icone">▼</span>
+                    </button>
+                    <div class="faq-resposta" id="faq-2">
+                        <p>O prazo de entrega varia de acordo com a sua região. Normalmente, as entregas levam entre 3 a 10 dias úteis após a confirmação do pagamento.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-pergunta" data-faq="3">
+                        <span>Posso trocar ou devolver um produto?</span>
+                        <span class="faq-icone">▼</span>
+                    </button>
+                    <div class="faq-resposta" id="faq-3">
+                        <p>Sim! Você pode solicitar a troca ou devolução em até 7 dias corridos após o recebimento do pedido, desde que a peça esteja sem uso e com etiqueta.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-pergunta" data-faq="4">
+                        <span>Como descubro meu tamanho ideal?</span>
+                        <span class="faq-icone">▼</span>
+                    </button>
+                    <div class="faq-resposta" id="faq-4">
+                        <p>Disponibilizamos uma tabela de medidas em cada produto para ajudar na escolha. Se ainda tiver dúvidas, nossa equipe de atendimento pode auxiliar.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-pergunta" data-faq="5">
+                        <span>Vocês oferecem frete grátis?</span>
+                        <span class="faq-icone">▼</span>
+                    </button>
+                    <div class="faq-resposta" id="faq-5">
+                        <p>Sim, oferecemos frete grátis em compras acima de R$ 599,00.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal do Carrinho -->
+    <div class="modal-overlay" id="modal-carrinho">
+        <div class="modal-carrinho">
+            <div class="modal-header">
+                <h2 class="modal-titulo">CARRINHO DE COMPRAS</h2>
+                <button class="modal-fechar" id="fechar-modal">&times;</button>
+            </div>
+            
+            <div class="modal-body" id="carrinho-conteudo">
+                <div class="carrinho-vazio" id="carrinho-vazio">
+                    <p>Seu carrinho está vazio</p>
+                </div>
+                
+                <div class="carrinho-itens" id="carrinho-itens" style="display: none;">
+                    <!-- Itens do carrinho serão inseridos aqui via JavaScript -->
+                </div>
+            </div>
+            
+            <div class="carrinho-resumo" id="carrinho-resumo" style="display: none;">
+                <div class="subtotal">
+                    <p class="subtotal-titulo">Subtotal</p>
+                    <p class="subtotal-info">(sem frete)</p>
+                    <p class="subtotal-valor" id="subtotal-valor">R$ 0,00</p>
+                </div>
+                
+                <div class="carrinho-acoes">
+                    <button class="btn-iniciar-compra">INICIAR A COMPRA</button>
+                    <button class="btn-continuar-comprando" id="continuar-comprando">CONTINUAR COMPRANDO</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Flamexs</h3>
+                    <p>Sua loja de moda online com as melhores tendências e qualidade excepcional. Estilo e conforto em cada peça.</p>
+                    <div class="redes-sociais">
+                        <a href="#" class="rede-social facebook">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="rede-social instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="rede-social twitter">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="rede-social youtube">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="/">Início</a></li>
+                        <li><a href="/produtos">Produtos</a></li>
+                        <li><a href="/sobre">Sobre Nós</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="/contato">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Atendimento</h3>
+                    <ul>
+                        <li><a href="/troca">Trocas e Devoluções</a></li>
+                        <li><a href="/politica">Política de Privacidade</a></li>
+                        <li><a href="/termos">Termos de Uso</a></li>
+                        <li><a href="/entrega">Prazos de Entrega</a></li>
+                        <li><a href="/tamanhos">Guia de Tamanhos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contato</h3>
+                    <div class="contato-item email">contato@flamexs.com.br</div>
+                    <div class="contato-item telefone">(11) 99999-9999</div>
+                    <div class="contato-item endereco">São Paulo, SP - Brasil</div>
+                    
+                    <div class="newsletter">
+                        <p>Receba nossas novidades:</p>
+                        <form class="newsletter-form">
+                            <input type="email" class="newsletter-input" placeholder="Seu e-mail">
+                            <button type="submit" class="newsletter-btn">Inscrever</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Flamexs. Todos os direitos reservados.</p>
+                <div class="pagamentos">
+                    <span class="pagamento-item">PIX</span>
+                    <span class="pagamento-item">Visa</span>
+                    <span class="pagamento-item">Master</span>
+                    <span class="pagamento-item">Elo</span>
+                    <span class="pagamento-item">Boleto</span>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script src="js/carrossel.js"></script>
     <script src="js/menu-mobile.js"></script>
+    <script src="js/carrossel-categorias.js"></script>
+    <script src="js/produtos-hover.js"></script>
+    <script src="js/carrinho.js"></script>
+    <script src="js/faq.js"></script>
 </body>
 </html>
 
