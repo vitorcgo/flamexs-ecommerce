@@ -19,9 +19,9 @@
 
             <div class="links-navegacao">
                 <a href="/">Início</a>
-                <a href="#">Produtos</a>
+                <a href="/produtos">Produtos</a>
                 <a href="/sobre">Sobre nós</a>
-                <a href="/faq">FAQ</a>
+                <a href="/#faq">FAQ</a>
                 <a href="/troca">Trocas e Devoluções</a>
                 <a href="/contato">Contato</a>
             </div>
@@ -40,15 +40,33 @@
 
         <div id="menu-mobile" class="menu-mobile">
             <div class="menu-mobile-conteudo">
-                <a href="#">Início</a>
-                <a href="#">Produtos</a>
-                <a href="#">Sobre nós</a>
-                <a href="#">FAQ</a>
-                <a href="#">Trocas e Devoluções</a>
-                <a href="#">Contato</a>
+                <a href="/">Início</a>
+                <a href="/produtos">Produtos</a>
+                <a href="/sobre">Sobre nós</a>
+                <a href="/#faq">FAQ</a>
+                <a href="/troca">Trocas e Devoluções</a>
+                <a href="/contato">Contato</a>
             </div>
         </div>
     </header>
+
+    <!-- Faixa de Frete Grátis -->
+    <div id="faixa-frete-gratis" class="faixa-frete-gratis">
+        <div class="conteudo-faixa-rolante">
+            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
+            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
+            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
+            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
+            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
+            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
+            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
+            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
+            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
+            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
+            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
+            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
+        </div>
+    </div>
 
     <div class="container">
     <h1>CONTATO</h1>

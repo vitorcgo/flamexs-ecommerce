@@ -8,15 +8,20 @@
     font-family: Lexend;
 }
 
-/* Barra de navegação */
+/* Barra de navegação - Header fixo */
 .barra-navegacao {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
     display: flex;
     justify-content: space-around;
     align-items: center;
     padding: 2rem 2rem;
     background-color: #f8f9fa;
     border-bottom: 1px solid #ddd;
-
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Seção de busca */
@@ -168,7 +173,7 @@
     width: 80%;
     height: 100vh;
     background-color: #f8f9fa;
-    z-index: 1000;
+    z-index: 1001;
     transition: left 0.3s ease;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -219,6 +224,11 @@ body.menu-aberto::before {
 
 /* Responsividade */
 @media (max-width: 768px) {
+    /* Ajuste do padding-top para mobile */
+    body {
+        padding-top: 100px !important;
+    }
+    
     .barra-navegacao {
         padding: 1rem;
         justify-content: space-between;

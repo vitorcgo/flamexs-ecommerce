@@ -15,7 +15,9 @@
 }
 
 .modal-overlay.ativo {
-    display: block;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
 }
 
 .modal-carrinho {

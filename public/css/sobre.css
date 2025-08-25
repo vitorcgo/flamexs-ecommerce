@@ -1,3 +1,42 @@
+/* Compensação para header fixo */
+body {
+    padding-top: 140px;
+}
+
+/* Faixa de Frete Grátis */
+.faixa-frete-gratis {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+}
+
+.conteudo-faixa-rolante {
+    display: flex;
+    animation: rolar-faixa 30s linear infinite;
+    width: max-content;
+}
+
+.texto-frete {
+    display: inline-block;
+    padding-right: 100px;
+    font-size: 14px;
+    font-weight: 200;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+}
+
+@keyframes rolar-faixa {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -22,6 +61,11 @@ p {
 
 /* Responsividade para tablets */
 @media (max-width: 768px) {
+    /* Ajuste do padding-top para mobile */
+    body {
+        padding-top: 100px !important;
+    }
+    
     .container {
         padding: 3rem 2rem;
     }
