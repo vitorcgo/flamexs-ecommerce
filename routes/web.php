@@ -41,3 +41,19 @@ Route::get('/login', function () {
 Route::get('/cadastro', function () {
     return view('cadastro');
 });
+
+Route::get('/produtos', function () {
+    return view('produtos');
+});
+
+Route::get('/produto/{id}', function ($id) {
+    return view('produto-detalhes');
+});
+
+Route::get('/login-adm', function () {
+    return view('login-adm');
+});
+
+Route::get('/adm', function () {
+   return view('/login-adm');
+});

@@ -138,10 +138,12 @@
         <div class="grid-produtos">
             <div class="produto">
                 <div class="produto-imagem-container">
-                    <img src="./images/1.png" alt="Produto 1" class="produto-imagem">
+                    <a href="/produto/1">
+                        <img src="./images/cocada.png" alt="Produto 1" class="produto-imagem">
+                    </a>
                 </div>
                 <div class="produto-info">
-                    <h3 class="produto-nome">CAMISETA BÁSICA</h3>
+                    <h3 class="produto-nome"><a href="/produto/1">C0CADA ZIP UP</a></h3>
                     <p class="produto-preco">R$ 49,90</p>
                     <p class="produto-tamanhos">P, M, G, GG</p>
                 </div>
