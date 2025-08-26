@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/admin/header.css">
+    <!-- ADICIONE SEU CSS ESPECÍFICO AQUI -->
+    <title>SEU TÍTULO AQUI</title>
+</head>
+<body>
+    <!-- Barra de Navegação Superior -->
+    <header class="cabecalho-navegacao">
+        <div class="container-navegacao">
+            <div class="logo">
+                <img src="/images/logo.gif" alt="Logo" class="logo-imagem">
+            </div>
+            <nav class="menu-navegacao" id="menu-navegacao">
+                <a href="#" class="link-navegacao">Dashboard</a>
+                <a href="#" class="link-navegacao ativo">Vendas</a>
+                <a href="#" class="link-navegacao">Produtos</a>
+                <a href="#" class="link-navegacao">Administradores</a>
+                <a href="#" class="link-navegacao">Categorias</a>
+            </nav>
+            <div class="perfil-usuario">
+                <div class="avatar-usuario"></div>
+                <div class="info-usuario">
+                    <div class="nome-usuario">Vitor Gomes</div>
+                    <div class="cargo-usuario">Admin</div>
+                </div>
+                <a href="#" class="botao-logout" onclick="confirmarLogout()">
+                    Sair
+                </a>
+            </div>
+            <button class="botao-menu-mobile" id="botao-menu-mobile">
+                <div class="linha-menu"></div>
+                <div class="linha-menu"></div>
+                <div class="linha-menu"></div>
+            </button>
+        </div>
+    </header>
+
+    <!-- Área de Conteúdo Principal -->
+    <main class="container-principal">
+        <!-- SEU CONTEÚDO COMEÇA AQUI -->
+        
+        
+        
+        <!-- SEU CONTEÚDO TERMINA AQUI -->
+    </main>
+
+    <!-- JavaScript do Header (sempre incluir) -->
+    <script>
+        // Funcionalidade do Menu Mobile
+        const botaoMenuMobile = document.getElementById('botao-menu-mobile');
+        const menuNavegacao = document.getElementById('menu-navegacao');
+
+        botaoMenuMobile.addEventListener('click', function() {
+            botaoMenuMobile.classList.toggle('ativo');
+            menuNavegacao.classList.toggle('ativo');
+        });
+
+        const linksNavegacao = document.querySelectorAll('.link-navegacao');
+        linksNavegacao.forEach(link => {
+            link.addEventListener('click', function() {
+                botaoMenuMobile.classList.remove('ativo');
+                menuNavegacao.classList.remove('ativo');
+            });
+        });
+
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                botaoMenuMobile.classList.remove('ativo');
+                menuNavegacao.classList.remove('ativo');
+            }
+        });
+
+        function confirmarLogout() {
+            if (confirm('Tem certeza que deseja sair do sistema?')) {
+                alert('Logout realizado com sucesso!');
+            }
+        }
+    </script>
+    
+    <!-- ADICIONE SEUS SCRIPTS ESPECÍFICOS AQUI -->
+
+</body>
+</html>
