@@ -42,6 +42,18 @@ Route::get('/adm', function () {
    return view('admin.login.store');
 });
 
+Route::get('/adm/produtos/create', function(){
+    return view('admin.produtos.create');
+});
+
+Route::get('/adm/produtos/show', function(){
+    return view('admin.produtos.show');
+});
+
+Route::get('/adm/produtos/index', function(){
+    return view('admin.produtos.index');
+});
+
 //Continuar..
 
 
