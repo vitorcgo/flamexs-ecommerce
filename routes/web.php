@@ -1,59 +1,62 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AddAdministratorController;
-use App\Http\Controllers\AddProductController;
-use App\Http\Controllers\AdministratorController;
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ListProductController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\SalesController;
-use App\Http\Controllers\ViewProductController;
 
+//--------------------------------------------------------
+
+
+// Rotas do Cliente - Depois trocamos para sincronizar com os controllers, 
+// apenas arrumei a organização das paginas - Vitor
+
+
+// Pagina Principal
 Route::get('/', function () {
-    return view('welcome');
+    return view('client.home.index');
 });
 
+// Pagina de Produtos
+Route::get('/produtos', function () {
+    return view('client.produtos.index');
+});
+// Pagina do produto por ID
+Route::get('/produto/{id}', function ($id) {
+    return view('client.produtos.show');
+});
 
+// Pagina de Login - Usuario
+Route::get('/login', function () {
+    return view('client.login.store');
+});
+
+// Pagina de Cadastro - Usuario
+Route::get('/cadastro', function () {
+    return view('client.cadastro.store');
+});
+
+// -----------------------------------------------------------
+
+
+// Rotas do Administrador - Painel
+Route::get('/adm', function () {
+   return view('admin.login.store');
+});
+
+//Continuar..
+
+
+// -----------------------------------------------------------
+
+
+// Rotas do Layout (Paginas que não precisam de controller, apenas exibem um front.)
 Route::get('/sobre', function () {
-    return view('sobre');
+    return view('client.layout.sobre');
 });
-
 
 Route::get('/troca', function () {
-    return view('troca');
+    return view('client.layout.troca');
 });
-
-
 Route::get('/contato', function () {
-    return view('contato');
+    return view('client.layout.contato');
 });
 
-Route::get('/login', function () {
-    return view('login');
-});
-
-Route::get('/cadastro', function () {
-    return view('cadastro');
-});
-
-Route::get('/produtos', function () {
-    return view('produtos');
-});
-
-Route::get('/produto/{id}', function ($id) {
-    return view('produto-detalhes');
-});
-
-Route::get('/login-adm', function () {
-    return view('login-adm');
-});
-
-Route::get('/adm', function () {
-   return view('/login-adm');
-});

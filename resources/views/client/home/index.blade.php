@@ -197,67 +197,9 @@
                     <button class="botao-carrinho">ADICIONAR AO CARRINHO</button>
                 </div>
             </div>
-            
-            <div class="produto">
-                <div class="produto-imagem-container">
-                    <img src="./images/1.png" alt="Produto 5" class="produto-imagem">
-                </div>
-                <div class="produto-info">
-                    <h3 class="produto-nome">SHORTS CASUAL</h3>
-                    <p class="produto-preco">R$ 34,90</p>
-                    <p class="produto-tamanhos">P, M, G, GG</p>
-                </div>
-                <div class="produto-botoes">
-                    <button class="botao-comprar">COMPRAR AGORA</button>
-                    <button class="botao-carrinho">ADICIONAR AO CARRINHO</button>
-                </div>
-            </div>
-            
-            <div class="produto">
-                <div class="produto-imagem-container">
-                    <img src="./images/1.png" alt="Produto 6" class="produto-imagem">
-                </div>
-                <div class="produto-info">
-                    <h3 class="produto-nome">VESTIDO ELEGANTE</h3>
-                    <p class="produto-preco">R$ 79,90</p>
-                    <p class="produto-tamanhos">PP, P, M, G, GG</p>
-                </div>
-                <div class="produto-botoes">
-                    <button class="botao-comprar">COMPRAR AGORA</button>
-                    <button class="botao-carrinho">ADICIONAR AO CARRINHO</button>
-                </div>
-            </div>
-            
-            <div class="produto">
-                <div class="produto-imagem-container">
-                    <img src="./images/1.png" alt="Produto 7" class="produto-imagem">
-                </div>
-                <div class="produto-info">
-                    <h3 class="produto-nome">JAQUETA JEANS</h3>
-                    <p class="produto-preco">R$ 99,90</p>
-                    <p class="produto-tamanhos">P, M, G, GG, XG</p>
-                </div>
-                <div class="produto-botoes">
-                    <button class="botao-comprar">COMPRAR AGORA</button>
-                    <button class="botao-carrinho">ADICIONAR AO CARRINHO</button>
-                </div>
-            </div>
-            
-            <div class="produto">
-                <div class="produto-imagem-container">
-                    <img src="./images/1.png" alt="Produto 8" class="produto-imagem">
-                </div>
-                <div class="produto-info">
-                    <h3 class="produto-nome">TÊNIS ESPORTIVO</h3>
-                    <p class="produto-preco">R$ 129,90</p>
-                    <p class="produto-tamanhos">37, 38, 39, 40, 41, 42, 43</p>
-                </div>
-                <div class="produto-botoes">
-                    <button class="botao-comprar">COMPRAR AGORA</button>
-                    <button class="botao-carrinho">ADICIONAR AO CARRINHO</button>
-                </div>
-            </div>
-        </div>
+          
+       
+     </div>
     </section>
 
     <!-- FAQ -->
