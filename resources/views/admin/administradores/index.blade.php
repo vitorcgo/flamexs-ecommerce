@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+@extends('admin.layouts.main')
+@section('title', 'Administradores - Painel de Controle')
+
+
+<!-- <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -8,4 +12,4 @@
 <body>
     
 </body>
-</html>
+</html> -->

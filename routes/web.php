@@ -54,6 +54,26 @@ Route::get('/adm/produtos/index', function(){
     return view('admin.produtos.index');
 });
 
+// Dashboard
+Route::get('/adm/dashboard', function(){
+    return view('admin.dashboard.index');
+});
+
+// Vendas
+Route::get('/adm/vendas', function(){
+    return view('admin.vendas.index');
+});
+
+// Administradores
+Route::get('/adm/administradores', function(){
+    return view('admin.administradores.index');
+});
+
+// Categorias
+Route::get('/adm/categorias', function(){
+    return view('admin.categorias.index');
+});
+
 //Continuar..
 
 
@@ -62,13 +82,13 @@ Route::get('/adm/produtos/index', function(){
 
 // Rotas do Layout (Paginas que não precisam de controller, apenas exibem um front.)
 Route::get('/sobre', function () {
-    return view('client.layout.sobre');
+    return view('client.home.sobre');
 });
 
 Route::get('/troca', function () {
-    return view('client.layout.troca');
+    return view('client.home.troca');
 });
 Route::get('/contato', function () {
-    return view('client.layout.contato');
+    return view('client.home.contato');
 });
 
