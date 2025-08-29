@@ -80,6 +80,11 @@ body {
     height: 40px;
     background-color: #ccc;
     border-radius: 50%;
+    border: 2px solid rgb(207, 17, 166);
+    background-image: url('/images/imagem-de-frango-gerada-por-ai.jpg');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 .info-usuario {
