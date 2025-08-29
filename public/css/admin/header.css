@@ -40,7 +40,7 @@ body {
 .logo-imagem {
     height: 50px;
     width: auto;
-    max-width: 120px;
+    max-width: 200px;
     object-fit: contain;
 }
 

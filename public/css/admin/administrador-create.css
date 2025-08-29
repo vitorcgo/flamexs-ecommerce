@@ -1,0 +1,356 @@
+/* Adicionar Administrador - Flamexs E-commerce */
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.painel-adicionar-admin {
+    padding: 40px;
+    background-color: #ffffff;
+    min-height: 100vh;
+    font-family: 'Lexend', sans-serif;
+}
+
+/* Cabeçalho */
+.cabecalho-adicionar-admin {
+    margin-bottom: 40px;
+}
+
+.titulo-adicionar-admin {
+    font-family: 'Lexend', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    color: #000000;
+    margin-bottom: 8px;
+}
+
+.breadcrumb-admin {
+    font-size: 14px;
+    color: #8c8c8c;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.breadcrumb-link {
+    color: #8c8c8c;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb-link:hover {
+    color: #FF0000;
+}
+
+.breadcrumb-separador {
+    color: #8c8c8c;
+}
+
+.breadcrumb-atual {
+    color: #8c8c8c;
+}
+
+/* Container do Formulário */
+.container-formulario-admin {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 40px;
+    width: 100%;
+}
+
+.formulario-admin {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Campos do Formulário */
+.campo-grupo-admin {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.campo-label-admin {
+    font-family: 'Lexend', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333333;
+    margin-bottom: 4px;
+}
+
+.campo-input-admin {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    font-family: 'Lexend', sans-serif;
+    font-size: 16px;
+    color: #000000;
+    background-color: #ffffff;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.campo-input-admin:focus {
+    border-color: #FF0000;
+    box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.1);
+}
+
+.campo-input-admin::placeholder {
+    color: #999999;
+}
+
+/* Área de Upload */
+.area-upload {
+    position: relative;
+    border: 2px dashed #FF0000;
+    border-radius: 8px;
+    padding: 40px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #ffffff;
+    min-height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.area-upload:hover {
+    border-color: #CC0000;
+    background-color: rgba(255, 0, 0, 0.02);
+}
+
+.area-upload.dragover {
+    border-color: #CC0000;
+    background-color: rgba(255, 0, 0, 0.05);
+    transform: scale(1.02);
+}
+
+.conteudo-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.icone-upload {
+    color: #FF0000;
+    margin-bottom: 8px;
+}
+
+.texto-upload {
+    font-family: 'Lexend', sans-serif;
+    font-size: 16px;
+    color: #333333;
+    margin: 0;
+}
+
+.link-upload {
+    color: #FF0000;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.link-upload:hover {
+    text-decoration: underline;
+}
+
+.legenda-upload {
+    font-family: 'Lexend', sans-serif;
+    font-size: 12px;
+    color: #8c8c8c;
+    margin: 0;
+}
+
+/* Preview da Imagem */
+.preview-imagem {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.imagem-preview {
+    max-width: 120px;
+    max-height: 120px;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.botao-remover-imagem {
+    position: absolute;
+    top: -8px;
+    right: calc(50% - 68px);
+    background-color: #FF0000;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.botao-remover-imagem:hover {
+    background-color: #CC0000;
+    transform: scale(1.1);
+}
+
+/* Botões do Formulário */
+.botoes-formulario-admin {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.botao-cancelar-admin,
+.botao-adicionar-form-admin {
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-family: 'Lexend', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    min-width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.botao-cancelar-admin {
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #d9d9d9;
+}
+
+.botao-cancelar-admin:hover {
+    background-color: #f5f5f5;
+    border-color: #bfbfbf;
+    transform: translateY(-1px);
+    text-decoration: none;
+    color: #000000;
+}
+
+.botao-adicionar-form-admin {
+    background-color: #FF0000;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.botao-adicionar-form-admin:hover {
+    background-color: #CC0000;
+    transform: translateY(-1px) scale(1.03);
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
+}
+
+.botao-adicionar-form-admin:active,
+.botao-cancelar-admin:active {
+    transform: translateY(0);
+}
+
+.botao-adicionar-form-admin:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .painel-adicionar-admin {
+        padding: 20px 16px;
+    }
+    
+    .titulo-adicionar-admin {
+        font-size: 24px;
+    }
+    
+    .container-formulario-admin {
+        padding: 30px 20px;
+        width: 100%;
+    }
+    
+    .area-upload {
+        padding: 30px 15px;
+        min-height: 140px;
+    }
+    
+    .icone-upload {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .texto-upload {
+        font-size: 14px;
+    }
+    
+    .botoes-formulario-admin {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .botao-cancelar-admin,
+    .botao-adicionar-form-admin {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .painel-adicionar-admin {
+        padding: 16px 12px;
+    }
+    
+    .titulo-adicionar-admin {
+        font-size: 22px;
+    }
+    
+    .container-formulario-admin {
+        padding: 24px 16px;
+    }
+    
+    .campo-input-admin {
+        font-size: 14px;
+        padding: 12px 14px;
+    }
+    
+    .area-upload {
+        padding: 24px 12px;
+        min-height: 120px;
+    }
+    
+    .icone-upload {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .texto-upload {
+        font-size: 13px;
+    }
+    
+    .legenda-upload {
+        font-size: 11px;
+    }
+    
+    .breadcrumb-admin {
+        font-size: 12px;
+        flex-wrap: wrap;
+    }
+}

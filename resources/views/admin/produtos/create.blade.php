@@ -17,11 +17,11 @@
                 <img src="/images/logo.gif" alt="Logo" class="logo-imagem">
             </div>
             <nav class="menu-navegacao" id="menu-navegacao">
-                <a href="#" class="link-navegacao">Dashboard</a>
-                <a href="#" class="link-navegacao">Vendas</a>
-                <a href="#" class="link-navegacao ativo">Produtos</a>
-                <a href="#" class="link-navegacao">Administradores</a>
-                <a href="#" class="link-navegacao">Categorias</a>
+                <a href="/adm/dashboard" class="link-navegacao">Dashboard</a>
+                <a href="/adm/vendas" class="link-navegacao">Vendas</a>
+                <a href="/adm/produtos/index" class="link-navegacao ativo">Produtos</a>
+                <a href="/adm/administradores" class="link-navegacao">Administradores</a>
+                <a href="/adm/categorias" class="link-navegacao">Categorias</a>
             </nav>
             <div class="perfil-usuario">
                 <div class="avatar-usuario"></div>
@@ -180,36 +180,7 @@
         </form>
     </main>
 
-    <script>
-        const botaoMenuMobile = document.getElementById('botao-menu-mobile');
-        const menuNavegacao = document.getElementById('menu-navegacao');
-
-        botaoMenuMobile.addEventListener('click', function() {
-            botaoMenuMobile.classList.toggle('ativo');
-            menuNavegacao.classList.toggle('ativo');
-        });
-
-        const linksNavegacao = document.querySelectorAll('.link-navegacao');
-        linksNavegacao.forEach(link => {
-            link.addEventListener('click', function() {
-                botaoMenuMobile.classList.remove('ativo');
-                menuNavegacao.classList.remove('ativo');
-            });
-        });
-
-        window.addEventListener('resize', function() {
-            if (window.innerWidth > 768) {
-                botaoMenuMobile.classList.remove('ativo');
-                menuNavegacao.classList.remove('ativo');
-            }
-        });
-
-        function confirmarLogout() {
-            if (confirm('Tem certeza que deseja sair do sistema?')) {
-                alert('Logout realizado com sucesso!');
-            }
-        }
-    </script>
+    <script src="/js/admin/header.js"></script>
     
     <script>
         const inputArquivo = document.getElementById('input-arquivo');
