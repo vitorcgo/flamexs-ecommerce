@@ -69,6 +69,10 @@ Route::get('/adm/administradores', function(){
     return view('admin.administradores.index');
 });
 
+Route::get('/adm/administradores/create', function () {
+    return view('admin.administradores.create');
+});
+
 // Categorias
 Route::get('/adm/categorias', function(){
     return view('admin.categorias.index');

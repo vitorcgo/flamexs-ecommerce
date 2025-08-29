@@ -9,6 +9,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/admin/header.css">
     <link rel="stylesheet" href="/css/admin/produtoindex.css">
+    <link rel="stylesheet" href="/css/admin/produtocreate.css">
+    <link rel="stylesheet" href="/css/admin/dashboard.css">
+    <link rel="stylesheet" href="/css/admin/vendas.css">
+    <link rel="stylesheet" href="/css/admin/administradores.css">
+    <link rel="stylesheet" href="/css/admin/administrador-create.css">
+    <link rel="stylesheet" href="/css/admin/categorias.css">
+    <link rel="stylesheet" href="/css/admin/modal-excluir.css">
     <title>@yield('title')</title>
 </head>
 
@@ -17,7 +24,7 @@
     <header class="cabecalho-navegacao">
         <div class="container-navegacao">
             <div class="logo">
-                <img src="/images/logo.gif" alt="Logo" class="logo-imagem">
+                <img src="/images/FLAMES.png" alt="FLAMES" class="logo-imagem">
             </div>
             <nav class="menu-navegacao" id="menu-navegacao">
                 <a href="/adm/dashboard" class="link-navegacao">Dashboard</a>
@@ -46,9 +53,40 @@
         </div>
     </header>
     <!-- Final do Header -->
-    <!-- Comeco  da Main-->
+    
+    <!-- Comeco da Main -->
     @yield('content')
+    <!-- Final da Main -->
 
+    <!-- Modal de Confirmação de Exclusão -->
+    <div class="modal-overlay-excluir" id="modalExcluir">
+        <div class="modal-container-excluir">
+            <div class="modal-icone-excluir">
+                <svg class="icone-lixeira" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="3,6 5,6 21,6"></polyline>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                </svg>
+            </div>
+            
+            <div class="modal-conteudo-excluir">
+                <h2 class="modal-titulo-excluir">Tem certeza que deseja excluir?</h2>
+                <p class="modal-descricao-excluir">Essa ação não da para ser desfeita.</p>
+            </div>
+            
+            <div class="modal-botoes-excluir">
+                <button type="button" class="botao-cancelar-excluir" id="cancelarExclusao">
+                    Cancelar
+                </button>
+                <button type="button" class="botao-confirmar-excluir" id="confirmarExclusao">
+                    Sim, delete!
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts do Header -->
+    <script src="/js/admin/header.js"></script>
+    <script src="/js/admin/modal-excluir.js"></script>
 </body>
 
 </html>

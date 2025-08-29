@@ -1,0 +1,444 @@
+/* Vendas Admin - Flamexs E-commerce */
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.painel-vendas {
+    padding: 40px;
+    background-color: #ffffff;
+    min-height: 100vh;
+    font-family: 'Lexend', sans-serif;
+}
+
+/* Título da Página */
+.cabecalho-vendas {
+    margin-bottom: 30px;
+}
+
+.titulo-vendas {
+    font-family: 'Lexend', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    color: #000000;
+    opacity: 0;
+    transform: translateX(-30px);
+    animation: fadeInSlideLeft 0.8s ease-out forwards;
+}
+
+/* Campo de Pesquisa */
+.container-pesquisa {
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out 0.15s forwards;
+}
+
+.campo-pesquisa {
+    position: relative;
+    max-width: 400px;
+}
+
+.icone-pesquisa {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    color: #666666;
+    z-index: 2;
+}
+
+.input-pesquisa {
+    width: 100%;
+    padding: 14px 16px 14px 48px;
+    border: 1px solid #E0E0E0;
+    border-radius: 12px;
+    font-family: 'Lexend', sans-serif;
+    font-size: 14px;
+    background-color: #ffffff;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.input-pesquisa:hover {
+    border-color: #CCCCCC;
+}
+
+.input-pesquisa:focus {
+    border-color: #FF0000;
+    box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.1);
+}
+
+.input-pesquisa::placeholder {
+    color: #999999;
+}
+
+/* Container da Tabela */
+.container-tabela-vendas {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+/* Tabela de Vendas */
+.tabela-vendas-admin {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Lexend', sans-serif;
+}
+
+.tabela-vendas-admin thead {
+    background-color: #F5F5F5;
+}
+
+.tabela-vendas-admin th {
+    padding: 18px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 14px;
+    color: #333333;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+.tabela-vendas-admin td {
+    padding: 18px 16px;
+    font-size: 14px;
+    color: #333333;
+    border-bottom: 1px solid #F0F0F0;
+    vertical-align: middle;
+}
+
+/* Linhas da Tabela */
+.linha-venda {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInCascade 0.6s ease-out forwards;
+    transition: background-color 0.3s ease;
+}
+
+.linha-venda[data-delay="0"] { animation-delay: 0.2s; }
+.linha-venda[data-delay="100"] { animation-delay: 0.3s; }
+.linha-venda[data-delay="200"] { animation-delay: 0.4s; }
+.linha-venda[data-delay="300"] { animation-delay: 0.5s; }
+.linha-venda[data-delay="400"] { animation-delay: 0.6s; }
+.linha-venda[data-delay="500"] { animation-delay: 0.7s; }
+
+.linha-venda:hover {
+    background-color: #FAFAFA;
+}
+
+/* Info do Cliente */
+.info-cliente {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar-cliente {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #FF0000 0%, #CC0000 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* Badges de Status */
+.badge-status {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-status.pago {
+    background-color: #D1FAE5;
+    color: #065F46;
+    animation: fadeInSuave 0.8s ease-out;
+}
+
+.badge-status.pendente {
+    background-color: #FEF3C7;
+    color: #92400E;
+    animation: pulseLento 2s infinite;
+}
+
+/* Botão Visualizar */
+.botao-visualizar {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 8px;
+    background-color: #F3F4F6;
+    color: #6B7280;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.botao-visualizar:hover {
+    background-color: #DBEAFE;
+    color: #3B82F6;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* Paginação */
+.rodape-paginacao-vendas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.dropdown-itens {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #666666;
+}
+
+.select-itens {
+    padding: 8px 12px;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    font-family: 'Lexend', sans-serif;
+    font-size: 14px;
+    background-color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.select-itens:hover {
+    border-color: #CCCCCC;
+}
+
+.select-itens:focus {
+    outline: none;
+    border-color: #FF0000;
+    box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.1);
+}
+
+/* Controles de Paginação */
+.controles-paginacao-vendas {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.botao-paginacao-vendas {
+    width: 36px;
+    height: 36px;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #666666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.botao-paginacao-vendas:hover {
+    background-color: #F5F5F5;
+    border-color: #FF0000;
+    color: #FF0000;
+    transform: scale(1.05);
+}
+
+.numero-pagina-vendas {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background-color: transparent;
+    color: #666666;
+    font-family: 'Lexend', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.numero-pagina-vendas:hover {
+    background-color: #F5F5F5;
+    color: #FF0000;
+    transform: scale(1.1);
+}
+
+.numero-pagina-vendas.ativo {
+    background-color: #FF0000;
+    color: #ffffff;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
+}
+
+/* Animações */
+@keyframes fadeInSlideLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInCascade {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInSuave {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pulseLento {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    .painel-vendas {
+        padding: 30px 20px;
+    }
+    
+    .titulo-vendas {
+        font-size: 24px;
+    }
+    
+    .container-tabela-vendas {
+        overflow-x: auto;
+    }
+    
+    .tabela-vendas-admin {
+        min-width: 800px;
+    }
+}
+
+@media (max-width: 768px) {
+    .painel-vendas {
+        padding: 20px 16px;
+    }
+    
+    .titulo-vendas {
+        font-size: 22px;
+    }
+    
+    .campo-pesquisa {
+        max-width: 100%;
+    }
+    
+    .rodape-paginacao-vendas {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .controles-paginacao-vendas {
+        justify-content: center;
+    }
+    
+    .tabela-vendas-admin th,
+    .tabela-vendas-admin td {
+        padding: 12px 8px;
+        font-size: 12px;
+    }
+    
+    .avatar-cliente {
+        width: 32px;
+        height: 32px;
+        font-size: 12px;
+    }
+    
+    .info-cliente {
+        gap: 8px;
+    }
+    
+    .info-cliente span {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .painel-vendas {
+        padding: 16px 12px;
+    }
+    
+    .titulo-vendas {
+        font-size: 20px;
+    }
+    
+    .tabela-vendas-admin {
+        min-width: 600px;
+    }
+    
+    .tabela-vendas-admin th,
+    .tabela-vendas-admin td {
+        padding: 10px 6px;
+        font-size: 11px;
+    }
+    
+    .badge-status {
+        padding: 4px 8px;
+        font-size: 10px;
+    }
+    
+    .botao-visualizar {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .botao-visualizar svg {
+        width: 16px;
+        height: 16px;
+    }
+}

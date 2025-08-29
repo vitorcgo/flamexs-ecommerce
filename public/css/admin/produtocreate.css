@@ -15,8 +15,29 @@
 }
 
 .breadcrumbs {
-    color: #666;
     font-size: 14px;
+    color: #8c8c8c;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.breadcrumb-link {
+    color: #8c8c8c;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb-link:hover {
+    color: #FF0000;
+}
+
+.breadcrumb-separador {
+    color: #8c8c8c;
+}
+
+.breadcrumb-atual {
+    color: #8c8c8c;
 }
 
 .formulario-produto {
@@ -389,6 +410,7 @@
     cursor: pointer;
     transition: all 0.3s ease;
     border: none;
+    text-decoration: none;
 }
 
 .botao-cancelar {
@@ -400,6 +422,19 @@
 .botao-cancelar:hover {
     background-color: #f8f9fa;
     border-color: #ccc;
+    color: #333;
+    text-decoration: none;
+}
+
+.botao-cancelar:visited {
+    color: #333;
+    text-decoration: none;
+}
+
+.botao-cancelar:focus {
+    color: #333;
+    text-decoration: none;
+    outline: none;
 }
 
 .botao-adicionar {
