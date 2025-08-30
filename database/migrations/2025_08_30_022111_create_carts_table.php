@@ -12,7 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('carts', function (Blueprint $table) {
+            //Chaves
             $table->id();
+            $table->foreignId('user_id')->unique()->constrained()->onDelete('cascade');
+            $table->foreignId('product_id')->unique()->constrained()->onDelete('cascade');
+
+            //Colunas
+            $table->integer('qty');
+            $table->timestamp('date_add');
+
+
+
+            //Campos de Controle do Laravel
             $table->timestamps();
         });
     }
