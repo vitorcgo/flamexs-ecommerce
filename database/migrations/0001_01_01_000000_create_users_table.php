@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('cpf', 14)->unique();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->string('phone')->unique();
-            $table->timestamp('last_login_at');
+            $table->timestamp('last_login_at')->nullable();
 
             //Campos de Controle do Laravel
             $table->rememberToken(); // Para a funcionalidade "Lembrar-me"

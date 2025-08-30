@@ -17,8 +17,9 @@ return new class extends Migration
             $table->foreignId('user_id')->unique()->constrained()->onDelete('cascade');
 
             //Colunas
+            $table->decimal('total_amount', 10, 2);
             $table->timestamp('order_data');
-            $table->string('status');
+            $table->string('status')->default('pending'); // Status Possiveis: pending, processing, shipped, delivered, cancelled
 
 
             //Campos de Controle do Laravel

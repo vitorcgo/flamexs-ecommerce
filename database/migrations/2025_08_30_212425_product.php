@@ -17,11 +17,11 @@ return new class extends Migration
 
             //Colunas
             $table->string('name');
-            $table->float('price');
-            $table->string('status');
+            $table->decimal('price', 8, 2);
+            $table->string('status')->default('available');
             $table->string('description');
-            $table->integer('stock');
-            $table->string('details');
+            $table->integer('stock')->default(0);
+            $table->string('details')->nullable();
             
             //Avaliar Necessidade de criacao de outra tabela
             $table->string('category');

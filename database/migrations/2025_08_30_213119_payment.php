@@ -17,9 +17,10 @@ return new class extends Migration
             $table->foreignId('order_id')->unique()->constrained()->onDelete('cascade');
 
             //Coluna
-            $table->string('payment_method');
-            $table->string('status');
-            $table->float('total_value');
+            $table->string('payment_method'); // 'credit_card', 'pix', 'boleto'
+            $table->string('status')->default('pending'); // 'pending', 'paid', 'failed'
+            $table->decimal('total_value', 10, 2);
+            $table->timestamp('paid_at')->nullable();
             $table->timestamp('payment_data');
 
 

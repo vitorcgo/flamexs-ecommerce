@@ -16,10 +16,11 @@ return new class extends Migration
             //Chaves
             $table->id();
             $table->foreignId('order_id')->constrained();
+            $table->foreignId('product_id')->constrained()->onDelete('set null');
 
             //Colunas
             $table->integer('qty');
-            $table->float('unitary_price', 2);
+            $table->decimal('price', 8, 2);
 
             //Marca do tempo
             $table->timestamps();

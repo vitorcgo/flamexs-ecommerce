@@ -13,13 +13,16 @@ return new class extends Migration
     {
         Schema::create('cart_items', function (Blueprint $table) {
 
-            //Chaves Utilizadas na Tabela
+            //Chaves
             $table->id();
             $table->foreignId('card_id')->constrained();
             $table->foreignId('product_id')->constrained();
 
-            //Colunas da Tabela User
-            $table->integer('qty');
+            //Colunas
+            $table->integer('qty')->default(1);
+
+            // Garante que não haja linhas duplicadas do mesmo produto no mesmo carrinho
+            $table->unique(['cart_id', 'product_id']);
 
             //Marca do tempo
             $table->timestamps();

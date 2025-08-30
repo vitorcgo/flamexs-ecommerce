@@ -17,10 +17,11 @@ return new class extends Migration
 
             //Colunas
             $table->string('user')->unique();
+            $table->string('email')->unique();
             $table->string('password');
-            $table->string('status');
+            $table->string('status')->default('active');
             $table->string('profile_photo_path', 2048)->nullable();
-            $table->timestamp('last_login_at');
+            $table->timestamp('last_login_at')->nullable();
             
             //Campos de Controle do Laravel
             $table->timestamps();

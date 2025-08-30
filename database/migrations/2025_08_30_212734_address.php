@@ -11,7 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('addresses', function (Blueprint $table) {
+
+            //Chaves
+            $table->id();
+            $table->foreignId('user_id')->unique()->constrained()->onDelete('cascade');
+
+            //Colunas
+            $table->string('zip_code', 9);
+            $table->string('street');
+            $table->integer('number');
+            $table->string('complement')->nullable();
+            $table->string('neighborhood');
+            $table->string('city');
+
+            //Campos de Controle do Laravels
+            $table->timestamps();
+        });
     }
 
     /**
@@ -19,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('addresses');
     }
 };

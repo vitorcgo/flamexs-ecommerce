@@ -15,10 +15,10 @@ return new class extends Migration
 
             //Chaves Utilizadas na Tabela
             $table->id();
-            $table->foreignId('product_id')->constrained();
+            $table->foreignId('product_id')->constrained()->onDelete('cascade');
 
             //Colunas da Tabela User
-           $table->string('url');
+            $table->string('url', 2048);
 
             //Marca do tempo
             $table->timestamps();
