@@ -12,7 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('payments', function (Blueprint $table) {
+            //Chaves
             $table->id();
+            $table->foreignId('order_id')->unique()->constrained()->onDelete('cascade');
+
+            //Coluna
+            $table->string('payment_method');
+            $table->string('status');
+            $table->float('total_value');
+            $table->timestamp('payment_data');
+
+
+            //Campos de Controle do Laravel
             $table->timestamps();
         });
     }

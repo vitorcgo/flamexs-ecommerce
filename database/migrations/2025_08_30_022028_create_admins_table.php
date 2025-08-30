@@ -12,7 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('admins', function (Blueprint $table) {
+            //Chaves
             $table->id();
+
+            //Colunas
+            $table->string('user')->unique();
+            $table->string('password');
+            $table->string('status');
+            $table->timestamp('last_login_at');
+            
+            //Campos de Controle do Laravel
             $table->timestamps();
         });
     }

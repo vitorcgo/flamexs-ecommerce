@@ -12,7 +12,23 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
+            //Chaves
             $table->id();
+
+            //Colunas
+            $table->string('name');
+            $table->float('price');
+            $table->string('status');
+            $table->string('description');
+            $table->integer('stock');
+            $table->string('details');
+            
+            //Avaliar Necessidade de criacao de outra tabela
+            $table->string('category');
+            $table->string('color');
+            $table->string('size');
+
+            //Campos de Controle do Laravel
             $table->timestamps();
         });
     }

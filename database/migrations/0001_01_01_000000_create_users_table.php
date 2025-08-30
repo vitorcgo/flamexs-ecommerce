@@ -13,19 +13,20 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
 
-            //Chaves Utilizadas na Tabela
+            //Chaves
             $table->id();
-            $table->foreignId('address_id')->constrained();
 
-            //Colunas da Tabela User
+            //Colunas
             $table->string('full_name');
             $table->string('email')->unique();
             $table->string('password');
             $table->string('cpf', 14)->unique();
-            $table->string('phone');
-            $table->timestamp('last_access_date');
+            $table->string('profile_photo_path', 2048)->nullable();
+            $table->string('phone')->unique();
+            $table->timestamp('last_login_at');
 
-            //Marca do tempo
+            //Campos de Controle do Laravel
+            $table->rememberToken(); // Para a funcionalidade "Lembrar-me"
             $table->timestamps();
         });
 
