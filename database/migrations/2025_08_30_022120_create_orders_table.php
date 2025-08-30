@@ -12,7 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('orders', function (Blueprint $table) {
+            //Chaves
             $table->id();
+            $table->foreignId('user_id')->unique()->constrained()->onDelete('cascade');
+
+            //Colunas
+            $table->timestamp('order_data');
+            $table->string('status');
+
+
+            //Campos de Controle do Laravel
             $table->timestamps();
         });
     }
