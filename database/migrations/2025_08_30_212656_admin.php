@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('user')->unique();
             $table->string('password');
             $table->string('status');
+            $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamp('last_login_at');
             
             //Campos de Controle do Laravel

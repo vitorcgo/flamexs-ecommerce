@@ -10,6 +10,7 @@ class admin extends Model
         'user',
         'password',
         'status',
-        'last_login_at'
+        'last_login_at',
+        'profile_photo_path'
     ];
 }
