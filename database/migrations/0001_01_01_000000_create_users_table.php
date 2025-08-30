@@ -12,12 +12,20 @@ return new class extends Migration
     public function up(): void
     {   
         Schema::create('users', function (Blueprint $table) {
+            //Chaves
             $table->id();
-            $table->string('name');
+
+            //Colunas
+            $table->string('full_name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->rememberToken();
+            $table->string('cpf', 14)->unique();
+            $table->string('profile_photo_path', 2048)->nullable();
+            $table->string('phone')->unique();
+            $table->timestamp('last_login_at')->nullable();
+
+            //Campos de Controle do Laravel
+            $table->rememberToken(); // Para a funcionalidade "Lembrar-me"
             $table->timestamps();
         });
 

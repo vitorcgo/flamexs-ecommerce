@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ProductMedia extends Model
 {
@@ -10,4 +11,8 @@ class ProductMedia extends Model
         'product_id',
         'url'
     ];
+    
+    public function product(): BelongsTo{
+        return $this->belongsTo(product::class);
+    }
 }

@@ -8,8 +8,11 @@ class admin extends Model
 {
     protected $fillable =[
         'user',
+        'email',
         'password',
         'status',
-        'last_login_at'
+        'last_login_at',
+        'profile_photo_path'
     ];
+    
 }
