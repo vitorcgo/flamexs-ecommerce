@@ -15,7 +15,7 @@ return new class extends Migration
 
             //Chaves
             $table->id();
-            $table->foreignId('card_id')->constrained();
+            $table->foreignId('cart_id')->constrained();
             $table->foreignId('product_id')->constrained();
 
             //Colunas
