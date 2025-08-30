@@ -12,7 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('cart_items', function (Blueprint $table) {
+
+            //Chaves Utilizadas na Tabela
             $table->id();
+            $table->foreignId('card_id')->constrained();
+            $table->foreignId('product_id')->constrained();
+
+            //Colunas da Tabela User
+            $table->interger('qty');
+
+            //Marca do tempo
             $table->timestamps();
         });
     }
