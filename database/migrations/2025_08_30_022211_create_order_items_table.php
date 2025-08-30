@@ -16,6 +16,7 @@ return new class extends Migration
             //Chaves Utilizadas na Tabela
             $table->id();
             $table->foreignId('order_id')->constrained();
+            $table->foreignId('product_id')->constrained();
 
             //Colunas da Tabela User
             $table->interger('qty');
