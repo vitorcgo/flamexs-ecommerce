@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
+
 
 //--------------------------------------------------------
 
@@ -82,9 +84,14 @@ Route::get('/admin/administradores/edit/{id}', function ($id) {
 });
 
 // Categorias
-Route::get('/admin/categorias', function(){
-    return view('admin.categorias.index');
-});
+// Route::get('/admin/categorias', function(){
+//     return view('admin.categorias.index');
+// });
+
+// Usada para listar todos os itens da tabela 
+Route::get('/admin/categorias', [CategoryController::class , 'index' ]);
+
+Route::post('/admin/categorias', [CategoryController::class , 'store']);
 
 //Continuar..
 
