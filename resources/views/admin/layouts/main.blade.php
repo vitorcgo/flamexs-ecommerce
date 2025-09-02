@@ -37,7 +37,7 @@
                 
                 <!-- Separador e botão sair (apenas no mobile) -->
                 <div class="separador-menu-mobile"></div>
-                <a href="#" class="botao-logout-mobile" ">
+                <a href="#" class="botao-logout-mobile" >
                     Sair
                 </a>
             </nav>

@@ -45,9 +45,40 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td colspan="7" style="text-align: center; padding: 40px; color: #666;">
-                        Nenhum administrador encontrado
+                <tr class="linha-administrador" data-delay="0">
+                    <td>
+                        <input type="checkbox" class="checkbox-linha">
+                    </td>
+                    <td class="celula-id">#001</td>
+                    <td>
+                        <div class="info-administrador">
+                            <div class="avatar-administrador">A</div>
+                            <span class="nome-administrador">Admin Principal</span>
+                        </div>
+                    </td>
+                    <td class="celula-email">admin@exemplo.com</td>
+                    <td class="celula-senha">••••••••</td>
+                    <td class="celula-ativo">
+                        <div class="switch-categoria ativo">
+                            <input type="checkbox" checked>
+                            <span class="slider-categoria"></span>
+                        </div>
+                    </td>
+                    <td class="celula-funcoes">
+                        <div class="botoes-funcoes-categoria">
+                            <button class="botao-funcao-categoria editar" title="Editar" onclick="window.location.href='/admin/administradores/edit/1'">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="m18.5 2.5 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                </svg>
+                            </button>
+                            <button class="botao-funcao-categoria excluir" title="Excluir">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3,6 5,6 21,6"></polyline>
+                                    <path d="m19,6v14a2,2 0 0,1-2,2H7a2,2 0 0,1-2-2V6m3,0V4a2,2 0 0,1,2-2h4a2,2 0 0,1,2,2v2"></path>
+                                </svg>
+                            </button>
+                        </div>
                     </td>
                 </tr>
             </tbody>
