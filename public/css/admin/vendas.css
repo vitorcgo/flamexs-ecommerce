@@ -99,7 +99,7 @@
 
 .tabela-vendas-admin th {
     padding: 18px 16px;
-    text-align: left;
+    text-align: center;
     font-weight: 600;
     font-size: 14px;
     color: #333333;
@@ -112,6 +112,15 @@
     color: #333333;
     border-bottom: 1px solid #F0F0F0;
     vertical-align: middle;
+    text-align: center;
+}
+
+.celula-id {
+    text-align: center;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 500;
+    color: #666;
+    font-size: 12px;
 }
 
 /* Linhas da Tabela */
@@ -138,6 +147,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
+    justify-content: center;
 }
 
 .avatar-cliente {
@@ -163,6 +173,7 @@
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    margin: 0 auto;
 }
 
 .badge-status.pago {
@@ -190,6 +201,7 @@
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
+    margin: 0 auto;
 }
 
 .botao-visualizar:hover {
@@ -197,6 +209,235 @@
     color: #3B82F6;
     transform: scale(1.1);
     box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* Modal Visualizar Venda */
+.modal-overlay-venda {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay-venda.ativo {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-container-venda {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 700px;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: scale(0.9);
+    transition: transform 0.2s ease;
+    font-family: 'Lexend', sans-serif;
+}
+
+.modal-overlay-venda.ativo .modal-container-venda {
+    transform: scale(1);
+}
+
+/* Header do Modal */
+.modal-header-venda {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 30px;
+    border-bottom: 1px solid #f0f0f0;
+    background-color: #fafafa;
+}
+
+.modal-titulo-venda {
+    font-family: 'Lexend', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: #000000;
+    margin: 0;
+}
+
+.modal-fechar-venda {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    color: #666666;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-fechar-venda:hover {
+    background-color: #f5f5f5;
+    color: #000000;
+    transform: scale(1.1);
+}
+
+/* Body do Modal */
+.modal-body-venda {
+    padding: 30px;
+}
+
+.secao-info-venda {
+    margin-bottom: 30px;
+}
+
+.subtitulo-modal {
+    font-family: 'Lexend', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: #000000;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.grid-info-venda {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+}
+
+.campo-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #FF0000;
+}
+
+.label-info {
+    font-family: 'Lexend', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #666666;
+}
+
+.valor-info {
+    font-family: 'Lexend', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #000000;
+}
+
+.valor-destaque {
+    color: #FF0000;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* Seção de Produtos */
+.secao-produtos-venda {
+    margin-top: 30px;
+}
+
+.lista-produtos-venda {
+    margin-bottom: 20px;
+}
+
+.item-produto-venda {
+    padding: 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    background-color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.item-produto-venda:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-color: #FF0000;
+}
+
+.info-produto-venda {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nome-produto-venda {
+    font-family: 'Lexend', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #000000;
+}
+
+.valor-produto-venda {
+    font-family: 'Lexend', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #FF0000;
+}
+
+.total-produtos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 2px solid #FF0000;
+}
+
+.label-total {
+    font-family: 'Lexend', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: #000000;
+}
+
+.valor-total {
+    font-family: 'Lexend', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: #FF0000;
+}
+
+/* Footer do Modal */
+.modal-footer-venda {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    padding: 24px 30px;
+    border-top: 1px solid #f0f0f0;
+    background-color: #fafafa;
+    border-radius: 0 0 12px 12px;
+}
+
+.botao-fechar-modal {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-family: 'Lexend', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid #d9d9d9;
+    background-color: #ffffff;
+    color: #000000;
+    min-width: 100px;
+}
+
+.botao-fechar-modal:hover {
+    background-color: #f5f5f5;
+    border-color: #bfbfbf;
+    transform: translateY(-1px);
 }
 
 /* Paginação */
@@ -406,6 +647,33 @@
     .info-cliente span {
         font-size: 12px;
     }
+    
+    /* Modal Responsivo */
+    .modal-container-venda {
+        width: 95%;
+        margin: 20px;
+    }
+    
+    .modal-header-venda,
+    .modal-body-venda,
+    .modal-footer-venda {
+        padding: 20px;
+    }
+    
+    .modal-titulo-venda {
+        font-size: 18px;
+    }
+    
+    .grid-info-venda {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .info-produto-venda {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -440,5 +708,41 @@
     .botao-visualizar svg {
         width: 16px;
         height: 16px;
+    }
+    
+    /* Modal Mobile */
+    .modal-container-venda {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        max-height: 100vh;
+    }
+    
+    .modal-header-venda {
+        padding: 16px 20px;
+    }
+    
+    .modal-body-venda {
+        padding: 20px;
+    }
+    
+    .modal-footer-venda {
+        padding: 16px 20px;
+    }
+    
+    .modal-titulo-venda {
+        font-size: 16px;
+    }
+    
+    .subtitulo-modal {
+        font-size: 16px;
+    }
+    
+    .nome-produto-venda {
+        font-size: 14px;
+    }
+    
+    .valor-produto-venda {
+        font-size: 14px;
     }
 }

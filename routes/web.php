@@ -38,43 +38,51 @@ Route::get('/cadastro', function () {
 
 
 // Rotas do Administrador - Painel
-Route::get('/adm', function () {
+Route::get('/admin', function () {
    return view('admin.login.store');
 });
 
-Route::get('/adm/produtos/create', function(){
+Route::get('/admin/produtos/create', function(){
     return view('admin.produtos.create');
 });
 
-Route::get('/adm/produtos/show', function(){
+Route::get('/admin/produtos/show', function(){
     return view('admin.produtos.show');
 });
 
-Route::get('/adm/produtos/index', function(){
+Route::get('/admin/produtos/index', function(){
     return view('admin.produtos.index');
 });
 
+Route::get('/admin/produtos/edit/{id}', function($id){
+    return view('admin.produtos.edit');
+});
+
 // Dashboard
-Route::get('/adm/dashboard', function(){
+Route::get('/admin/dashboard', function(){
     return view('admin.dashboard.index');
 });
 
 // Vendas
-Route::get('/adm/vendas', function(){
+Route::get('/admin/vendas', function(){
     return view('admin.vendas.index');
 });
 
 // Administradores
-Route::get('/adm/administradores', function(){
+Route::get('/admin/administradores', function(){
     return view('admin.administradores.index');
 });
 
-Route::get('/adm/administradores/create', function () {
+Route::get('/admin/administradores/create', function () {
     return view('admin.administradores.create');
 });
 
+Route::get('/admin/administradores/edit/{id}', function ($id) {
+    return view('admin.administradores.edit');
+});
+
 // Categorias
-Route::get('/adm/categorias', function(){
+Route::get('/admin/categorias', function(){
     return view('admin.categorias.index');
 });
 
@@ -95,4 +103,3 @@ Route::get('/troca', function () {
 Route::get('/contato', function () {
     return view('client.home.contato');
 });
-

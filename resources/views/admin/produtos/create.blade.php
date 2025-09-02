@@ -1,329 +1,286 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/admin/header.css">
-    <link rel="stylesheet" href="/css/admin/produtocreate.css">
-    <title>Criar Produto - Painel de Controle</title>
-</head>
-<body>
-    <header class="cabecalho-navegacao">
-        <div class="container-navegacao">
-            <div class="logo">
-                <img src="/images/logo.gif" alt="Logo" class="logo-imagem">
-            </div>
-            <nav class="menu-navegacao" id="menu-navegacao">
-                <a href="/adm/dashboard" class="link-navegacao">Dashboard</a>
-                <a href="/adm/vendas" class="link-navegacao">Vendas</a>
-                <a href="/adm/produtos/index" class="link-navegacao ativo">Produtos</a>
-                <a href="/adm/administradores" class="link-navegacao">Administradores</a>
-                <a href="/adm/categorias" class="link-navegacao">Categorias</a>
-            </nav>
-            <div class="perfil-usuario">
-                <div class="avatar-usuario"></div>
-                <div class="info-usuario">
-                    <div class="nome-usuario">Vitor Gomes</div>
-                    <div class="cargo-usuario">Admin</div>
+@extends('admin.layouts.main')
+@section('title', 'Criar Produto - Painel de Controle')
+
+@section('content')
+<main class="container-principal">
+    <div class="cabecalho-conteudo">
+        <h1 class="titulo-principal">Adicionar Produto</h1>
+        <div class="breadcrumbs">Produtos > Adicionar novo produto</div>
+    </div>
+
+    <form class="formulario-produto">
+        <div class="grid-formulario">
+            <div class="coluna-esquerda">
+                <div class="campo-formulario">
+                    <label for="nome-produto" class="rotulo-campo">Nome do Produto</label>
+                    <input type="text" id="nome-produto" name="nome-produto" class="entrada-texto" placeholder="Digite o nome do produto">
                 </div>
-                <a href="#" class="botao-logout" onclick="confirmarLogout()">
-                    Sair
-                </a>
+
+                <div class="campo-formulario">
+                    <label for="categorias" class="rotulo-campo">Categorias</label>
+                    <select id="categorias" name="categorias" class="selecao-campo">
+                        <option value="">Selecione uma categoria</option>
+                        <option value="shorts">Shorts</option>
+                        <option value="camisetas">Camisetas</option>
+                        <option value="calcas">Calças</option>
+                    </select>
+                </div>
+
+                <div class="campo-formulario">
+                    <label for="valor" class="rotulo-campo">Valor</label>
+                    <div class="campo-com-icone">
+                        <input type="text" id="valor" name="valor" class="entrada-texto" placeholder="Ex: R$ 99,90">
+                        <div class="icone-informacao">i</div>
+                    </div>
+                </div>
+
+                <div class="campo-formulario">
+                    <label for="estoque" class="rotulo-campo">Estoque</label>
+                    <input type="number" id="estoque" name="estoque" class="entrada-texto" placeholder="Quantidade em estoque" min="0">
+                </div>
             </div>
-            <button class="botao-menu-mobile" id="botao-menu-mobile">
-                <div class="linha-menu"></div>
-                <div class="linha-menu"></div>
-                <div class="linha-menu"></div>
-            </button>
+
+            <div class="coluna-direita">
+                <div class="campo-formulario">
+                    <label class="rotulo-campo">Tamanhos</label>
+                    <div class="opcoes-tamanhos">
+                        <div class="opcao-tamanho">
+                            <input type="checkbox" id="tamanho-p" name="tamanhos[]" value="P">
+                            <label for="tamanho-p" class="rotulo-tamanho">P</label>
+                        </div>
+                        <div class="opcao-tamanho">
+                            <input type="checkbox" id="tamanho-m" name="tamanhos[]" value="M">
+                            <label for="tamanho-m" class="rotulo-tamanho">M</label>
+                        </div>
+                        <div class="opcao-tamanho">
+                            <input type="checkbox" id="tamanho-g" name="tamanhos[]" value="G">
+                            <label for="tamanho-g" class="rotulo-tamanho">G</label>
+                        </div>
+                        <div class="opcao-tamanho">
+                            <input type="checkbox" id="tamanho-gg" name="tamanhos[]" value="GG">
+                            <label for="tamanho-gg" class="rotulo-tamanho">GG</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="campo-formulario">
+                    <label for="descricao" class="rotulo-campo">Descrição</label>
+                    <textarea id="descricao" name="descricao" class="area-texto" rows="4" placeholder="Descreva as características do produto..."></textarea>
+                </div>
+
+                <div class="campo-formulario">
+                    <label class="rotulo-campo">Status</label>
+                    <div class="opcoes-radio">
+                        <div class="opcao-radio">
+                            <input type="radio" id="em-estoque" name="status" value="em-estoque" checked>
+                            <label for="em-estoque" class="rotulo-radio">Em estoque</label>
+                        </div>
+                        <div class="opcao-radio">
+                            <input type="radio" id="fora-estoque" name="status" value="fora-estoque">
+                            <label for="fora-estoque" class="rotulo-radio">Fora de estoque</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </header>
 
-    <main class="container-principal">
-        <div class="cabecalho-conteudo">
-            <h1 class="titulo-principal">Adicionar Produto</h1>
-            <div class="breadcrumbs">Produtos > Adicionar novo produto</div>
+        <div class="area-upload">
+            <div class="container-upload" id="container-upload" onclick="document.getElementById('input-arquivo').click()">
+                <input type="file" id="input-arquivo" name="imagens-produto[]" accept=".jpeg,.jpg,.png" multiple style="display: none;">
+                <div class="conteudo-upload" id="conteudo-upload">
+                    <div class="icone-upload">📁</div>
+                    <div class="texto-upload">
+                        Drag & Drop or <span class="texto-vermelho">choose files</span> to upload
+                    </div>
+                    <div class="texto-formatos">Formatos suportados: .jpeg, .png (máximo 4 imagens)</div>
+                </div>
+            </div>
+            
+            <div class="grid-preview" id="grid-preview" style="display: none;">
+                <div class="preview-item" id="preview-0" style="display: none;">
+                    <img class="imagem-preview" src="" alt="Preview 1">
+                    <div class="overlay-preview">
+                        <button type="button" class="botao-remover" onclick="removerImagemEspecifica(0)">✕</button>
+                        <div class="numero-imagem">1</div>
+                    </div>
+                </div>
+                <div class="preview-item" id="preview-1" style="display: none;">
+                    <img class="imagem-preview" src="" alt="Preview 2">
+                    <div class="overlay-preview">
+                        <button type="button" class="botao-remover" onclick="removerImagemEspecifica(1)">✕</button>
+                        <div class="numero-imagem">2</div>
+                    </div>
+                </div>
+                <div class="preview-item" id="preview-2" style="display: none;">
+                    <img class="imagem-preview" src="" alt="Preview 3">
+                    <div class="overlay-preview">
+                        <button type="button" class="botao-remover" onclick="removerImagemEspecifica(2)">✕</button>
+                        <div class="numero-imagem">3</div>
+                    </div>
+                </div>
+                <div class="preview-item" id="preview-3" style="display: none;">
+                    <img class="imagem-preview" src="" alt="Preview 4">
+                    <div class="overlay-preview">
+                        <button type="button" class="botao-remover" onclick="removerImagemEspecifica(3)">✕</button>
+                        <div class="numero-imagem">4</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="botao-adicionar-mais" id="botao-adicionar-mais" style="display: none;" onclick="document.getElementById('input-arquivo').click()">
+                <span class="icone-mais">+</span>
+                <span class="texto-adicionar">Adicionar mais imagens</span>
+                <span class="contador-imagens" id="contador-imagens">(0/4)</span>
+            </div>
         </div>
 
-        <form class="formulario-produto">
-            <div class="grid-formulario">
-                <div class="coluna-esquerda">
-                    <div class="campo-formulario">
-                        <label for="nome-produto" class="rotulo-campo">Nome do Produto</label>
-                        <input type="text" id="nome-produto" name="nome-produto" class="entrada-texto" placeholder="Digite o nome do produto">
-                    </div>
+        <div class="botoes-acao">
+            <button type="button" class="botao-cancelar" onclick="window.location.href='/admin/produtos/index'">Cancelar</button>
+            <button type="submit" class="botao-adicionar">Adicionar</button>
+        </div>
+    </form>
+</main>
 
-                    <div class="campo-formulario">
-                        <label for="categorias" class="rotulo-campo">Categorias</label>
-                        <select id="categorias" name="categorias" class="selecao-campo">
-                            <option value="">Selecione uma categoria</option>
-                            <option value="shorts">Shorts</option>
-                            <option value="camisetas">Camisetas</option>
-                            <option value="calcas">Calças</option>
-                        </select>
-                    </div>
+<script>
+const inputArquivo = document.getElementById('input-arquivo');
+const containerUpload = document.getElementById('container-upload');
+const conteudoUpload = document.getElementById('conteudo-upload');
+const gridPreview = document.getElementById('grid-preview');
+const botaoAdicionarMais = document.getElementById('botao-adicionar-mais');
+const contadorImagens = document.getElementById('contador-imagens');
 
-                    <div class="campo-formulario">
-                        <label for="valor" class="rotulo-campo">Valor</label>
-                        <div class="campo-com-icone">
-                            <input type="text" id="valor" name="valor" class="entrada-texto" placeholder="Ex: R$ 99,90">
-                            <div class="icone-informacao">i</div>
-                        </div>
-                    </div>
+let imagensCarregadas = [];
+const maxImagens = 4;
 
-                    <div class="campo-formulario">
-                        <label for="estoque" class="rotulo-campo">Estoque</label>
-                        <input type="number" id="estoque" name="estoque" class="entrada-texto" placeholder="Quantidade em estoque" min="0">
-                    </div>
-                </div>
+inputArquivo.addEventListener('change', function(e) {
+    const arquivos = Array.from(e.target.files);
+    processarArquivos(arquivos);
+});
 
-                <div class="coluna-direita">
-                    <div class="campo-formulario">
-                        <label class="rotulo-campo">Tamanhos</label>
-                        <div class="opcoes-tamanhos">
-                            <div class="opcao-tamanho">
-                                <input type="checkbox" id="tamanho-p" name="tamanhos[]" value="P">
-                                <label for="tamanho-p" class="rotulo-tamanho">P</label>
-                            </div>
-                            <div class="opcao-tamanho">
-                                <input type="checkbox" id="tamanho-m" name="tamanhos[]" value="M">
-                                <label for="tamanho-m" class="rotulo-tamanho">M</label>
-                            </div>
-                            <div class="opcao-tamanho">
-                                <input type="checkbox" id="tamanho-g" name="tamanhos[]" value="G">
-                                <label for="tamanho-g" class="rotulo-tamanho">G</label>
-                            </div>
-                            <div class="opcao-tamanho">
-                                <input type="checkbox" id="tamanho-gg" name="tamanhos[]" value="GG">
-                                <label for="tamanho-gg" class="rotulo-tamanho">GG</label>
-                            </div>
-                        </div>
-                    </div>
+containerUpload.addEventListener('dragover', function(e) {
+    e.preventDefault();
+    containerUpload.style.backgroundColor = '#f0f0f0';
+    containerUpload.style.borderColor = '#FF0000';
+});
 
-                    <div class="campo-formulario">
-                        <label for="descricao" class="rotulo-campo">Descrição</label>
-                        <textarea id="descricao" name="descricao" class="area-texto" rows="4" placeholder="Descreva as características do produto..."></textarea>
-                    </div>
+containerUpload.addEventListener('dragleave', function(e) {
+    e.preventDefault();
+    containerUpload.style.backgroundColor = '#fafafa';
+    containerUpload.style.borderColor = '#FF0000';
+});
 
-                    <div class="campo-formulario">
-                        <label class="rotulo-campo">Status</label>
-                        <div class="opcoes-radio">
-                            <div class="opcao-radio">
-                                <input type="radio" id="em-estoque" name="status" value="em-estoque" checked>
-                                <label for="em-estoque" class="rotulo-radio">Em estoque</label>
-                            </div>
-                            <div class="opcao-radio">
-                                <input type="radio" id="fora-estoque" name="status" value="fora-estoque">
-                                <label for="fora-estoque" class="rotulo-radio">Fora de estoque</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="area-upload">
-                <div class="container-upload" id="container-upload" onclick="document.getElementById('input-arquivo').click()">
-                    <input type="file" id="input-arquivo" name="imagens-produto[]" accept=".jpeg,.jpg,.png" multiple style="display: none;">
-                    <div class="conteudo-upload" id="conteudo-upload">
-                        <div class="icone-upload">📁</div>
-                        <div class="texto-upload">
-                            Drag & Drop or <span class="texto-vermelho">choose files</span> to upload
-                        </div>
-                        <div class="texto-formatos">Formatos suportados: .jpeg, .png (máximo 4 imagens)</div>
-                    </div>
-                </div>
-                
-                <div class="grid-preview" id="grid-preview" style="display: none;">
-                    <div class="preview-item" id="preview-0" style="display: none;">
-                        <img class="imagem-preview" src="" alt="Preview 1">
-                        <div class="overlay-preview">
-                            <button type="button" class="botao-remover" onclick="removerImagemEspecifica(0)">✕</button>
-                            <div class="numero-imagem">1</div>
-                        </div>
-                    </div>
-                    <div class="preview-item" id="preview-1" style="display: none;">
-                        <img class="imagem-preview" src="" alt="Preview 2">
-                        <div class="overlay-preview">
-                            <button type="button" class="botao-remover" onclick="removerImagemEspecifica(1)">✕</button>
-                            <div class="numero-imagem">2</div>
-                        </div>
-                    </div>
-                    <div class="preview-item" id="preview-2" style="display: none;">
-                        <img class="imagem-preview" src="" alt="Preview 3">
-                        <div class="overlay-preview">
-                            <button type="button" class="botao-remover" onclick="removerImagemEspecifica(2)">✕</button>
-                            <div class="numero-imagem">3</div>
-                        </div>
-                    </div>
-                    <div class="preview-item" id="preview-3" style="display: none;">
-                        <img class="imagem-preview" src="" alt="Preview 4">
-                        <div class="overlay-preview">
-                            <button type="button" class="botao-remover" onclick="removerImagemEspecifica(3)">✕</button>
-                            <div class="numero-imagem">4</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="botao-adicionar-mais" id="botao-adicionar-mais" style="display: none;" onclick="document.getElementById('input-arquivo').click()">
-                    <span class="icone-mais">+</span>
-                    <span class="texto-adicionar">Adicionar mais imagens</span>
-                    <span class="contador-imagens" id="contador-imagens">(0/4)</span>
-                </div>
-            </div>
-
-            <div class="botoes-acao">
-                <button type="button" class="botao-cancelar">Cancelar</button>
-                <button type="submit" class="botao-adicionar">Adicionar</button>
-            </div>
-        </form>
-    </main>
-
-    <script src="/js/admin/header.js"></script>
+containerUpload.addEventListener('drop', function(e) {
+    e.preventDefault();
+    containerUpload.style.backgroundColor = '#fafafa';
+    containerUpload.style.borderColor = '#FF0000';
     
-    <script>
-        const inputArquivo = document.getElementById('input-arquivo');
-        const containerUpload = document.getElementById('container-upload');
-        const conteudoUpload = document.getElementById('conteudo-upload');
-        const gridPreview = document.getElementById('grid-preview');
-        const botaoAdicionarMais = document.getElementById('botao-adicionar-mais');
-        const contadorImagens = document.getElementById('contador-imagens');
+    const arquivos = Array.from(e.dataTransfer.files);
+    processarArquivos(arquivos);
+});
+
+function processarArquivos(arquivos) {
+    const arquivosImagem = arquivos.filter(arquivo => arquivo.type.startsWith('image/'));
+    
+    if (arquivosImagem.length === 0) {
+        alert('Por favor, selecione apenas arquivos de imagem (.jpeg, .jpg, .png)');
+        return;
+    }
+
+    const espacosDisponiveis = maxImagens - imagensCarregadas.length;
+    const arquivosParaProcessar = arquivosImagem.slice(0, espacosDisponiveis);
+
+    if (arquivosImagem.length > espacosDisponiveis) {
+        alert(`Você pode adicionar no máximo ${maxImagens} imagens. ${espacosDisponiveis} imagens serão adicionadas.`);
+    }
+
+    arquivosParaProcessar.forEach(arquivo => {
+        adicionarImagem(arquivo);
+    });
+
+    inputArquivo.value = '';
+}
+
+function adicionarImagem(arquivo) {
+    if (imagensCarregadas.length >= maxImagens) {
+        alert(`Máximo de ${maxImagens} imagens permitido.`);
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const indice = imagensCarregadas.length;
+        imagensCarregadas.push({
+            arquivo: arquivo,
+            dataUrl: e.target.result
+        });
+
+        mostrarPreview(indice, e.target.result);
+        atualizarInterface();
+    };
+    reader.readAsDataURL(arquivo);
+}
+
+function mostrarPreview(indice, dataUrl) {
+    const previewItem = document.getElementById(`preview-${indice}`);
+    const imagemPreview = previewItem.querySelector('.imagem-preview');
+    
+    imagemPreview.src = dataUrl;
+    previewItem.style.display = 'block';
+}
+
+function removerImagemEspecifica(indice) {
+    imagensCarregadas.splice(indice, 1);
+    reorganizarPreviews();
+    atualizarInterface();
+}
+
+function reorganizarPreviews() {
+    for (let i = 0; i < maxImagens; i++) {
+        const previewItem = document.getElementById(`preview-${i}`);
+        previewItem.style.display = 'none';
+        previewItem.querySelector('.imagem-preview').src = '';
+    }
+
+    imagensCarregadas.forEach((imagem, indice) => {
+        mostrarPreview(indice, imagem.dataUrl);
+    });
+}
+
+function atualizarInterface() {
+    const totalImagens = imagensCarregadas.length;
+    
+    contadorImagens.textContent = `(${totalImagens}/${maxImagens})`;
+    
+    if (totalImagens === 0) {
+        conteudoUpload.style.display = 'block';
+        gridPreview.style.display = 'none';
+        botaoAdicionarMais.style.display = 'none';
+    } else {
+        conteudoUpload.style.display = 'none';
+        gridPreview.style.display = 'grid';
         
-        let imagensCarregadas = [];
-        const maxImagens = 4;
-
-        inputArquivo.addEventListener('change', function(e) {
-            const arquivos = Array.from(e.target.files);
-            processarArquivos(arquivos);
-        });
-
-        containerUpload.addEventListener('dragover', function(e) {
-            e.preventDefault();
-            containerUpload.style.backgroundColor = '#f0f0f0';
-            containerUpload.style.borderColor = '#FF0000';
-        });
-
-        containerUpload.addEventListener('dragleave', function(e) {
-            e.preventDefault();
-            containerUpload.style.backgroundColor = '#fafafa';
-            containerUpload.style.borderColor = '#FF0000';
-        });
-
-        containerUpload.addEventListener('drop', function(e) {
-            e.preventDefault();
-            containerUpload.style.backgroundColor = '#fafafa';
-            containerUpload.style.borderColor = '#FF0000';
-            
-            const arquivos = Array.from(e.dataTransfer.files);
-            processarArquivos(arquivos);
-        });
-
-        function processarArquivos(arquivos) {
-            const arquivosImagem = arquivos.filter(arquivo => arquivo.type.startsWith('image/'));
-            
-            if (arquivosImagem.length === 0) {
-                alert('Por favor, selecione apenas arquivos de imagem (.jpeg, .jpg, .png)');
-                return;
-            }
-
-            const espacosDisponiveis = maxImagens - imagensCarregadas.length;
-            const arquivosParaProcessar = arquivosImagem.slice(0, espacosDisponiveis);
-
-            if (arquivosImagem.length > espacosDisponiveis) {
-                alert(`Você pode adicionar no máximo ${maxImagens} imagens. ${espacosDisponiveis} imagens serão adicionadas.`);
-            }
-
-            arquivosParaProcessar.forEach(arquivo => {
-                adicionarImagem(arquivo);
-            });
-
-            inputArquivo.value = '';
+        if (totalImagens < maxImagens) {
+            botaoAdicionarMais.style.display = 'flex';
+        } else {
+            botaoAdicionarMais.style.display = 'none';
         }
+    }
 
-        function adicionarImagem(arquivo) {
-            if (imagensCarregadas.length >= maxImagens) {
-                alert(`Máximo de ${maxImagens} imagens permitido.`);
-                return;
-            }
+    atualizarInputFile();
+}
 
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const indice = imagensCarregadas.length;
-                imagensCarregadas.push({
-                    arquivo: arquivo,
-                    dataUrl: e.target.result
-                });
+function atualizarInputFile() {
+    const dt = new DataTransfer();
+    imagensCarregadas.forEach(imagem => {
+        dt.items.add(imagem.arquivo);
+    });
+    inputArquivo.files = dt.files;
+}
 
-                mostrarPreview(indice, e.target.result);
-                atualizarInterface();
-            };
-            reader.readAsDataURL(arquivo);
-        }
-
-        function mostrarPreview(indice, dataUrl) {
-            const previewItem = document.getElementById(`preview-${indice}`);
-            const imagemPreview = previewItem.querySelector('.imagem-preview');
-            
-            imagemPreview.src = dataUrl;
-            previewItem.style.display = 'block';
-        }
-
-        function removerImagemEspecifica(indice) {
-            imagensCarregadas.splice(indice, 1);
-            reorganizarPreviews();
-            atualizarInterface();
-        }
-
-        function reorganizarPreviews() {
-            for (let i = 0; i < maxImagens; i++) {
-                const previewItem = document.getElementById(`preview-${i}`);
-                previewItem.style.display = 'none';
-                previewItem.querySelector('.imagem-preview').src = '';
-            }
-
-            imagensCarregadas.forEach((imagem, indice) => {
-                mostrarPreview(indice, imagem.dataUrl);
-            });
-        }
-
-        function atualizarInterface() {
-            const totalImagens = imagensCarregadas.length;
-            
-            contadorImagens.textContent = `(${totalImagens}/${maxImagens})`;
-            
-            if (totalImagens === 0) {
-                conteudoUpload.style.display = 'block';
-                gridPreview.style.display = 'none';
-                botaoAdicionarMais.style.display = 'none';
-            } else {
-                conteudoUpload.style.display = 'none';
-                gridPreview.style.display = 'grid';
-                
-                if (totalImagens < maxImagens) {
-                    botaoAdicionarMais.style.display = 'flex';
-                } else {
-                    botaoAdicionarMais.style.display = 'none';
-                }
-            }
-
-            atualizarInputFile();
-        }
-
-        function atualizarInputFile() {
-            const dt = new DataTransfer();
-            imagensCarregadas.forEach(imagem => {
-                dt.items.add(imagem.arquivo);
-            });
-            inputArquivo.files = dt.files;
-        }
-
-        function removerTodasImagens() {
-            imagensCarregadas = [];
-            reorganizarPreviews();
-            atualizarInterface();
-        }
-    </script>
-
-</body>
-</html>
+function removerTodasImagens() {
+    imagensCarregadas = [];
+    reorganizarPreviews();
+    atualizarInterface();
+}
+</script>
+@endsection

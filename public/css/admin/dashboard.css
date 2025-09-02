@@ -305,6 +305,12 @@ body {
     padding: 0 16px;
 }
 
+.container-grafico-unico {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
 .card-grafico,
 .card-categorias {
     background: white;
@@ -443,14 +449,6 @@ body {
     border-bottom: 1px solid #F3F4F6;
     text-align: center;
     vertical-align: middle;
-}
-
-/* Primeira coluna (ID/Nome) alinhada à esquerda */
-.tabela-categorias th:first-child,
-.tabela-categorias td:first-child,
-.tabela-vendas th:first-child,
-.tabela-vendas td:first-child {
-    text-align: left;
 }
 
 .tabela-categorias tbody tr,
@@ -1024,3 +1022,166 @@ body {
 .preenchimento-progresso[data-width="80"] { --progress-width: 80%; }
 .preenchimento-progresso[data-width="60"] { --progress-width: 60%; }
 .preenchimento-progresso[data-width="90"] { --progress-width: 90%; }
+
+/* Ajustes específicos para diferentes zooms e resoluções */
+
+/* Ajustes para zoom 100% em telas grandes (1200px+) */
+@media (min-width: 1200px) {
+    .grade-estatisticas {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        max-width: 1400px;
+        padding: 0 20px;
+    }
+    
+    .card-estatistica {
+        padding: 28px;
+        min-height: 200px;
+    }
+    
+    .conteudo-boas-vindas {
+        max-width: 1400px;
+        padding: 0 20px;
+    }
+    
+    .container-grafico-unico {
+        max-width: 1400px;
+        padding: 0 20px;
+    }
+    
+    .container-vendas {
+        max-width: 1400px;
+        padding: 0 20px;
+    }
+    
+    .card-grafico {
+        height: 500px;
+    }
+}
+
+/* Ajustes para zoom 80% (equivale a telas maiores - 1600px+) */
+@media (min-width: 1600px) {
+    .grade-estatisticas {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 32px;
+        max-width: 1600px;
+        padding: 0 24px;
+    }
+    
+    .card-estatistica {
+        padding: 32px;
+        min-height: 220px;
+    }
+    
+    .numero-estatistica {
+        font-size: 32px;
+    }
+    
+    .titulo-estatistica {
+        font-size: 18px;
+    }
+    
+    .descricao-estatistica {
+        font-size: 14px;
+    }
+    
+    .conteudo-boas-vindas {
+        max-width: 1600px;
+        padding: 0 24px;
+    }
+    
+    .container-grafico-unico {
+        max-width: 1600px;
+        padding: 0 24px;
+    }
+    
+    .container-vendas {
+        max-width: 1600px;
+        padding: 0 24px;
+    }
+    
+    .card-grafico {
+        height: 550px;
+        padding: 32px;
+    }
+    
+    .card-vendas {
+        padding: 32px;
+    }
+    
+    .titulo-boas-vindas {
+        font-size: 36px;
+    }
+    
+    .subtitulo-boas-vindas {
+        font-size: 16px;
+    }
+}
+
+/* Ajustes específicos para zoom 100% em notebooks (1024px - 1399px) */
+@media (min-width: 1024px) and (max-width: 1399px) {
+    .grade-estatisticas {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding: 0 16px;
+    }
+    
+    .card-estatistica {
+        padding: 24px;
+        min-height: 180px;
+    }
+    
+    .numero-estatistica {
+        font-size: 24px;
+    }
+    
+    .titulo-estatistica {
+        font-size: 15px;
+    }
+    
+    .descricao-estatistica {
+        font-size: 12px;
+    }
+    
+    .container-grafico-unico {
+        padding: 0 16px;
+    }
+    
+    .container-vendas {
+        padding: 0 16px;
+    }
+}
+
+/* Melhorias para o container do gráfico único */
+.container-grafico-unico .card-grafico {
+    width: 100%;
+    max-width: 100%;
+    height: 450px;
+}
+
+/* Ajustes para melhor distribuição em diferentes zooms */
+@media (min-width: 1400px) and (max-width: 1599px) {
+    .grade-estatisticas {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 28px;
+        max-width: 1500px;
+        padding: 0 22px;
+    }
+    
+    .card-estatistica {
+        padding: 30px;
+        min-height: 210px;
+    }
+    
+    .numero-estatistica {
+        font-size: 30px;
+    }
+    
+    .titulo-estatistica {
+        font-size: 17px;
+    }
+    
+    .descricao-estatistica {
+        font-size: 13px;
+    }
+}

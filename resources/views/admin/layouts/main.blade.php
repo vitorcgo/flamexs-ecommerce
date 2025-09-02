@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/admin/header.css">
     <link rel="stylesheet" href="/css/admin/produtoindex.css">
     <link rel="stylesheet" href="/css/admin/produtocreate.css">
+    <link rel="stylesheet" href="/css/admin/produtoshow.css">
     <link rel="stylesheet" href="/css/admin/dashboard.css">
     <link rel="stylesheet" href="/css/admin/vendas.css">
     <link rel="stylesheet" href="/css/admin/administradores.css">
@@ -26,25 +27,32 @@
             <div class="logo">
                 <img src="/images/FLAMES.png" alt="FLAMES" class="logo-imagem">
             </div>
+            
             <nav class="menu-navegacao" id="menu-navegacao">
-                <a href="/adm/dashboard" class="link-navegacao">Dashboard</a>
-                <a href="/adm/vendas" class="link-navegacao">Vendas</a>
-                <a href="/adm/produtos/index" class="link-navegacao">Produtos</a>
-                <a href="/adm/administradores" class="link-navegacao">Administradores</a>
-                <a href="/adm/categorias" class="link-navegacao">Categorias</a>
+                <a href="/admin/dashboard" class="link-navegacao">Dashboard</a>
+                <a href="/admin/vendas" class="link-navegacao">Vendas</a>
+                <a href="/admin/produtos/index" class="link-navegacao">Produtos</a>
+                <a href="/admin/administradores" class="link-navegacao">Administradores</a>
+                <a href="/admin/categorias" class="link-navegacao">Categorias</a>
+                
+                <!-- Separador e botão sair (apenas no mobile) -->
+                <div class="separador-menu-mobile"></div>
+                <a href="#" class="botao-logout-mobile" ">
+                    Sair
+                </a>
             </nav>
+            
             <div class="perfil-usuario">
-                <div class="avatar-usuario">
-                    
-                </div>
+                <div class="avatar-usuario">A</div>
                 <div class="info-usuario">
-                    <div class="nome-usuario">Vitor Gomes</div>
-                    <div class="cargo-usuario">Admin</div>
+                    <div class="nome-usuario">Admin</div>
                 </div>
+                <div class="separador-perfil"></div>
                 <a href="#" class="botao-logout" onclick="confirmarLogout()">
                     Sair
                 </a>
             </div>
+            
             <button class="botao-menu-mobile" id="botao-menu-mobile">
                 <div class="linha-menu"></div>
                 <div class="linha-menu"></div>
@@ -87,6 +95,13 @@
     <!-- Scripts do Header -->
     <script src="/js/admin/header.js"></script>
     <script src="/js/admin/modal-excluir.js"></script>
+    <script>
+        function confirmarLogout() {
+            if (confirm('Tem certeza que deseja sair do sistema?')) {
+                alert('Logout realizado com sucesso!');
+            }
+        }
+    </script>
 </body>
 
 </html>

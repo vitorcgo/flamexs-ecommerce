@@ -14,18 +14,19 @@ body {
 
 /* Barra de Navegação Superior */
 .cabecalho-navegacao {
-    background-color: #FF0000;
+    background: linear-gradient(135deg, #FF0000 0%, #E60000 100%);
     padding: 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .container-navegacao {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 100%;
-    padding: 0 20px;
-    height: 100px;
+    padding: 0 30px;
+    height: 80px;
     position: relative;
 }
 
@@ -38,97 +39,158 @@ body {
 }
 
 .logo-imagem {
-    height: 50px;
+    height: 45px;
     width: auto;
-    max-width: 200px;
+    max-width: 180px;
     object-fit: contain;
+    filter: brightness(1.1);
 }
 
 .menu-navegacao {
     display: flex;
-    gap: 30px;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px;
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .link-navegacao {
     color: white;
     text-decoration: none;
-    padding: 8px 16px;
-    border-radius: 6px;
+    padding: 12px 20px;
+    border-radius: 25px;
     transition: all 0.3s ease;
-    font-weight: 400;
+    font-weight: 500;
+    font-size: 14px;
+    position: relative;
+    white-space: nowrap;
 }
 
 .link-navegacao:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
 }
 
 .link-navegacao.ativo {
     background-color: white;
     color: #FF0000;
-    font-weight: 500;
-    border-radius: 50px;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
+/* Área do Perfil Melhorada */
 .perfil-usuario {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 16px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 12px;
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.perfil-usuario:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .avatar-usuario {
-    width: 40px;
-    height: 40px;
-    background-color: #ccc;
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
     border-radius: 50%;
-    border: 2px solid rgb(207, 17, 166);
-    background-image: url('/images/imagem-de-frango-gerada-por-ai.jpg');
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+    color: #FF0000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.avatar-usuario::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.2) 50%, transparent 100%);
+    border-radius: 50%;
 }
 
 .info-usuario {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .nome-usuario {
     color: white;
-    font-weight: 700;
-    font-size: 14px;
+    font-weight: 600;
+    font-size: 15px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-.cargo-usuario {
-    color: white;
-    opacity: 0.7;
-    font-size: 12px;
+/* Separador Visual */
+.separador-perfil {
+    width: 1px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.3);
+    margin: 0 4px;
 }
 
-/* Botão de Logout */
+/* Botão de Logout Melhorado */
 .botao-logout {
-    background-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.15);
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 8px 16px;
-    border-radius: 6px;
+    padding: 10px 18px;
+    border-radius: 25px;
     font-family: 'Lexend', sans-serif;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
+    backdrop-filter: blur(10px);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .botao-logout:hover {
-    background-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.25);
     border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .botao-logout:active {
-    transform: translateY(1px);
+    transform: translateY(0);
+}
+
+/* Ícone de Logout */
+.botao-logout::before {
+    content: '⏻';
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* Separador e botão mobile - ESCONDIDOS NO DESKTOP */
+.separador-menu-mobile,
+.botao-logout-mobile {
+    display: none;
 }
 
 /* Botão Menu Mobile */
@@ -136,22 +198,24 @@ body {
     display: none;
     flex-direction: column;
     cursor: pointer;
-    padding: 5px;
-    background: none;
-    border: none;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
 }
 
 .linha-menu {
-    width: 25px;
-    height: 3px;
+    width: 22px;
+    height: 2px;
     background-color: white;
-    margin: 3px 0;
+    margin: 2px 0;
     transition: 0.3s;
     border-radius: 2px;
 }
 
 .botao-menu-mobile.ativo .linha-menu:nth-child(1) {
-    transform: rotate(-45deg) translate(-5px, 6px);
+    transform: rotate(-45deg) translate(-4px, 5px);
 }
 
 .botao-menu-mobile.ativo .linha-menu:nth-child(2) {
@@ -159,7 +223,7 @@ body {
 }
 
 .botao-menu-mobile.ativo .linha-menu:nth-child(3) {
-    transform: rotate(45deg) translate(-5px, -6px);
+    transform: rotate(45deg) translate(-4px, -5px);
 }
 
 /* Container Principal */
@@ -167,59 +231,60 @@ body {
     width: 100%;
     margin: 0;
     padding: 20px;
-    min-height: calc(100vh - 100px);
+    min-height: calc(100vh - 80px);
 }
 
 /* Responsividade */
 @media (max-width: 1024px) {
     .container-navegacao {
-        justify-content: space-between;
+        padding: 0 20px;
     }
     
     .menu-navegacao {
-        gap: 20px;
+        gap: 4px;
+        padding: 6px;
     }
     
     .link-navegacao {
-        padding: 6px 12px;
-        font-size: 14px;
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+    
+    .perfil-usuario {
+        gap: 12px;
+        padding: 6px 10px;
+    }
+    
+    .avatar-usuario {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
     .container-navegacao {
-        justify-content: space-between;
         height: 60px;
-        flex-direction: row;
+        padding: 0 15px;
+        justify-content: space-between;
     }
     
     .botao-menu-mobile {
         display: flex;
-        order: 3;
     }
     
     .logo {
-        order: 1;
-        font-size: 16px;
-        display: none;
+        font-size: 14px;
     }
     
+    .logo-imagem {
+        height: 25px;
+        max-width: 100px;
+    }
+    
+    /* Esconder perfil completo no mobile */
     .perfil-usuario {
-        order: 2;
-        gap: 8px;
-    }
-    
-    .avatar-usuario {
-        width: 35px;
-        height: 35px;
-    }
-    
-    .nome-usuario {
-        font-size: 12px;
-    }
-    
-    .cargo-usuario {
-        font-size: 10px;
+        display: none;
     }
     
     .menu-navegacao {
@@ -227,16 +292,19 @@ body {
         top: 100%;
         left: 0;
         right: 0;
-        background-color: #FF0000;
+        background: linear-gradient(135deg, #FF0000 0%, #E60000 100%);
         flex-direction: column;
         gap: 0;
         padding: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         transform: translateY(-100%);
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s ease;
         z-index: 1000;
+        border-radius: 0;
+        backdrop-filter: none;
+        border: none;
     }
     
     .menu-navegacao.ativo {
@@ -246,15 +314,60 @@ body {
     }
     
     .link-navegacao {
-        padding: 12px 16px;
-        margin: 5px 0;
-        border-radius: 6px;
-        text-align: center;
+        padding: 15px 20px;
+        margin: 4px 0;
+        border-radius: 12px;
+        text-align: left;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.05);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .link-navegacao:last-of-type {
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
     
-    .link-navegacao:last-child {
+    /* Separador antes do botão sair - APENAS NO MOBILE */
+    .separador-menu-mobile {
+        display: block;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.2);
+        margin: 10px 0;
+    }
+    
+    /* Botão de Logout no Menu Mobile - APENAS NO MOBILE */
+    .botao-logout-mobile {
+        display: flex;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 15px 20px;
+        margin: 4px 0;
+        border-radius: 12px;
+        font-family: 'Lexend', sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        align-items: center;
+        gap: 10px;
+        text-align: left;
+        width: 100%;
         border-bottom: none;
+    }
+    
+    .botao-logout-mobile:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    .botao-logout-mobile::before {
+        content: '⏻';
+        font-size: 16px;
+        opacity: 0.8;
     }
     
     .container-principal {
@@ -265,10 +378,17 @@ body {
 
 @media (max-width: 480px) {
     .container-navegacao {
-        padding: 0 15px;
+        padding: 0 12px;
+        height: 55px;
+    }
+    
+    .logo-imagem {
+        height: 22px;
+        max-width: 80px;
     }
     
     .container-principal {
         padding: 10px;
+        min-height: calc(100vh - 55px);
     }
 }

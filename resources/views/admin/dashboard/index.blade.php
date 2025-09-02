@@ -7,7 +7,7 @@
     <section class="secao-boas-vindas">
         <div class="conteudo-boas-vindas">
             <div class="texto-boas-vindas">
-                <h1 class="titulo-boas-vindas">Bem vindo, Vitor</h1>
+                <h1 class="titulo-boas-vindas">Bem vindo, Admin</h1>
                 <p class="subtitulo-boas-vindas">Cuide do seu site comigo!</p>
             </div>
             <div class="acoes-boas-vindas">
@@ -51,13 +51,13 @@
                     </svg>
                 </div>
                 <div class="conteudo-estatistica">
-                    <h3 class="numero-estatistica">$48,78,620</h3>
+                    <h3 class="numero-estatistica">R$ 0,00</h3>
                     <p class="titulo-estatistica">Total arrecadados</p>
                     <p class="descricao-estatistica">Dado obtido com bases em um mês.</p>
                     <div class="rodape-estatistica">
-                        <span class="porcentagem-estatistica positiva">+15%</span>
+                        <span class="porcentagem-estatistica positiva">+0%</span>
                         <div class="barra-progresso">
-                            <div class="preenchimento-progresso" data-width="75"></div>
+                            <div class="preenchimento-progresso" data-width="0"></div>
                         </div>
                     </div>
                 </div>
@@ -72,13 +72,13 @@
                     </svg>
                 </div>
                 <div class="conteudo-estatistica">
-                    <h3 class="numero-estatistica">3,580</h3>
+                    <h3 class="numero-estatistica">0</h3>
                     <p class="titulo-estatistica">Total de Produtos</p>
                     <p class="descricao-estatistica">Dado obtido com bases em um mês.</p>
                     <div class="rodape-estatistica">
-                        <span class="porcentagem-estatistica positiva">+20%</span>
+                        <span class="porcentagem-estatistica positiva">+0%</span>
                         <div class="barra-progresso">
-                            <div class="preenchimento-progresso" data-width="80"></div>
+                            <div class="preenchimento-progresso" data-width="0"></div>
                         </div>
                     </div>
                 </div>
@@ -91,13 +91,13 @@
                     </svg>
                 </div>
                 <div class="conteudo-estatistica">
-                    <h3 class="numero-estatistica">16,490</h3>
+                    <h3 class="numero-estatistica">0</h3>
                     <p class="titulo-estatistica">Total de Categorias</p>
                     <p class="descricao-estatistica">Dado obtido com bases em um mês.</p>
                     <div class="rodape-estatistica">
-                        <span class="porcentagem-estatistica positiva">+10%</span>
+                        <span class="porcentagem-estatistica positiva">+0%</span>
                         <div class="barra-progresso">
-                            <div class="preenchimento-progresso" data-width="60"></div>
+                            <div class="preenchimento-progresso" data-width="0"></div>
                         </div>
                     </div>
                 </div>
@@ -111,13 +111,13 @@
                     </svg>
                 </div>
                 <div class="conteudo-estatistica">
-                    <h3 class="numero-estatistica">750</h3>
+                    <h3 class="numero-estatistica">0</h3>
                     <p class="titulo-estatistica">Total de Administradores</p>
                     <p class="descricao-estatistica">Dado obtido com bases em um mês.</p>
                     <div class="rodape-estatistica">
-                        <span class="porcentagem-estatistica positiva">+30%</span>
+                        <span class="porcentagem-estatistica positiva">+0%</span>
                         <div class="barra-progresso">
-                            <div class="preenchimento-progresso" data-width="90"></div>
+                            <div class="preenchimento-progresso" data-width="0"></div>
                         </div>
                     </div>
                 </div>
@@ -125,10 +125,9 @@
         </div>
     </section>
 
-    <!-- Dashboard e Categorias lado a lado -->
+    <!-- Dashboard Chart -->
     <section class="secao-graficos">
-        <div class="container-graficos-categorias">
-            <!-- Dashboard Chart -->
+        <div class="container-grafico-unico">
             <div class="card-grafico">
                 <div class="cabecalho-grafico">
                     <h2 class="titulo-grafico">Dashboard</h2>
@@ -142,187 +141,16 @@
                     <canvas id="grafico-painel"></canvas>
                 </div>
             </div>
-
-            <!-- Categorias -->
-            <div class="card-categorias">
-                <div class="cabecalho-card">
-                    <h2 class="titulo-card">Categorias</h2>
-                    <button class="botao-ver-mais">Ver mais</button>
-                </div>
-                <div class="container-tabela">
-                    <table class="tabela-categorias">
-                        <thead>
-                            <tr>
-                                <th>Nome</th>
-                                <th>Ativo</th>
-                                <th>Funções</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr data-id="1">
-                                <td>Shorts</td>
-                                <td>
-                                    <label class="interruptor-toggle ativo">
-                                        <input type="checkbox" checked>
-                                        <span class="slider-toggle"></span>
-                                    </label>
-                                </td>
-                                <td>
-                                    <div class="botoes-acao">
-                                        <button class="botao-acao editar">
-                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                                            </svg>
-                                        </button>
-                                        <button class="botao-acao excluir" onclick="confirmarExclusao(1, 'categoria')">
-                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <polyline points="3,6 5,6 21,6"></polyline>
-                                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr data-id="2">
-                                <td>Calça Jeans</td>
-                                <td>
-                                    <label class="interruptor-toggle">
-                                        <input type="checkbox">
-                                        <span class="slider-toggle"></span>
-                                    </label>
-                                </td>
-                                <td>
-                                    <div class="botoes-acao">
-                                        <button class="botao-acao editar">
-                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                                            </svg>
-                                        </button>
-                                        <button class="botao-acao excluir" onclick="confirmarExclusao(2, 'categoria')">
-                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <polyline points="3,6 5,6 21,6"></polyline>
-                                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr data-id="3">
-                                <td>Camiseta</td>
-                                <td>
-                                    <label class="interruptor-toggle ativo">
-                                        <input type="checkbox" checked>
-                                        <span class="slider-toggle"></span>
-                                    </label>
-                                </td>
-                                <td>
-                                    <div class="botoes-acao">
-                                        <button class="botao-acao editar">
-                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                                            </svg>
-                                        </button>
-                                        <button class="botao-acao excluir" onclick="confirmarExclusao(3, 'categoria')">
-                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <polyline points="3,6 5,6 21,6"></polyline>
-                                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr data-id="4">
-                                <td>Boné</td>
-                                <td>
-                                    <label class="interruptor-toggle ativo">
-                                        <input type="checkbox" checked>
-                                        <span class="slider-toggle"></span>
-                                    </label>
-                                </td>
-                                <td>
-                                    <div class="botoes-acao">
-                                        <button class="botao-acao editar">
-                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                                            </svg>
-                                        </button>
-                                        <button class="botao-acao excluir" onclick="confirmarExclusao(4, 'categoria')">
-                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <polyline points="3,6 5,6 21,6"></polyline>
-                                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr data-id="5">
-                                <td>Tênis</td>
-                                <td>
-                                    <label class="interruptor-toggle ativo">
-                                        <input type="checkbox" checked>
-                                        <span class="slider-toggle"></span>
-                                    </label>
-                                </td>
-                                <td>
-                                    <div class="botoes-acao">
-                                        <button class="botao-acao editar">
-                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                                            </svg>
-                                        </button>
-                                        <button class="botao-acao excluir" onclick="confirmarExclusao(5, 'categoria')">
-                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <polyline points="3,6 5,6 21,6"></polyline>
-                                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr data-id="6">
-                                <td>Blusas de Frio</td>
-                                <td>
-                                    <label class="interruptor-toggle">
-                                        <input type="checkbox">
-                                        <span class="slider-toggle"></span>
-                                    </label>
-                                </td>
-                                <td>
-                                    <div class="botoes-acao">
-                                        <button class="botao-acao editar">
-                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                                            </svg>
-                                        </button>
-                                        <button class="botao-acao excluir" onclick="confirmarExclusao(6, 'categoria')">
-                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <polyline points="3,6 5,6 21,6"></polyline>
-                                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- Últimas Vendas (embaixo, largura total) -->
+    <!-- Últimas Vendas -->
     <section class="secao-vendas">
         <div class="container-vendas">
             <div class="card-vendas">
                 <div class="cabecalho-card">
                     <h2 class="titulo-card">Últimas Vendas</h2>
-                    <button class="botao-ver-mais">Ver mais</button>
+                    <a href="/admin/vendas" class="botao-ver-mais">Ver mais</a>
                 </div>
                 <div class="container-tabela">
                     <table class="tabela-vendas">
@@ -335,121 +163,12 @@
                                 <th>Valor</th>
                                 <th>Tipo</th>
                                 <th>Status</th>
-                                <th>Funções</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr data-id="800129">
-                                <td>#800129</td>
-                                <td>
-                                    <div class="info-usuario">
-                                        <div class="avatar-usuario">K</div>
-                                        <span>Kaian</span>
-                                    </div>
-                                </td>
-                                <td>Dez 25, 2025</td>
-                                <td>07:20 PM</td>
-                                <td>R$210.00</td>
-                                <td>PIX</td>
-                                <td>
-                                    <span class="badge-status pago">
-                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <polyline points="20,6 9,17 4,12"></polyline>
-                                        </svg>
-                                        Pago
-                                    </span>
-                                </td>
-                                <td>
-                                    <div class="botoes-acao">
-                                        <button class="botao-acao editar">
-                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                                            </svg>
-                                        </button>
-                                        <button class="botao-acao excluir" onclick="confirmarExclusao('800129', 'venda')">
-                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <polyline points="3,6 5,6 21,6"></polyline>
-                                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr data-id="894212">
-                                <td>#894212</td>
-                                <td>
-                                    <div class="info-usuario">
-                                        <div class="avatar-usuario">A</div>
-                                        <span>Adilson</span>
-                                    </div>
-                                </td>
-                                <td>Dez 25, 2025</td>
-                                <td>04:00 PM</td>
-                                <td>R$400.00</td>
-                                <td>Crédito</td>
-                                <td>
-                                    <span class="badge-status cancelado">
-                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <line x1="18" y1="6" x2="6" y2="18"></line>
-                                            <line x1="6" y1="6" x2="18" y2="18"></line>
-                                        </svg>
-                                        Cancelado
-                                    </span>
-                                </td>
-                                <td>
-                                    <div class="botoes-acao">
-                                        <button class="botao-acao editar">
-                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                                            </svg>
-                                        </button>
-                                        <button class="botao-acao excluir" onclick="confirmarExclusao('894212', 'venda')">
-                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <polyline points="3,6 5,6 21,6"></polyline>
-                                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr data-id="891029">
-                                <td>#891029</td>
-                                <td>
-                                    <div class="info-usuario">
-                                        <div class="avatar-usuario">Q</div>
-                                        <span>Quyntas</span>
-                                    </div>
-                                </td>
-                                <td>Dez 24, 2025</td>
-                                <td>08:20 PM</td>
-                                <td>R$250.00</td>
-                                <td>Boleto</td>
-                                <td>
-                                    <span class="badge-status pendente">
-                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <circle cx="12" cy="12" r="10"></circle>
-                                            <polyline points="12,6 12,12 16,14"></polyline>
-                                        </svg>
-                                        Aguardando
-                                    </span>
-                                </td>
-                                <td>
-                                    <div class="botoes-acao">
-                                        <button class="botao-acao editar">
-                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                                            </svg>
-                                        </button>
-                                        <button class="botao-acao excluir" onclick="confirmarExclusao('891029', 'venda')">
-                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <polyline points="3,6 5,6 21,6"></polyline>
-                                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                                            </svg>
-                                        </button>
-                                    </div>
+                            <tr>
+                                <td colspan="7" style="text-align: center; padding: 40px; color: #666;">
+                                    Nenhuma venda encontrada
                                 </td>
                             </tr>
                         </tbody>
@@ -462,5 +181,38 @@
 
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// Inicializar gráfico
+const ctx = document.getElementById('grafico-painel').getContext('2d');
+
+new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+        datasets: [{
+            label: 'Vendas',
+            data: [0, 0, 0, 0, 0, 0],
+            borderColor: '#8B5CF6',
+            backgroundColor: 'rgba(139, 92, 246, 0.1)',
+            tension: 0.4
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: false
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+
 <script src="/js/admin/dashboard.js"></script>
 @endsection

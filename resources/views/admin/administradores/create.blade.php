@@ -1,23 +1,19 @@
-{{-- Adicionar Administrador - Flamexs E-commerce --}}
 @extends('admin.layouts.main')
 @section('title', 'Adicionar Administrador - Painel de Controle')
 
 @section('content')
 <main class="painel-adicionar-admin">
-    {{-- Título da Página --}}
     <div class="cabecalho-adicionar-admin">
         <h1 class="titulo-adicionar-admin">Adicionar administrador</h1>
         <nav class="breadcrumb-admin">
-            <a href="/adm/administradores" class="breadcrumb-link">Administradores</a>
+            <a href="/admin/administradores" class="breadcrumb-link">Administradores</a>
             <span class="breadcrumb-separador">></span>
             <span class="breadcrumb-atual">Adicionar administrador</span>
         </nav>
     </div>
 
-    {{-- Formulário --}}
     <div class="container-formulario-admin">
         <form class="formulario-admin" id="formAdicionarAdmin">
-            {{-- Campo Nome --}}
             <div class="campo-grupo-admin">
                 <label class="campo-label-admin" for="nomeAdmin">Nome</label>
                 <input 
@@ -25,12 +21,11 @@
                     class="campo-input-admin" 
                     id="nomeAdmin" 
                     name="nome" 
-                    value="Vitor Gomes"
+                    placeholder="Digite o nome do administrador"
                     required
                 >
             </div>
 
-            {{-- Campo E-mail --}}
             <div class="campo-grupo-admin">
                 <label class="campo-label-admin" for="emailAdmin">E-mail</label>
                 <input 
@@ -38,12 +33,11 @@
                     class="campo-input-admin" 
                     id="emailAdmin" 
                     name="email" 
-                    value="vitorgomes@exemplo.com"
+                    placeholder="Digite o e-mail do administrador"
                     required
                 >
             </div>
 
-            {{-- Campo Senha --}}
             <div class="campo-grupo-admin">
                 <label class="campo-label-admin" for="senhaAdmin">Senha</label>
                 <input 
@@ -51,12 +45,11 @@
                     class="campo-input-admin" 
                     id="senhaAdmin" 
                     name="senha" 
-                    value="•••••••••••••••••"
+                    placeholder="Digite a senha do administrador"
                     required
                 >
             </div>
 
-            {{-- Upload Foto --}}
             <div class="campo-grupo-admin">
                 <label class="campo-label-admin">Upload Foto</label>
                 <div class="area-upload" id="areaUpload">
@@ -84,9 +77,8 @@
                 </div>
             </div>
 
-            {{-- Botões de Ação --}}
             <div class="botoes-formulario-admin">
-                <a href="/adm/administradores" class="botao-cancelar-admin">
+                <a href="/admin/administradores" class="botao-cancelar-admin">
                     Cancelar
                 </a>
                 <button type="submit" class="botao-adicionar-form-admin">
@@ -97,10 +89,8 @@
     </div>
 </main>
 
-{{-- Scripts --}}
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Elementos do upload
     const areaUpload = document.getElementById('areaUpload');
     const inputArquivo = document.getElementById('inputArquivo');
     const previewImagem = document.getElementById('previewImagem');
@@ -108,14 +98,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const removerImagem = document.getElementById('removerImagem');
     const conteudoUpload = document.querySelector('.conteudo-upload');
 
-    // Clique na área de upload
     areaUpload.addEventListener('click', function(e) {
         if (e.target !== removerImagem && !removerImagem.contains(e.target)) {
             inputArquivo.click();
         }
     });
 
-    // Drag and Drop
     areaUpload.addEventListener('dragover', function(e) {
         e.preventDefault();
         areaUpload.classList.add('dragover');
@@ -136,28 +124,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Seleção de arquivo
     inputArquivo.addEventListener('change', function(e) {
         if (e.target.files.length > 0) {
             processarArquivo(e.target.files[0]);
         }
     });
 
-    // Processar arquivo
     function processarArquivo(arquivo) {
-        // Validar tipo
         if (!arquivo.type.match(/^image\/(jpeg|png)$/)) {
             alert('Apenas arquivos JPEG e PNG são suportados.');
             return;
         }
 
-        // Validar tamanho (5MB)
         if (arquivo.size > 5 * 1024 * 1024) {
             alert('O arquivo deve ter no máximo 5MB.');
             return;
         }
 
-        // Mostrar preview
         const reader = new FileReader();
         reader.onload = function(e) {
             imagemPreview.src = e.target.result;
@@ -167,7 +150,6 @@ document.addEventListener('DOMContentLoaded', function() {
         reader.readAsDataURL(arquivo);
     }
 
-    // Remover imagem
     removerImagem.addEventListener('click', function(e) {
         e.stopPropagation();
         inputArquivo.value = '';
@@ -176,7 +158,6 @@ document.addEventListener('DOMContentLoaded', function() {
         previewImagem.style.display = 'none';
     });
 
-    // Submissão do formulário
     document.getElementById('formAdicionarAdmin').addEventListener('submit', function(e) {
         e.preventDefault();
         
@@ -192,20 +173,17 @@ document.addEventListener('DOMContentLoaded', function() {
             foto: inputArquivo.files[0] ? inputArquivo.files[0].name : 'Nenhuma'
         });
         
-        // Animação no bot��o
         const botaoSubmit = this.querySelector('.botao-adicionar-form-admin');
         botaoSubmit.textContent = 'Adicionando...';
         botaoSubmit.disabled = true;
         
         setTimeout(() => {
             alert('Administrador adicionado com sucesso!');
-            // window.location.href = '/adm/administradores';
             botaoSubmit.textContent = 'Adicionar';
             botaoSubmit.disabled = false;
         }, 2000);
     });
 
-    // Animação de entrada da página
     document.querySelector('.painel-adicionar-admin').style.opacity = '0';
     document.querySelector('.painel-adicionar-admin').style.transform = 'translateY(20px)';
     

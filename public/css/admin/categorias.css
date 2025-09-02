@@ -160,10 +160,15 @@
 
 .tabela-categorias-admin th {
     padding: 20px 16px;
-    text-align: left;
+    text-align: center;
     font-weight: 700;
     font-size: 14px;
     color: #000000;
+}
+
+.coluna-id {
+    width: 80px;
+    text-align: center;
 }
 
 .coluna-arrastar {
@@ -191,6 +196,15 @@
     color: #333333;
     border-bottom: 1px solid #F0F0F0;
     vertical-align: middle;
+    text-align: center;
+}
+
+.celula-id {
+    text-align: center;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 500;
+    color: #666;
+    font-size: 12px;
 }
 
 /* Linhas da Tabela */
