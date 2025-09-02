@@ -2,11 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminController;
 
 //--------------------------------------------------------
 
 
-// Rotas do Cliente - Depois trocamos para sincronizar com os controllers, 
+// Rotas do Cliente - Depois trocamos para sincronizar com os controllers,
 // apenas arrumei a organização das paginas - Vitor
 
 
@@ -68,7 +69,9 @@ Route::get('/admin/vendas', function(){
     return view('admin.vendas.index');
 });
 
-// Administradores
+//---------------------------Administradores------------------------------------------//
+
+/*
 Route::get('/admin/administradores', function(){
     return view('admin.administradores.index');
 });
@@ -81,6 +84,29 @@ Route::get('/admin/administradores/edit/{id}', function ($id) {
     return view('admin.administradores.edit');
 });
 
+
+*/
+
+Route::get('/admin/administradores', [AdminController::class, 'index']);
+
+
+Route::get('/admin/administradores/create', [AdminController::class, 'create']);
+
+
+Route::post('/admin/administradores', [AdminController::class, 'store']);
+
+// Rota para mostrar o formulário de edição (UPDATE)
+// Esta rota carrega a view de edição pré-preenchida com os dados do administrador.
+Route::get('/admin/administradores/{admin}/edit', [AdminController::class, 'edit']);
+
+// Rota para atualizar o administrador no banco de dados (UPDATE)
+Route::put('/admin/administradores/{admin}', [AdminController::class, 'update']);
+
+//delete
+Route::delete('/admin/administradores/{admin}', [AdminController::class, 'destroy']);
+
+
+// ...
 // Categorias
 Route::get('/admin/categorias', function(){
     return view('admin.categorias.index');
