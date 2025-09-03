@@ -83,16 +83,22 @@ Route::get('/admin/administradores/edit/{id}', function ($id) {
     return view('admin.administradores.edit');
 });
 
-// Categorias
-// Route::get('/admin/categorias', function(){
-//     return view('admin.categorias.index');
-// });
-
 // Usada para listar todos os itens da tabela 
-Route::get('/admin/categorias', [CategoryController::class , 'index' ]);
-
+Route::get('/admin/categorias', [CategoryController::class , 'index' ])->name('admin.categorias.index');
+//Rota usada para mandar para armazenar no banco de dados aquelas informacoes
 Route::post('/admin/categorias', [CategoryController::class , 'store']);
 
+// Rota usada para gerenciar e editar o produto que voce clicou
+Route::get('/admin/categorias/{id}/edit', [CategoryController::class, 'edit'])->name('admin.categorias.edit');
+
+// Rota para atualizar status da categoria
+Route::post('/admin/categorias/{id}/status', [CategoryController::class, 'updateStatus'])->name('admin.categorias.status');
+
+// Nessa rota temos que utilizar o metodo put pois ele somente funciona assim por causa de estarmos usando Windows\
+Route::put('/admin/categorias/{id}', [CategoryController::class, 'update'])->name('admin.categorias.update');
+
+//Rota criada somente para poder excluir uma categoria
+Route::delete('/admin/categorias/{id}', [CategoryController::class, 'destroy'])->name('admin.categorias.destroy');
 //Continuar..
 
 
