@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use App\Models\admin;
-
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -14,13 +13,7 @@ class AdminController extends Controller
     public function create(){
         return view('admin.administradores.create');
     }
-/*
-    public function store (Request $request){
-        admin::create($request->all());
-        return redirect('/admin/administradores');
 
-    }
- */
     public function destroy (admin $admin) {
         $admin ->delete();
         return redirect('/admin/administradores');
@@ -38,7 +31,6 @@ class AdminController extends Controller
 
 
     // Alterna o status (ativo/inativo) de um administrador.
-
     public function toggleStatus(Admin $admin)
     {
         // Verifica o status atual e o inverte
@@ -53,6 +45,7 @@ class AdminController extends Controller
         return back()->with('success', 'Status do administrador atualizado com sucesso!');
     }
 
+    // salvar dados enviados por um formulário.
     public function store(Request $request)
     {
         // 1. Validação dos dados, incluindo a foto
