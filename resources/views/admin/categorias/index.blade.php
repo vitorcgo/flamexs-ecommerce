@@ -41,8 +41,9 @@
                 </tr>
             </thead>
             <tbody id="lista-categorias">
+            @foreach($allCategory as $category)
                 <tr class="linha-categoria" data-delay="0" draggable="true">
-                    <td class="celula-id">#001</td>
+                    <td class="celula-id">{{$category->id}}</td>
                     <td class="celula-arrastar">
                         <div class="icone-arrastar">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -53,7 +54,7 @@
                         </div>
                     </td>
                     <td>
-                        <span class="nome-categoria">Camisetas</span>
+                        <span class="nome-categoria">{{$category->name}}</span>
                     </td>
                     <td class="celula-ativo">
                         <div class="switch-categoria ativo">
@@ -63,7 +64,9 @@
                     </td>
                     <td class="celula-funcoes">
                         <div class="botoes-funcoes-categoria">
-                            <button class="botao-funcao-categoria editar" title="Editar" onclick="abrirModalEdicao()">
+                            <button 
+                            class="botao-funcao-categoria editar"
+                            title="Editar" onclick="abrirModalEdicao()">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                                     <path d="m18.5 2.5 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
@@ -78,6 +81,7 @@
                         </div>
                     </td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
@@ -130,16 +134,17 @@
             </div>
             
             <div class="modal-body">
-                <form class="form-categoria" id="formCategoria">
+                <form class="form-categoria" id="formCategoria" action="/admin/categorias" method="POST">
+                @csrf
                     <input type="hidden" id="categoriaId" name="id">
                     
                     <div class="campo-grupo">
-                        <label class="campo-label" for="nomeCategoria">Nome da Categoria</label>
+                        <label class="campo-label" for="name">Nome da Categoria</label>
                         <input 
                             type="text" 
                             class="campo-input" 
-                            id="nomeCategoria" 
-                            name="nome" 
+                            id="name" 
+                            name="name"
                             placeholder="Digite o nome da categoria"
                             required
                         >
@@ -152,7 +157,7 @@
                                 <input type="checkbox" id="categoriaAtiva" name="ativo" checked>
                                 <span class="slider-modal"></span>
                             </div>
-                            <span>Categoria ativa</span>
+                            <span>Ativo (?)</span>
                         </div>
                     </div>
                 </form>
@@ -216,32 +221,6 @@ document.getElementById('switchAtivo').addEventListener('click', function() {
     this.classList.toggle('ativo', checkbox.checked);
 });
 
-// Form submit
-document.getElementById('formCategoria').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const formData = new FormData(this);
-    const isEdit = document.getElementById('categoriaId').value !== '';
-    
-    console.log('Dados da categoria:', {
-        id: formData.get('id'),
-        nome: formData.get('nome'),
-        ativo: formData.get('ativo') ? true : false,
-        acao: isEdit ? 'editar' : 'adicionar'
-    });
-    
-    const botaoSubmit = document.getElementById('botaoSubmit');
-    const textoOriginal = botaoSubmit.textContent;
-    botaoSubmit.textContent = isEdit ? 'Salvando...' : 'Adicionando...';
-    botaoSubmit.disabled = true;
-    
-    setTimeout(() => {
-        alert(`Categoria ${isEdit ? 'editada' : 'adicionada'} com sucesso!`);
-        fecharModal();
-        botaoSubmit.textContent = textoOriginal;
-        botaoSubmit.disabled = false;
-    }, 2000);
-});
 </script>
 
 <script src="/js/admin/categorias.js"></script>

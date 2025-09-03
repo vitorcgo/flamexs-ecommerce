@@ -13,25 +13,26 @@
     </div>
 
     <div class="container-formulario-admin">
-        <form class="formulario-admin" id="formAdicionarAdmin">
-            <div class="campo-grupo-admin">
-                <label class="campo-label-admin" for="nomeAdmin">Nome</label>
+        <form class="formulario-admin" id="formAdicionarAdmin" action="/admin/administradores" method="POST">
+        @csrf    
+        <div class="campo-grupo-admin">
+                <label class="campo-label-admin" for="user">Nome</label>
                 <input 
                     type="text" 
                     class="campo-input-admin" 
-                    id="nomeAdmin" 
-                    name="nome" 
+                    id="user" 
+                    name="user" 
                     placeholder="Digite o nome do administrador"
                     required
                 >
             </div>
 
             <div class="campo-grupo-admin">
-                <label class="campo-label-admin" for="emailAdmin">E-mail</label>
+                <label class="campo-label-admin" for="email">E-mail</label>
                 <input 
                     type="email" 
                     class="campo-input-admin" 
-                    id="emailAdmin" 
+                    id="email" 
                     name="email" 
                     placeholder="Digite o e-mail do administrador"
                     required
@@ -39,21 +40,21 @@
             </div>
 
             <div class="campo-grupo-admin">
-                <label class="campo-label-admin" for="senhaAdmin">Senha</label>
+                <label class="campo-label-admin" for="password">Senha</label>
                 <input 
                     type="password" 
                     class="campo-input-admin" 
-                    id="senhaAdmin" 
-                    name="senha" 
+                    id="password" 
+                    name="password" 
                     placeholder="Digite a senha do administrador"
                     required
                 >
             </div>
 
             <div class="campo-grupo-admin">
-                <label class="campo-label-admin">Upload Foto</label>
+                <label class="campo-label-admin" for="profile_photo_path">Upload Foto</label>
                 <div class="area-upload" id="areaUpload">
-                    <input type="file" class="input-arquivo" id="inputArquivo" accept="image/jpeg,image/png" hidden>
+                    <input type="file" class="input-arquivo" id="inputArquivo" name="profile_photo_path" accept="image/jpeg,image/png" hidden>
                     <div class="conteudo-upload">
                         <svg class="icone-upload" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
@@ -156,32 +157,6 @@ document.addEventListener('DOMContentLoaded', function() {
         imagemPreview.src = '';
         conteudoUpload.style.display = 'flex';
         previewImagem.style.display = 'none';
-    });
-
-    document.getElementById('formAdicionarAdmin').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const formData = new FormData(this);
-        const nome = formData.get('nome');
-        const email = formData.get('email');
-        const senha = formData.get('senha');
-        
-        console.log('Dados do administrador:', {
-            nome: nome,
-            email: email,
-            senha: senha,
-            foto: inputArquivo.files[0] ? inputArquivo.files[0].name : 'Nenhuma'
-        });
-        
-        const botaoSubmit = this.querySelector('.botao-adicionar-form-admin');
-        botaoSubmit.textContent = 'Adicionando...';
-        botaoSubmit.disabled = true;
-        
-        setTimeout(() => {
-            alert('Administrador adicionado com sucesso!');
-            botaoSubmit.textContent = 'Adicionar';
-            botaoSubmit.disabled = false;
-        }, 2000);
     });
 
     document.querySelector('.painel-adicionar-admin').style.opacity = '0';

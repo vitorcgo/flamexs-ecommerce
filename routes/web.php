@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
-
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 //--------------------------------------------------------
 
 
@@ -69,22 +70,16 @@ Route::get('/admin/vendas', function(){
 });
 
 // Administradores
-Route::get('/admin/administradores', function(){
-    return view('admin.administradores.index');
-});
+Route::get('/admin/administradores', [AdminController::class , 'index' ]);
+Route::get('/admin/administradores/create' , [AdminController::class, 'create']);
+Route::post('/admin/administradores', [AdminController::class , 'store']);
+Route::delete('/admin/administradores/{admin}', [AdminController::class, 'destroy']);
+Route::get('/admin/administradores/{admin}/edit', [AdminController::class, 'edit']);
+Route::put('/admin/administradores/{admin}', [AdminController::class, 'update']);
 
-Route::get('/admin/administradores/create', function () {
-    return view('admin.administradores.create');
-});
-
-Route::get('/admin/administradores/edit/{id}', function ($id) {
-    return view('admin.administradores.edit');
-});
 
 // Categorias
-Route::get('/admin/categorias', function(){
-    return view('admin.categorias.index');
-});
+Route::get('/admin/categorias', [CategoryController::class , 'index' ]);
 
 //Continuar..
 
