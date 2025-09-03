@@ -277,35 +277,35 @@
     .painel-adicionar-admin {
         padding: 20px 16px;
     }
-    
+
     .titulo-adicionar-admin {
         font-size: 24px;
     }
-    
+
     .container-formulario-admin {
         padding: 30px 20px;
         width: 100%;
     }
-    
+
     .area-upload {
         padding: 30px 15px;
         min-height: 140px;
     }
-    
+
     .icone-upload {
         width: 40px;
         height: 40px;
     }
-    
+
     .texto-upload {
         font-size: 14px;
     }
-    
+
     .botoes-formulario-admin {
         flex-direction: column;
         gap: 12px;
     }
-    
+
     .botao-cancelar-admin,
     .botao-adicionar-form-admin {
         width: 100%;
@@ -317,38 +317,38 @@
     .painel-adicionar-admin {
         padding: 16px 12px;
     }
-    
+
     .titulo-adicionar-admin {
         font-size: 22px;
     }
-    
+
     .container-formulario-admin {
         padding: 24px 16px;
     }
-    
+
     .campo-input-admin {
         font-size: 14px;
         padding: 12px 14px;
     }
-    
+
     .area-upload {
         padding: 24px 12px;
         min-height: 120px;
     }
-    
+
     .icone-upload {
         width: 36px;
         height: 36px;
     }
-    
+
     .texto-upload {
         font-size: 13px;
     }
-    
+
     .legenda-upload {
         font-size: 11px;
     }
-    
+
     .breadcrumb-admin {
         font-size: 12px;
         flex-wrap: wrap;

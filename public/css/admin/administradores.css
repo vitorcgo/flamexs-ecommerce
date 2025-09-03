@@ -228,13 +228,28 @@
     align-items: center;
     gap: 12px;
     justify-content: center;
-}
 
+}
+/*
 .avatar-administrador {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     background: linear-gradient(135deg, #FF0000 0%, #CC0000 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 16px;
+}
+ */
+
+.avatar-administrador {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
     color: white;
     display: flex;
     align-items: center;
@@ -481,19 +496,19 @@
     .painel-administradores {
         padding: 30px 20px;
     }
-    
+
     .titulo-administradores {
         font-size: 24px;
     }
-    
+
     .container-tabela-administradores {
         overflow-x: auto;
     }
-    
+
     .tabela-administradores {
         min-width: 900px;
     }
-    
+
     .botoes-acoes-gerais {
         flex-wrap: wrap;
         justify-content: center;
@@ -504,53 +519,53 @@
     .painel-administradores {
         padding: 20px 16px;
     }
-    
+
     .titulo-administradores {
         font-size: 22px;
     }
-    
+
     .campo-pesquisa-admin {
         max-width: 100%;
     }
-    
+
     .rodape-paginacao-administradores {
         flex-direction: column;
         gap: 20px;
     }
-    
+
     .controles-paginacao-administradores {
         justify-content: center;
     }
-    
+
     .tabela-administradores th,
     .tabela-administradores td {
         padding: 12px 8px;
         font-size: 12px;
     }
-    
+
     .avatar-administrador {
         width: 32px;
         height: 32px;
         font-size: 14px;
     }
-    
+
     .info-administrador {
         gap: 8px;
     }
-    
+
     .nome-administrador {
         font-size: 12px;
     }
-    
+
     .email-administrador {
         font-size: 11px;
     }
-    
+
     .botoes-acoes-gerais {
         flex-direction: column;
         align-items: stretch;
     }
-    
+
     .botao-filtros-admin,
     .botao-adicionar-admin {
         justify-content: center;
@@ -561,43 +576,43 @@
     .painel-administradores {
         padding: 16px 12px;
     }
-    
+
     .titulo-administradores {
         font-size: 20px;
     }
-    
+
     .tabela-administradores {
         min-width: 700px;
     }
-    
+
     .tabela-administradores th,
     .tabela-administradores td {
         padding: 10px 6px;
         font-size: 11px;
     }
-    
+
     .botao-funcao {
         width: 28px;
         height: 28px;
     }
-    
+
     .botao-funcao svg {
         width: 14px;
         height: 14px;
     }
-    
+
     .switch-ativo {
         width: 44px;
         height: 22px;
     }
-    
+
     .slider-switch:before {
         height: 16px;
         width: 16px;
         left: 3px;
         bottom: 3px;
     }
-    
+
     .switch-ativo.ativo .slider-switch:before {
         transform: translateX(22px);
     }

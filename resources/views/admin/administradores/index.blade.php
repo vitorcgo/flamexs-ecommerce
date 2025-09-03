@@ -55,9 +55,7 @@
 
 
                         <div class="info-administrador">
-                            <img src="{{asset('storage/'.$admin->profile_photo_path) }}"
-                                 alt="{{$admin->user}}"
-                                 class="avatar-administrador">
+                            <img src="{{ asset('storage/' . $admin->profile_photo_path) }}" alt="{{$admin->user}}" class="avatar-administrador">
                             <span class="nome-administrador">{{$admin->user}}</span>
                         </div>
 

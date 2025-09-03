@@ -14,12 +14,13 @@ class AdminController extends Controller
     public function create(){
         return view('admin.administradores.create');
     }
-
+/*
     public function store (Request $request){
         admin::create($request->all());
         return redirect('/admin/administradores');
 
     }
+ */
     public function destroy (admin $admin) {
         $admin ->delete();
         return redirect('/admin/administradores');
@@ -52,11 +53,9 @@ class AdminController extends Controller
         return back()->with('success', 'Status do administrador atualizado com sucesso!');
     }
 
-/*
-
     public function store(Request $request)
     {
-        // Validação dos dados, incluindo a foto
+        // 1. Validação dos dados, incluindo a foto
         $request->validate([
             'user' => 'required|string|max:255|unique:admins',
             'email' => 'required|email|max:255|unique:admins',
@@ -64,28 +63,27 @@ class AdminController extends Controller
             'profile_photo_path' => 'nullable|image|mimes:jpeg,png|max:2048',
         ]);
 
-        // Prepara um array com os dados da requisição
-        $data = $request->except(['profile_photo_path']); // Ignora a foto inicialmente
+        // 2. Prepara um array com os dados da requisição
+        $data = $request->except(['profile_photo_path']);
 
-        // Verifica se um arquivo de foto foi enviado no formulário
+        // 3. Verifica se um arquivo de foto foi enviado no formulário
         if ($request->hasFile('profile_photo_path')) {
-            // Salva o arquivo no disco 'public' dentro da pasta 'profile_photos'
+            // Salva o arquivo no disco 'public' e armazena o caminho
             $photoPath = $request->file('profile_photo_path')->store('profile_photos', 'public');
 
-            // Adiciona o caminho da foto ao array de dados
+            // Adiciona o caminho da foto ao array de dados que será salvo
             $data['profile_photo_path'] = $photoPath;
         } else {
-            // Se nenhuma foto for enviada, garante que o campo seja nulo no banco
+            // Se nenhuma foto for enviada, garante que o campo seja nulo
             $data['profile_photo_path'] = null;
         }
 
-        // Criptografa a senha antes de salvar
+        // 4. Criptografa a senha antes de salvar
         $data['password'] = bcrypt($request->password);
 
-        // Cria o novo registro no banco de dados
+        // 5. Cria o novo registro no banco de dados
         Admin::create($data);
 
         return redirect('/admin/administradores')->with('success', 'Administrador criado com sucesso!');
     }
-*/
 }

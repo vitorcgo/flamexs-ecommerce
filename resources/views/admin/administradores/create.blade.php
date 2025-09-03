@@ -12,10 +12,18 @@
         </nav>
     </div>
 
+
+
     <div class="container-formulario-admin">
-        <form class="formulario-admin" id="formAdicionarAdmin" action="/admin/administradores" method="POST">
-        @csrf
-        <div class="campo-grupo-admin">
+        {{-- Formulário completo com enctype para upload de arquivos --}}
+        <form class="formulario-admin"
+              id="formAdicionarAdmin"
+              action="/admin/administradores"
+              method="POST"
+              enctype="multipart/form-data">
+            @csrf
+
+            <div class="campo-grupo-admin">
                 <label class="campo-label-admin" for="user">Nome</label>
                 <input
                     type="text"
@@ -62,7 +70,7 @@
                             <line x1="12" y1="15" x2="12" y2="3"></line>
                         </svg>
                         <p class="texto-upload">
-                            Drag & Drop or <span class="link-upload">choose file</span> to upload
+                            Arraste e solte ou <span class="link-upload">escolha um arquivo</span> para upload
                         </p>
                         <p class="legenda-upload">Tamanhos suportados: jpeg, png</p>
                     </div>
@@ -89,7 +97,6 @@
         </form>
     </div>
 </main>
-
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const areaUpload = document.getElementById('areaUpload');
@@ -104,44 +111,36 @@ document.addEventListener('DOMContentLoaded', function() {
             inputArquivo.click();
         }
     });
-
     areaUpload.addEventListener('dragover', function(e) {
         e.preventDefault();
         areaUpload.classList.add('dragover');
     });
-
     areaUpload.addEventListener('dragleave', function(e) {
         e.preventDefault();
         areaUpload.classList.remove('dragover');
     });
-
     areaUpload.addEventListener('drop', function(e) {
         e.preventDefault();
         areaUpload.classList.remove('dragover');
-
         const files = e.dataTransfer.files;
         if (files.length > 0) {
             processarArquivo(files[0]);
         }
     });
-
     inputArquivo.addEventListener('change', function(e) {
         if (e.target.files.length > 0) {
             processarArquivo(e.target.files[0]);
         }
     });
-
     function processarArquivo(arquivo) {
         if (!arquivo.type.match(/^image\/(jpeg|png)$/)) {
             alert('Apenas arquivos JPEG e PNG são suportados.');
             return;
         }
-
         if (arquivo.size > 5 * 1024 * 1024) {
             alert('O arquivo deve ter no máximo 5MB.');
             return;
         }
-
         const reader = new FileReader();
         reader.onload = function(e) {
             imagemPreview.src = e.target.result;
@@ -150,7 +149,6 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         reader.readAsDataURL(arquivo);
     }
-
     removerImagem.addEventListener('click', function(e) {
         e.stopPropagation();
         inputArquivo.value = '';
@@ -158,15 +156,6 @@ document.addEventListener('DOMContentLoaded', function() {
         conteudoUpload.style.display = 'flex';
         previewImagem.style.display = 'none';
     });
-
-    document.querySelector('.painel-adicionar-admin').style.opacity = '0';
-    document.querySelector('.painel-adicionar-admin').style.transform = 'translateY(20px)';
-
-    setTimeout(() => {
-        document.querySelector('.painel-adicionar-admin').style.transition = 'all 0.6s ease';
-        document.querySelector('.painel-adicionar-admin').style.opacity = '1';
-        document.querySelector('.painel-adicionar-admin').style.transform = 'translateY(0)';
-    }, 100);
 });
 </script>
 @endsection
