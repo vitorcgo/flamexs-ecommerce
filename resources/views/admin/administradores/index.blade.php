@@ -44,57 +44,65 @@
                     <th>Funções</th>
                 </tr>
             </thead>
-            <div class="container-tabela-administradores">
-    <table class="tabela-administradores">
-
-        <tbody>
-            {{-- Verificação: Se a lista de administradores não estiver vazia --}}
-            @if(count($allAdmins) > 0)
-                {{-- Loop: Percorre cada administrador na lista --}}
-                @foreach($allAdmins as $admin)
-                <tr>
-                    <td><input type="checkbox" class="checkbox-selecionar-item"></td>
-                    <td>{{ $admin->id }}</td>
+            <tbody>
+            @foreach($allAdministrador as $admin)
+                <tr class="linha-administrador" data-delay="0">
                     <td>
-                        <div class="perfil-administrador">
-                            {{-- Exibe a imagem de perfil, se existir --}}
-                            @if($admin->profile_photo_path)
-                            <img src="{{ asset('storage/' . $admin->profile_photo_path) }}" alt="Foto de Perfil {{ $admin->user }}" style="width: 50px; height: 50px; border-radius: 50%;">
-                            @endif
-                            <span>{{ $admin->user }}</span>
-                        </div>
+                        <input type="checkbox" class="checkbox-linha">
                     </td>
-                    <td>{{ $admin->email }}</td>
-                    {{-- A coluna de senha não deve ser mostrada por segurança --}}
-                    <td><span class="status-admin status-{{ $admin->status }}">{{ ucfirst($admin->status) }}</span></td>
+                    <td class="celula-id">#{{$admin->id}}</td>
                     <td>
-                        <div class="acoes-admin">
-                            <a href="/admin/administradores/{{ $admin->id }}/edit" class="botao-editar-admin">
-                                 ✏️ Editar
-                            </a>
-                            <form action="/admin/administradores/{{ $admin->id }}" method="POST">
+
+
+                        <div class="info-administrador">
+                            <img src="{{asset('storage/'.$admin->profile_photo_path) }}"
+                                 alt="{{$admin->user}}"
+                                 class="avatar-administrador">
+                            <span class="nome-administrador">{{$admin->user}}</span>
+                        </div>
+
+
+                    </td>
+                    <td class="celula-email">{{$admin->email}}</td>
+                    <td class="celula-senha">••••••••</td>
+                    <td class="celula-ativo">
+                        <form action="/admin/administradores/{{ $admin->id }}/toggle-status" method="POST">
                             @csrf
-                            @method('DELETE')
-                            <button type="submit" class="botao-deletar-admin" onclick="return confirm('Tem certeza que deseja deletar este administrador?')">
-                                 🗑️ Deletar
-                             </button>
+                            @method('PATCH')
+                            <div class="switch-categoria {{ $admin->status === 'active' ? 'ativo' : '' }}">
+                                <input type="checkbox" {{ $admin->status === 'active' ? 'checked' : '' }} style="display: none;">
+                                <button type="submit" style="border: none; background: transparent; padding: 0;">
+                                    <span class="slider-categoria"></span>
+                                </button>
+                            </div>
+                        </form>
+                    </td>
+
+                    <td class="celula-funcoes">
+                        <div class="botoes-funcoes-categoria">
+                            <button class="botao-funcao-categoria editar" title="Editar">
+                                <a href="/admin/administradores/{{$admin->id}}/edit">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="m18.5 2.5 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                </svg>
+                                </a>
+                            </button>
+                            <form action="/admin/administradores/{{$admin->id}}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                            <button class="botao-funcao-categoria excluir" title="Excluir">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3,6 5,6 21,6"></polyline>
+                                    <path d="m19,6v14a2,2 0 0,1-2,2H7a2,2 0 0,1-2-2V6m3,0V4a2,2 0 0,1,2-2h4a2,2 0 0,1,2,2v2"></path>
+                                </svg>
+                            </button>
                             </form>
-                     </div>
+                        </div>
                     </td>
                 </tr>
                 @endforeach
-            @else
-            {{-- Se a lista estiver vazia, exibe esta mensagem --}}
-            <tr>
-                <td colspan="6" style="text-align: center; padding: 40px; color: #666;">
-                    Nenhum administrador encontrado
-                </td>
-            </tr>
-            @endif
-        </tbody>
-
-    </table>
-</div>
+            </tbody>
         </table>
     </div>
 
