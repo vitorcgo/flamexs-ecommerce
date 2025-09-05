@@ -69,14 +69,14 @@ class CategoryController extends Controller
         $category->update($dataToUpdate);
         return redirect()->route('admin.categorias.index')->with('success', 'Categoria atualizada com sucesso!');
     }
-    //Funcao criada para poder remover a categoria do banco de dados
+    //Funcao criada para poder remover a categoria do banco de dados e adicionado um carch caso ocorra algum erro
     public function destroy($id) {
         try {
             $category = Category::findOrFail($id);
             $category->delete();
             return redirect()->route('admin.categorias.index')->with('success', 'Categoria excluída com sucesso!');
         } catch (\Exception $e) {
-            Log::error('Error deleting category: ' . $e->getMessage());
+            Log::error('Erro em remover uma categoria: ' . $e->getMessage());
             return redirect()->route('admin.categorias.index')->with('error', 'Erro ao excluir categoria: ' . $e->getMessage());
         }
     }
