@@ -3,16 +3,17 @@
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminController;
 
 
 //--------------------------------------------------------
 
 
-// Rotas do Cliente - Depois trocamos para sincronizar com os controllers, 
+// Rotas do Cliente - Depois trocamos para sincronizar com os controllers,
 // apenas arrumei a organização das paginas - Vitor
 
-
 // Pagina Principal
+// Pagina Principal teste
 Route::get('/', function () {
     return view('client.home.index');
 });
@@ -70,23 +71,22 @@ Route::get('/admin/vendas', function(){
     return view('admin.vendas.index');
 });
 
-// Administradores
-Route::get('/admin/administradores', function(){
-    return view('admin.administradores.index');
-});
+//---------------------------Administradores------------------------------------------//
 
-Route::get('/admin/administradores/create', function () {
-    return view('admin.administradores.create');
-});
+Route::get('/admin/administradores', [AdminController::class , 'index' ]);
+Route::get('/admin/administradores/create' , [AdminController::class, 'create']);
+Route::post('/admin/administradores', [AdminController::class , 'store']);
+Route::delete('/admin/administradores/{admin}', [AdminController::class, 'destroy']);
+Route::get('/admin/administradores/{admin}/edit', [AdminController::class, 'edit']);
+Route::put('/admin/administradores/{admin}', [AdminController::class, 'update']);
+// Rota para ativar/desativar o status do administrador
+Route::patch('/admin/administradores/{admin}/toggle-status', [AdminController::class, 'toggleStatus']);
 
-Route::get('/admin/administradores/edit/{id}', function ($id) {
-    return view('admin.administradores.edit');
-});
+//---------------------------Categorias------------------------------------------//
 
-// Usada para listar todos os itens da tabela 
-Route::get('/admin/categorias', [CategoryController::class , 'index' ])->name('admin.categorias.index');
-//Rota usada para mandar para armazenar no banco de dados aquelas informacoes
-Route::post('/admin/categorias', [CategoryController::class , 'store']);
+Route::get('/admin/categorias', function(){
+    return view('admin.categorias.index');
+});
 
 // Rota usada para gerenciar e editar o produto que voce clicou
 Route::get('/admin/categorias/{id}/edit', [CategoryController::class, 'edit'])->name('admin.categorias.edit');

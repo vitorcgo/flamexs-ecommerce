@@ -2,7 +2,7 @@
 @section('title', 'Editar Administrador - Painel de Controle')
 
 @section('content')
-<main class="painel-adicionar-admin">
+<main class="painel-editar-admin">
     <div class="cabecalho-adicionar-admin">
         <h1 class="titulo-adicionar-admin">Editar administrador</h1>
         <nav class="breadcrumb-admin">
@@ -10,51 +10,59 @@
             <span class="breadcrumb-separador">></span>
             <span class="breadcrumb-atual">Editar administrador</span>
         </nav>
-    </div>
+
+
 
     <div class="container-formulario-admin">
-        <form class="formulario-admin" id="formEditarAdmin">
-            <input type="hidden" id="adminId" name="id" value="">
-            
+        <form class="formulario-admin"
+              id="formAdicionarAdmin"
+              action="/admin/administradores/{{ $admin->id }}"
+              method="POST"
+              enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+
             <div class="campo-grupo-admin">
-                <label class="campo-label-admin" for="nomeAdmin">Nome</label>
-                <input 
-                    type="text" 
-                    class="campo-input-admin" 
-                    id="nomeAdmin" 
-                    name="nome" 
+                <label class="campo-label-admin" for="user">Nome</label>
+                <input
+                    type="text"
+                    class="campo-input-admin"
+                    id="user"
+                    name="user"
+                    value="{{ $admin->user }}"
                     placeholder="Digite o nome do administrador"
                     required
                 >
             </div>
 
             <div class="campo-grupo-admin">
-                <label class="campo-label-admin" for="emailAdmin">E-mail</label>
-                <input 
-                    type="email" 
-                    class="campo-input-admin" 
-                    id="emailAdmin" 
-                    name="email" 
+                <label class="campo-label-admin" for="email">E-mail</label>
+                <input
+                    type="email"
+                    class="campo-input-admin"
+                    id="email"
+                    name="email"
+                    value="{{ $admin->email }}"
                     placeholder="Digite o e-mail do administrador"
                     required
                 >
             </div>
 
             <div class="campo-grupo-admin">
-                <label class="campo-label-admin" for="senhaAdmin">Nova Senha (deixe em branco para manter a atual)</label>
-                <input 
-                    type="password" 
-                    class="campo-input-admin" 
-                    id="senhaAdmin" 
-                    name="senha" 
-                    placeholder="Digite a nova senha (opcional)"
+                <label class="campo-label-admin" for="password">Senha</label>
+                <input
+                    type="password"
+                    class="campo-input-admin"
+                    id="password"
+                    name="password"
+                    placeholder="Deixe em branco para não alterar"
                 >
             </div>
 
             <div class="campo-grupo-admin">
-                <label class="campo-label-admin">Upload Foto</label>
+                <label class="campo-label-admin" for="profile_photo_path">Upload Foto</label>
                 <div class="area-upload" id="areaUpload">
-                    <input type="file" class="input-arquivo" id="inputArquivo" accept="image/jpeg,image/png" hidden>
+                    <input type="file" class="input-arquivo" id="inputArquivo" name="profile_photo_path" accept="image/jpeg,image/png" hidden>
                     <div class="conteudo-upload">
                         <svg class="icone-upload" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
@@ -62,7 +70,7 @@
                             <line x1="12" y1="15" x2="12" y2="3"></line>
                         </svg>
                         <p class="texto-upload">
-                            Drag & Drop or <span class="link-upload">choose file</span> to upload
+                             Arraste e solte ou <span class="link-upload">escolha um arquivo<</span> para upload
                         </p>
                         <p class="legenda-upload">Tamanhos suportados: jpeg, png</p>
                     </div>
@@ -118,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
     areaUpload.addEventListener('drop', function(e) {
         e.preventDefault();
         areaUpload.classList.remove('dragover');
-        
+
         const files = e.dataTransfer.files;
         if (files.length > 0) {
             processarArquivo(files[0]);
@@ -159,29 +167,15 @@ document.addEventListener('DOMContentLoaded', function() {
         previewImagem.style.display = 'none';
     });
 
-    document.getElementById('formEditarAdmin').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const formData = new FormData(this);
-        
-        console.log('Salvando administrador:', {
-            id: formData.get('id'),
-            nome: formData.get('nome'),
-            email: formData.get('email'),
-            senha: formData.get('senha') ? '***' : 'Não alterada',
-            foto: formData.get('foto') ? 'Nova foto selecionada' : 'Sem alteração'
-        });
-        
-        const botaoSalvar = document.querySelector('.botao-adicionar-form-admin');
-        botaoSalvar.textContent = 'Salvando...';
-        botaoSalvar.disabled = true;
-        
-        setTimeout(() => {
-            alert('Administrador atualizado com sucesso!');
-            botaoSalvar.textContent = 'Salvar Alterações';
-            botaoSalvar.disabled = false;
-        }, 2000);
-    });
+
+    document.querySelector('.painel-adicionar-admin').style.opacity = '0';
+    document.querySelector('.painel-adicionar-admin').style.transform = 'translateY(20px)';
+
+    setTimeout(() => {
+        document.querySelector('.painel-adicionar-admin').style.transition = 'all 0.6s ease';
+        document.querySelector('.painel-adicionar-admin').style.opacity = '1';
+        document.querySelector('.painel-adicionar-admin').style.transform = 'translateY(0)';
+    }, 100);
 });
 </script>
 @endsection
