@@ -10,8 +10,8 @@ use App\Http\Controllers\AdminController;
 // Rotas do Cliente - Depois trocamos para sincronizar com os controllers,
 // apenas arrumei a organização das paginas - Vitor
 
-
 // Pagina Principal
+// Pagina Principal teste
 Route::get('/', function () {
     return view('client.home.index');
 });
