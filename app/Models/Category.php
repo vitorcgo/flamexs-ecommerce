@@ -7,8 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     protected $fillable = ['name_category','ativo'];
+<<<<<<< Updated upstream
     protected $casts = [
         'ativo' => 'boolean',
     ];
 
+=======
+>>>>>>> Stashed changes
 }
