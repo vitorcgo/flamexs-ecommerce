@@ -85,11 +85,6 @@ Route::patch('/admin/administradores/{admin}/toggle-status', [AdminController::c
 
 //---------------------------Categorias------------------------------------------//
 
-<<<<<<< Updated upstream
-Route::get('/admin/categorias', function(){
-    return view('admin.categorias.index');
-});
-=======
 // Categorias
 // Route::get('/admin/categorias', function(){
 //     return view('admin.categorias.index');
@@ -99,7 +94,6 @@ Route::get('/admin/categorias', function(){
 Route::get('/admin/categorias', [CategoryController::class , 'index' ]);
 
 Route::post('/admin/categorias', [CategoryController::class , 'store']);
->>>>>>> Stashed changes
 
 // Rota usada para gerenciar e editar o produto que voce clicou
 Route::get('/admin/categorias/{id}/edit', [CategoryController::class, 'edit'])->name('admin.categorias.edit');

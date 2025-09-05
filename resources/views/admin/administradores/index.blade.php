@@ -55,7 +55,13 @@
 
 
                         <div class="info-administrador">
-                            <img src="{{ asset('storage/' . $admin->profile_photo_path) }}" alt="{{$admin->user}}" class="avatar-administrador">
+                            @if($admin->profile_photo_path && file_exists(public_path('storage/' . $admin->profile_photo_path)))
+                                <img src="{{ asset('storage/' . $admin->profile_photo_path) }}" alt="{{$admin->user}}" class="avatar-administrador">
+                            @else
+                                <div class="avatar-administrador avatar-placeholder">
+                                    {{ strtoupper(substr($admin->user, 0, 1)) }}
+                                </div>
+                            @endif
                             <span class="nome-administrador">{{$admin->user}}</span>
                         </div>
 

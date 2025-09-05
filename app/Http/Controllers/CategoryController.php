@@ -4,15 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
-<<<<<<< Updated upstream
 use Illuminate\Support\Facades\Log;
-=======
->>>>>>> Stashed changes
 
 class CategoryController extends Controller
 {
 
-<<<<<<< Updated upstream
     public function index()
     {
         return view('admin.categorias.index', ['allCategory' => Category::all()]);
@@ -83,14 +79,5 @@ class CategoryController extends Controller
             Log::error('Erro em remover uma categoria: ' . $e->getMessage());
             return redirect()->route('admin.categorias.index')->with('error', 'Erro ao excluir categoria: ' . $e->getMessage());
         }
-=======
-        public function index () {
-        return view('admin.categorias.index' , ['allCategory'=>Category::all ()]);
-    }
-
-    public function store (Request $request) {
-        Category::create($request->all());
-        return redirect('/admin/categorias');
->>>>>>> Stashed changes
     }
 }
