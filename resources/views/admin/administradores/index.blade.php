@@ -45,7 +45,7 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach($allAdministrador as $admin)
+            @foreach($allAdmins as $admin)
                 <tr class="linha-administrador" data-delay="0">
                     <td>
                         <input type="checkbox" class="checkbox-linha">
