@@ -166,9 +166,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td colspan="7" style="text-align: center; padding: 40px; color: #666;">
-                                    Nenhuma venda encontrada
+                            <tr class="linha-venda" data-delay="0">
+                                <td>#9102344</td>
+                                <td>
+                                    <div class="info-cliente">
+                                        <div class="avatar-cliente">G</div>
+                                        <span>Guilherme Navarro</span>
+                                    </div>
+                                </td>
+                                <td>Dez 25, 2024</td>
+                                <td>04:00 PM</td>
+                                <td>R$400.00</td>
+                                <td>PIX</td>
+                                <td>
+                                    <span class="badge-status pago">Pago</span>
                                 </td>
                             </tr>
                         </tbody>

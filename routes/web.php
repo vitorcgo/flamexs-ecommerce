@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\AdminController;
+
 
 //--------------------------------------------------------
 
@@ -80,14 +82,23 @@ Route::put('/admin/administradores/{admin}', [AdminController::class, 'update'])
 // Rota para ativar/desativar o status do administrador
 Route::patch('/admin/administradores/{admin}/toggle-status', [AdminController::class, 'toggleStatus']);
 
+//---------------------------Categorias------------------------------------------//
 
-
-// ...
-// Categorias
 Route::get('/admin/categorias', function(){
     return view('admin.categorias.index');
 });
 
+// Rota usada para gerenciar e editar o produto que voce clicou
+Route::get('/admin/categorias/{id}/edit', [CategoryController::class, 'edit'])->name('admin.categorias.edit');
+
+// Rota para atualizar status da categoria
+Route::post('/admin/categorias/{id}/status', [CategoryController::class, 'updateStatus'])->name('admin.categorias.status');
+
+// Nessa rota temos que utilizar o metodo put pois ele somente funciona assim por causa de estarmos usando Windows\
+Route::put('/admin/categorias/{id}', [CategoryController::class, 'update'])->name('admin.categorias.update');
+
+//Rota criada somente para poder excluir uma categoria
+Route::delete('/admin/categorias/{id}', [CategoryController::class, 'destroy'])->name('admin.categorias.destroy');
 //Continuar..
 
 
