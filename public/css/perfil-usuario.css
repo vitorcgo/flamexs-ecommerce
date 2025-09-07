@@ -1,0 +1,407 @@
+/* Perfil do Usuário - Flamexs */
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&display=swap");
+
+* {
+    font-family: "Lexend", sans-serif;
+}
+
+.container-perfil-usuario {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background-color: #ffffff;
+}
+
+.layout-duas-colunas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+/* Coluna Esquerda - Dados do Usuário */
+.coluna-esquerda {
+    width: 100%;
+}
+
+.caixa-dados-usuario {
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+}
+
+.secao-conta {
+    margin-bottom: 30px;
+}
+
+.secao-endereco {
+    margin-bottom: 30px;
+    margin-top: 24px;
+}
+
+.cabecalho-secao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    position: relative;
+}
+
+.titulo-secao {
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+    text-transform: uppercase;
+    margin: 0;
+    background-color: #ffffff;
+    padding-right: 10px;
+    z-index: 2;
+    position: relative;
+}
+
+.cabecalho-secao::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #dcdde3;
+    z-index: 1;
+}
+
+.botao-editar {
+    background-color: #000;
+    color: #ffffff;
+    border: none;
+    border-radius: 25px;
+    padding: 8px 20px;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: "Lexend", sans-serif;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 2;
+    position: relative;
+}
+
+.botao-editar:hover {
+    background-color: #111111;
+}
+
+.campos-usuario {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.campo-exibicao {
+    background-color: #f5f5f5;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 40px;
+    border-top-left-radius: 0; 
+    border-bottom-right-radius: 0; 
+    border: 1.5px solid #dcdde3;
+    margin-bottom: 8px;
+}
+
+.valor-campo {
+    color: #333;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.botao-finalizar-sessao {
+    background-color: #ff2d2d;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: "Lexend", sans-serif;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.botao-finalizar-sessao:hover {
+    background-color: #d91b1b;
+}
+
+/* Coluna Direita - Pedidos */
+.coluna-direita {
+    width: 100%;
+}
+
+.lista-pedidos {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.item-pedido {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.cabecalho-pedido {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    cursor: pointer;
+    background-color: #ffffff;
+    border-radius: 12px;
+    transition: background-color 0.3s ease;
+}
+
+.cabecalho-pedido:hover {
+    background-color: #f9f9f9;
+}
+
+.info-pedido {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-right: 20px;
+}
+
+.numero-pedido {
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+}
+
+.data-pedido {
+    font-size: 14px;
+    font-weight: 400;
+    color: #666;
+}
+
+.icone-expandir {
+    width: 24px;
+    height: 24px;
+    background-color: #000000;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+}
+
+.icone-expandir:hover {
+    background-color: #111111;
+}
+
+.conteudo-pedido {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.caixa-expandida {
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+.detalhes-pedido {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20px;
+    align-items: center;
+}
+
+.coluna-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.status-pedido {
+    margin-bottom: 8px;
+}
+
+.badge-status {
+    background-color: #a5f3a1;
+    color: #166534;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.total-pedido {
+    font-size: 22px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.botao-acompanhar {
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: flex-start;
+}
+
+.botao-acompanhar:hover {
+    background-color: #111111;
+}
+
+.coluna-produto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagem-produto {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .layout-duas-colunas {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .container-perfil-usuario {
+        padding: 20px 15px;
+    }
+
+    .cabecalho-secao {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .botao-editar {
+        align-self: flex-end;
+    }
+
+    .detalhes-pedido {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .coluna-info {
+        align-items: center;
+    }
+
+    .botao-acompanhar {
+        align-self: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .info-pedido {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    .caixa-dados-usuario {
+        padding: 15px;
+    }
+
+    .titulo-secao {
+        font-size: 14px;
+    }
+
+    .total-pedido {
+        font-size: 20px;
+    }
+}
+
+/* Faixa de Frete Grátis */
+.faixa-frete-gratis {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+}
+
+.conteudo-faixa-rolante {
+    display: flex;
+    animation: rolar-faixa 30s linear infinite;
+    width: max-content;
+}
+
+.texto-frete {
+    display: inline-block;
+    padding-right: 100px;
+    font-size: 14px;
+    font-weight: 200;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+}
+
+@keyframes rolar-faixa {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Responsividade da Faixa */
+@media (max-width: 768px) {
+    .faixa-frete-gratis {
+        padding: 12px 0;
+    }
+
+    .texto-frete {
+        font-size: 13px;
+        padding-right: 80px;
+    }
+
+    .conteudo-faixa-rolante {
+        animation: rolar-faixa 25s linear infinite;
+    }
+}
+
+@media (max-width: 480px) {
+    .faixa-frete-gratis {
+        padding: 10px 0;
+    }
+
+    .texto-frete {
+        font-size: 12px;
+        padding-right: 60px;
+        letter-spacing: 0.5px;
+    }
+
+    .conteudo-faixa-rolante {
+        animation: rolar-faixa 20s linear infinite;
+    }
+}
