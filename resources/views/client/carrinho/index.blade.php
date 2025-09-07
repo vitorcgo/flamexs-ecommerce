@@ -215,10 +215,7 @@
                             <div class="opcao-conteudo">
                                 <span class="texto-opcao">PIX</span>
                                 <div class="icones-pagamento">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="icone-pix">
-                                        <path d="M12 2L2 12l10 10 10-10L12 2z" fill="#32BCAD"/>
-                                        <path d="M8 8l8 8M16 8l-8 8" stroke="white" stroke-width="2"/>
-                                    </svg>
+                                <img src="{{ asset('images/pix.svg') }}" alt="Cartão" class="imagem-cartao">
                                 </div>
                             </div>
                         </label>
