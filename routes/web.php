@@ -123,3 +123,31 @@ Route::get('/troca', function () {
 Route::get('/contato', function () {
     return view('client.home.contato');
 });
+
+
+
+// Usuario
+
+Route::get('/user' , function () {
+    return view('client.usuario.user.index');
+});
+
+Route::get('/user/info', function () {
+    return view('client.usuario.user.edit');
+});
+
+Route::get('/user/info/password', function () {
+    return view('client.usuario.password.edit');
+});
+
+Route::get('/user/address', function () {
+    return view('.client.usuario.address.edit');
+});
+
+Route::get('/user/carrinho/comprar', function () {
+    return view ('.client.carrinho.index');
+});
+
+Route::get('/user/carrinho/sucesso', function () {
+    return view('.client.carrinho.concluido');
+});

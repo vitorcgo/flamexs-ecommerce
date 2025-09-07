@@ -1,0 +1,97 @@
+/* Perfil do Usuário - Flamexs */
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&display=swap");
+
+* {
+    font-family: "Lexend", sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.btn-cancelar {
+    width: 211px;
+    height: 30px;
+    border-radius: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    background: #000;
+    color: #ffffff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Lexend", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-cancelar:hover {
+    background-color: #111111;
+}
+
+.btn-salvar {
+    width: 211px;
+    height: 30px;
+    border-radius: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    background: #07d100;
+    color: #ffffff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Lexend", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-salvar:hover {
+    background-color: #05a800;
+}
+
+.btn-caixa {
+    display: flex;
+    gap: 30px;
+    padding-top: 20px;
+    justify-content: center;
+}
+
+/* Responsividade dos botões */
+@media (max-width: 1000px) {
+    .btn-caixa {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .btn-cancelar,
+    .btn-salvar {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn-cancelar,
+    .btn-salvar {
+        width: 100%;
+        height: 40px;
+        font-size: 14px;
+    }
+    
+    .btn-caixa {
+        gap: 12px;
+    }
+}
+
+.btn-senha {
+    color: red;
+    margin-top: 20px;
+}
