@@ -23,7 +23,7 @@ class AdminController extends Controller
     // CREATE (Salvar novo registro)
     public function store(Request $request)
     {
-        // Validação dos dados
+        // Validação dos dados (com o required caso o campo esteja vazio, a validação falha)
         $request->validate([
             'user' => 'required|string|max:255|unique:admins',
             'email' => 'required|email|max:255|unique:admins',

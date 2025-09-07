@@ -16,16 +16,24 @@ return new class extends Migration
             $table->id();
 
             //Colunas
+            // Nome do produto
             $table->string('name');
+            // Valor do produto
             $table->decimal('price', 8, 2);
+            // Status do produto
             $table->string('status')->default('available');
+            // Descricao do produto
             $table->string('description');
+            // Estoque do produto
             $table->integer('stock')->default(0);
+            // Descricao do produto
             $table->string('details')->nullable();
+            // categoria do produto
+            $table->string('category');
             
             //Avaliar Necessidade de criacao de outra tabela
-            $table->string('category');
-            $table->string('color');
+            
+            //$table->string('color');
             $table->string('size');
 
             //Campos de Controle do Laravel
