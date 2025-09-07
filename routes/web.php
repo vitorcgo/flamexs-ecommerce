@@ -143,3 +143,11 @@ Route::get('/user/info/password', function () {
 Route::get('/user/address', function () {
     return view('.client.usuario.address.edit');
 });
+
+Route::get('/user/carrinho/comprar', function () {
+    return view ('.client.carrinho.index');
+});
+
+Route::get('/user/carrinho/sucesso', function () {
+    return view('.client.carrinho.concluido');
+});

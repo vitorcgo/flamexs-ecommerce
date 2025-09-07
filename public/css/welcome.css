@@ -349,7 +349,7 @@ body.menu-aberto::before {
 }
 
 /* Responsividade */
-@media (max-width: 768px) {
+@media (max-width: 1113px) {
     /* Ajuste do padding-top para mobile */
     body {
         padding-top: 100px !important;
@@ -599,7 +599,7 @@ body.menu-aberto::before {
 }
 
 /* Responsividade */
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
     .container-categorias {
         padding: 4rem 1rem 2rem;
     }

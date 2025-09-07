@@ -1,0 +1,720 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+
+/* Reset e configurações básicas */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lexend', sans-serif;
+}
+
+/* Container principal */
+.container-carrinho {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+    background-color: #ffffff;
+    position: relative;
+}
+
+/* Divisor vertical entre colunas */
+.container-carrinho::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 1px;
+    height: 100%;
+    background-color: #e8e8e8;
+    z-index: 1;
+}
+
+/* Coluna Esquerda - Formulários */
+.coluna-esquerda {
+    background-color: #ffffff;
+    padding: 40px;
+    overflow-y: auto;
+}
+
+/* Coluna Direita - Resumo */
+.coluna-direita {
+    background-color: #F8F8F8;
+    padding: 40px;
+    overflow-y: auto;
+}
+
+/* Cabeçalho da Coluna Esquerda */
+.cabecalho-esquerda {
+    margin-bottom: 30px;
+}
+
+.icone-voltar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f5f5f5;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid #e0e0e0;
+}
+
+.icone-voltar:hover {
+    background-color: #e8e8e8;
+    transform: translateX(-2px);
+}
+
+/* Cabeçalho da Coluna Direita */
+.cabecalho-direita {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.logo-loja {
+    color: #000;
+}
+
+.logo-imagem {
+    height: 32px;
+    width: auto;
+}
+
+.icone-sacola {
+    color: #333;
+}
+
+/* Seções de Formulário */
+.secao-formulario {
+    margin-bottom: 40px;
+}
+
+.titulo-secao {
+    font-size: 18px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 16px;
+}
+
+/* Campos de Input */
+.campo-grupo {
+    margin-bottom: 12px;
+    position: relative;
+}
+
+.campo-input,
+.campo-select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #d8d8d8;
+    border-radius: 12px;
+    background-color: #ffffff;
+    font-size: 14px;
+    color: #333;
+    transition: border-color 0.3s ease;
+}
+
+.campo-input:focus,
+.campo-select:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.campo-input::placeholder {
+    color: #999;
+}
+
+/* Campo de contato específico */
+.campo-grupo-contato {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.campo-grupo-contato .campo-input {
+    flex: 1;
+}
+
+.link-login {
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.link-login:hover {
+    color: #007bff;
+}
+
+/* Layout dos campos de entrega */
+.campos-entrega {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Campo duplo para cidade e estado */
+.campo-grupo-duplo {
+    display: flex;
+    gap: 16px;
+}
+
+.campo-cidade {
+    flex: 0 0 60%;
+}
+
+.campo-estado {
+    flex: 0 0 40%;
+}
+
+/* Campos com ícones */
+.campo-com-icone {
+    position: relative;
+}
+
+.icone-campo {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    font-size: 14px;
+    pointer-events: none;
+}
+
+/* Descrição do frete */
+.descricao-frete {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Seção de Pagamento Reformulada */
+.opcoes-pagamento {
+    margin-bottom: 30px;
+}
+
+.container-pagamento {
+    margin-bottom: 16px;
+}
+
+.radio-pagamento {
+    display: none;
+}
+
+.label-pagamento {
+    display: block;
+    padding: 16px 20px;
+    border: 1px solid #d8d8d8;
+    border-radius: 12px;
+    background-color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.label-pagamento:hover {
+    border-color: #007bff;
+}
+
+.radio-pagamento:checked + .label-pagamento {
+    border-color: #007bff;
+    background-color: #f8f9ff;
+}
+
+.opcao-conteudo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.texto-opcao {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+}
+
+.icones-pagamento {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.icone-bandeira {
+    height: 24px;
+    width: auto;
+}
+
+.icone-nfc,
+.icone-boleto,
+.icone-pix {
+    color: #666;
+}
+
+/* Accordion Content */
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background-color: #f8f9fa;
+    border-radius: 0 0 12px 12px;
+}
+
+.accordion-content.active {
+    max-height: 500px;
+    padding: 20px;
+}
+
+/* Cartão Visual */
+.cartao-visual {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.imagem-cartao {
+    width: 280px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Campos do Cartão */
+.campos-cartao {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.campo-vencimento {
+    flex: 1;
+}
+
+.campo-cvv {
+    flex: 1;
+}
+
+/* Campos do PIX */
+.campos-pix {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+/* PIX Info */
+.pix-info {
+    text-align: center;
+    padding: 16px 20px 0;
+}
+
+.pix-info p {
+    color: #666;
+    font-size: 13px;
+    line-height: 1.4;
+    margin-bottom: 6px;
+}
+
+.pix-info p:last-child {
+    margin-bottom: 0;
+}
+
+/* Mensagens de Erro */
+.erro-campo {
+    display: block;
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 4px;
+    margin-left: 4px;
+}
+
+/* Botão Pagar */
+.botao-pagar {
+    width: 100%;
+    padding: 16px 24px;
+    background-color: #000;
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.botao-pagar:hover {
+    background-color: #333;
+}
+
+/* Item do Pedido */
+.item-pedido {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Item do Pedido Mobile - Oculto por padrão */
+.item-pedido-mobile {
+    display: none;
+    flex-direction: row;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding: 16px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e8e8e8;
+}
+
+.imagem-produto {
+    flex-shrink: 0;
+}
+
+.imagem-produto img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.detalhes-produto {
+    flex: 1;
+}
+
+.nome-produto {
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 4px;
+}
+
+.variacao-produto {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.preco-produto {
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+}
+
+/* Seção de Desconto */
+.secao-desconto {
+    margin-bottom: 24px;
+}
+
+.campo-desconto {
+    display: flex;
+    gap: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #d8d8d8;
+}
+
+.input-desconto {
+    flex: 1;
+    padding: 14px 16px;
+    border: none;
+    background-color: #ffffff;
+    font-size: 14px;
+    color: #333;
+}
+
+.input-desconto:focus {
+    outline: none;
+}
+
+.input-desconto::placeholder {
+    color: #999;
+}
+
+.botao-aplicar {
+    padding: 14px 20px;
+    background-color: #28a745;
+    color: #ffffff;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.botao-aplicar:hover {
+    background-color: #218838;
+}
+
+/* Resumo de Valores */
+.resumo-valores {
+    background-color: #ffffff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.linha-valor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.linha-valor:last-child {
+    border-bottom: none;
+}
+
+.label-valor {
+    font-size: 14px;
+    color: #333;
+}
+
+.valor {
+    font-size: 14px;
+    color: #333;
+}
+
+.valor-frete {
+    font-size: 14px;
+    color: #666;
+    font-style: italic;
+}
+
+.linha-total {
+    border-top: 2px solid #e0e0e0;
+    padding-top: 16px;
+    margin-top: 8px;
+    border-bottom: none;
+}
+
+.linha-total .label-valor {
+    font-size: 18px;
+    font-weight: 800;
+    color: #000;
+}
+
+.valor-total {
+    font-size: 20px;
+    font-weight: 800;
+    color: #000;
+}
+
+/* Responsividade */
+@media (max-width: 1000px) {
+    .container-carrinho {
+        grid-template-columns: 1fr;
+    }
+    
+    .container-carrinho::before {
+        display: none;
+    }
+    
+    .coluna-esquerda,
+    .coluna-direita {
+        padding: 20px;
+    }
+    
+    /* Mostrar item do pedido mobile */
+    .item-pedido-mobile {
+        display: flex;
+    }
+    
+    /* Ocultar coluna direita em mobile */
+    .coluna-direita {
+        display: none;
+    }
+    
+    .campo-grupo-duplo {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .campo-cidade,
+    .campo-estado {
+        flex: 1;
+    }
+    
+    .imagem-cartao {
+        width: 100%;
+        max-width: 280px;
+        height: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .coluna-esquerda {
+        padding: 16px;
+    }
+    
+    .cabecalho-esquerda {
+        margin-bottom: 20px;
+    }
+    
+    .secao-formulario {
+        margin-bottom: 30px;
+    }
+    
+    .campo-grupo-contato {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+    
+    .link-login {
+        text-align: center;
+        padding: 8px 16px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        color: #007bff;
+        font-weight: 500;
+    }
+    
+    .item-pedido-mobile {
+        padding: 12px;
+        margin-bottom: 20px;
+    }
+    
+    .item-pedido-mobile .imagem-produto img {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .item-pedido-mobile .nome-produto {
+        font-size: 14px;
+    }
+    
+    .item-pedido-mobile .variacao-produto {
+        font-size: 12px;
+    }
+    
+    .item-pedido-mobile .preco-produto {
+        font-size: 14px;
+        font-weight: 700;
+    }
+    
+    .campo-input,
+    .campo-select {
+        padding: 12px 14px;
+        font-size: 16px; /* Evita zoom no iOS */
+    }
+    
+    .botao-pagar {
+        padding: 16px 24px;
+        font-size: 16px;
+        font-weight: 800;
+    }
+    
+    .accordion-content.active {
+        padding: 16px;
+    }
+    
+    .imagem-cartao {
+        width: 100%;
+        max-width: 240px;
+        height: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .coluna-esquerda {
+        padding: 12px;
+    }
+    
+    .cabecalho-esquerda {
+        margin-bottom: 16px;
+    }
+    
+    .icone-voltar {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .titulo-secao {
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+    
+    .secao-formulario {
+        margin-bottom: 24px;
+    }
+    
+    .item-pedido-mobile {
+        padding: 10px;
+        margin-bottom: 16px;
+        gap: 12px;
+    }
+    
+    .item-pedido-mobile .imagem-produto img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .item-pedido-mobile .nome-produto {
+        font-size: 13px;
+        margin-bottom: 2px;
+    }
+    
+    .item-pedido-mobile .variacao-produto {
+        font-size: 11px;
+        margin-bottom: 4px;
+    }
+    
+    .item-pedido-mobile .preco-produto {
+        font-size: 13px;
+    }
+    
+    .campo-input,
+    .campo-select {
+        padding: 10px 12px;
+        border-radius: 8px;
+    }
+    
+    .campo-grupo-duplo {
+        gap: 8px;
+    }
+    
+    .label-pagamento {
+        padding: 12px 16px;
+    }
+    
+    .texto-opcao {
+        font-size: 14px;
+    }
+    
+    .icones-pagamento {
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+    
+    .icone-bandeira {
+        height: 18px;
+    }
+    
+    .accordion-content.active {
+        padding: 12px;
+    }
+    
+    .imagem-cartao {
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+    }
+    
+    .botao-pagar {
+        padding: 14px 20px;
+        font-size: 14px;
+        font-weight: 700;
+    }
+}

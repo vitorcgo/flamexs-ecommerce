@@ -34,25 +34,28 @@
                             <h3 class="titulo-secao">EDITAR ENDEREÇO</h3>
                         </div>
 
-                        <div class="campos-usuario">
-                            <div class="campo-exibicao">
-                                <span class="valor-campo">Rua das Flores, 123</span>
+                        <form method="POST" action="">
+                            @csrf
+                            <div class="campos-usuario">
+                                <div class="campo-exibicao">
+                                    <input type="text" name="address" class="valor-campo" value="Rua das Flores, 123" placeholder="Endereço" required>
+                                </div>
+                                <div class="campo-exibicao">
+                                    <input type="text" name="neighborhood" class="valor-campo" value="Jardim Primavera" placeholder="Bairro" required>
+                                </div>
+                                <div class="campo-exibicao">
+                                    <input type="text" name="city_state" class="valor-campo" value="São Paulo - SP" placeholder="Cidade - Estado" required>
+                                </div>
+                                <div class="campo-exibicao">
+                                    <input type="text" name="zipcode" class="valor-campo" value="01234-567" placeholder="CEP" required>
+                                </div>
                             </div>
-                            <div class="campo-exibicao">
-                                <span class="valor-campo">Jardim Primavera</span>
-                            </div>
-                            <div class="campo-exibicao">
-                                <span class="valor-campo">São Paulo - SP</span>
-                            </div>
-                            <div class="campo-exibicao">
-                                <span class="valor-campo">01234-567</span>
-                            </div>
-                        </div>
 
-                        <div class="btn-caixa">
-                            <button class="btn-cancelar"><a href="/user">Cancelar</a></button>
-                            <button class="btn-salvar"><a href="">Salvar Alterações</a></button>
-                        </div>
+                            <div class="btn-caixa">
+                                <a href="/user" class="btn-cancelar">Cancelar</a>
+                                <button type="submit" class="btn-salvar">Salvar Alterações</button>
+                            </div>
+                        </form>
                     </div>
 
 

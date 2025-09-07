@@ -65,7 +65,7 @@
     <!-- final do header -->
     <!-- comeco da main -->
 
-    <main style="padding: 40px 0;">
+    <main style="padding: 2px 0;">
         <div class="container-fluid">
             @yield('content') <!-- Aqui ira ficar todo o conteudo da pagina que nao foi puxado da main -->
         </div>
@@ -124,9 +124,6 @@
                     <ul>
                         <li><a href="/troca">Trocas e Devoluções</a></li>
                         <li><a href="/politica">Política de Privacidade</a></li>
-                        <li><a href="/termos">Termos de Uso</a></li>
-                        <li><a href="/entrega">Prazos de Entrega</a></li>
-                        <li><a href="/tamanhos">Guia de Tamanhos</a></li>
                     </ul>
                 </div>
 
@@ -147,7 +144,7 @@
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2024 Flamexs. Todos os direitos reservados.</p>
+                <p>&copy; 2025 Flamexs. Todos os direitos reservados.</p>
                 <div class="pagamentos">
                     <span class="pagamento-item">PIX</span>
                     <span class="pagamento-item">Visa</span>

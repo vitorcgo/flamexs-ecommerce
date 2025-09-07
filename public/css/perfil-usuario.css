@@ -122,6 +122,28 @@ a {
     font-weight: 400;
 }
 
+/* Estilos para inputs transparentes */
+input.valor-campo {
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+    color: #333;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: "Lexend", sans-serif;
+}
+
+input.valor-campo::placeholder {
+    color: #999;
+    opacity: 1;
+}
+
+input.valor-campo:focus {
+    outline: none;
+    background: transparent;
+}
+
 .botao-finalizar-sessao {
     background-color: #ff2d2d;
     color: #ffffff;
@@ -290,7 +312,7 @@ a {
 }
 
 /* Responsividade */
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
     .layout-duas-colunas {
         grid-template-columns: 1fr;
         gap: 30px;

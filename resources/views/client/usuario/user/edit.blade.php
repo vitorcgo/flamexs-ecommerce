@@ -35,24 +35,31 @@
                         <h2 class="titulo-secao">INFORMAÇÕES DA CONTA</h2>
                     </div>
                     
-                    <div class="campos-usuario">
-                        <div class="campo-exibicao">
-                            <span class="valor-campo">João Silva Santos</span>
+                    <form method="POST" action="">
+                        @csrf
+                        <div class="campos-usuario">
+                            <div class="campo-exibicao">
+                                <input type="text" name="name" class="valor-campo" value="João Silva Santos" placeholder="Nome completo" required>
+                            </div>
+                            <div class="campo-exibicao">
+                                <input type="email" name="email" class="valor-campo" value="joao.silva@email.com" placeholder="E-mail" required>
+                            </div>
+                            <div class="campo-exibicao">
+                                <input type="tel" name="phone" class="valor-campo" value="(11) 99999-9999" placeholder="Telefone" required>
+                            </div>
+                            <div class="campo-exibicao">
+                                <input type="text" name="cpf" class="valor-campo" value="123.456.789-00" placeholder="CPF" required>
+                            </div>
                         </div>
-                        <div class="campo-exibicao">
-                            <span class="valor-campo">joao.silva@email.com</span>
+
+                        <div class="btn-caixa">
+                            <a href="/user" class="btn-cancelar">Cancelar</a>
+                            <button type="submit" class="btn-salvar">Salvar Alterações</button>
                         </div>
-                        <div class="campo-exibicao">
-                            <span class="valor-campo">(11) 99999-9999</span>
-                        </div>
-                        <div class="campo-exibicao">
-                            <span class="valor-campo">123.456.789-00</span>
-                        </div>
-                    </div>
+                    </form>
 
                     <div class="btn-caixa">
-                        <button class="btn-cancelar"><a href="/user">Cancelar</a></button>
-                        <button class="btn-salvar"><a href="">Salvar Alterações</a></button>
+                        <a href="/user/info/password" class="btn-senha">Quer mudar sua senha?</a>
                     </div>
                 </div>
 
