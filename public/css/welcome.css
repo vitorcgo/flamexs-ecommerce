@@ -57,7 +57,7 @@ body {
     text-decoration: none;
     color: #000000;
     padding: 0.8rem 1.2rem;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 200;
     letter-spacing: -0.36px;
     position: relative;
@@ -318,7 +318,7 @@ body {
 .menu-mobile-conteudo a {
     text-decoration: none;
     color: #000;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 300;
     padding: 15px 0;
     border-bottom: 1px solid #ddd;

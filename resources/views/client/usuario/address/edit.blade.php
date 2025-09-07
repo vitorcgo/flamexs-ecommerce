@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>
+<!-- usado para puxando o layout da pagina main.blade.php -->
+@extends('client.layouts.main')
+<!-- Usado para puxar o nome da pagina que voce determinou como a tag yield apos chamar ele tera que colocar o nome da pagina que esta utilizando -->
+@section('title', 'Editar Endereço - Flamexs')
+<!-- Usado para puxar o conteudo principal da pagina, sendo ele qualquer conteudo que esteja fora do footer e do navbar -->
+@section('content')
+
+<div class="container">
+    <!-- Conteúdo da página de edição de endereço será adicionado aqui -->
+</div>
+
+@endsection

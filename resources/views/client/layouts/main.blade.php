@@ -3,11 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/welcome.css">
-    <link rel="stylesheet" href="css/produtos.css">
-    <link rel="stylesheet" href="css/modal-carrinho.css">
-    <link rel="stylesheet" href="css/faq.css">
-    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/produtos.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/produto-detalhes.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/modal-carrinho.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/faq.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sobre.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/contato.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/troca.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/perfil-usuario.css') }}">
     <title>@yield('title')</title>
 </head>
 <body>
@@ -15,7 +21,7 @@
     <header>
         <nav class="barra-navegacao">
             <div class="secao-logo">
-                <img src="./images/logo.gif" alt="">
+                <img src="{{ asset('images/logo.gif') }}" alt="">
             </div>
             
             <div class="links-navegacao">
@@ -28,9 +34,9 @@
             </div>
             
             <div class="secao-usuario">
-                <a href="/login"><img src="./images/user.svg" alt=""></a>
+                <a href="/login"><img src="{{ asset('images/user.svg') }}" alt=""></a>
                 <a href="#" id="icone-carrinho" style="position: relative;">
-                    <img src="./images/carrinho.svg" alt="">
+                    <img src="{{ asset('images/carrinho.svg') }}" alt="">
                     <span class="contador-carrinho" id="contador-carrinho">0</span>
                 </a>
             </div>
@@ -56,7 +62,7 @@
     <!-- final do header -->
      <!-- comeco da main -->
 
-        <main>
+        <main style="padding: 40px 0;">
         <div class="container-fluid">
             @yield('content') <!-- Aqui ira ficar todo o conteudo da pagina que nao foi puxado da main -->
         </div>
@@ -177,12 +183,13 @@
         </div>
     </div>
 
-    <script src="js/carrossel.js"></script>
-    <script src="js/menu-mobile.js"></script>
-    <script src="js/carrossel-categorias.js"></script>
-    <script src="js/produtos-hover.js"></script>
-    <script src="js/carrinho.js"></script>
-    <script src="js/faq.js"></script>
+    <script src="{{ asset('js/carrossel.js') }}"></script>
+    <script src="{{ asset('js/menu-mobile.js') }}"></script>
+    <script src="{{ asset('js/carrossel-categorias.js') }}"></script>
+    <script src="{{ asset('js/produtos-hover.js') }}"></script>
+    <script src="{{ asset('js/produto-detalhes.js') }}"></script>
+    <script src="{{ asset('js/carrinho.js') }}"></script>
+    <script src="{{ asset('js/faq.js') }}"></script>
 
 
 </body>
