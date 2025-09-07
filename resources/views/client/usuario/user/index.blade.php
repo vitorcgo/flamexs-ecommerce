@@ -31,7 +31,7 @@
                 <div class="secao-conta">
                     <div class="cabecalho-secao">
                         <h2 class="titulo-secao">INFORMAÇÕES DA CONTA</h2>
-                        <button class="botao-editar">EDITAR</button>
+                        <button class="botao-editar"><a href="/user/info">EDITAR</a></button>
                     </div>
                     
                     <div class="campos-usuario">
@@ -54,7 +54,7 @@
                 <div class="secao-endereco">
                     <div class="cabecalho-secao">
                         <h2 class="titulo-secao">ENDEREÇO</h2>
-                        <button class="botao-editar">EDITAR</button>
+                        <button class="botao-editar"><a href="/user/address">EDITAR</a></button>
                     </div>
                     
                     <div class="campos-usuario">

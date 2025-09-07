@@ -139,3 +139,7 @@ Route::get('/user/info', function () {
 Route::get('/user/info/password', function () {
     return view('client.usuario.password.edit');
 });
+
+Route::get('/user/address', function () {
+    return view('.client.usuario.address.edit');
+});

@@ -1,0 +1,33 @@
+/* Perfil do Usuário - Flamexs */
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&display=swap");
+
+* {
+    font-family: "Lexend", sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.btn-cancelar {
+    width: 211px;
+    height: 30px;
+    border-radius: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    background: #000;
+}
+
+.btn-salvar {
+    width: 211px;
+    height: 30px;
+    border-radius: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    background: #07d100;
+}
+
+.btn-caixa {
+    display: flex;
+    gap: 30px;
+    padding-top: 20px;
+}
