@@ -215,7 +215,6 @@
                             <div class="opcao-conteudo">
                                 <span class="texto-opcao">PIX</span>
                                 <div class="icones-pagamento">
-                                <img src="{{ asset('images/pix.svg') }}" alt="Cartão" class="imagem-cartao">
                                 </div>
                             </div>
                         </label>
