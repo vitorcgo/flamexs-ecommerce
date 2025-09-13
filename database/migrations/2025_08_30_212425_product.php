@@ -26,15 +26,15 @@ return new class extends Migration
             $table->string('description');
             // Estoque do produto
             $table->integer('stock')->default(0);
-            // Descricao do produto
-            $table->string('details')->nullable();
             // categoria do produto
             $table->string('category');
+            // Tamanho do produto
+            $table->string('size');
             
             //Avaliar Necessidade de criacao de outra tabela
             
             //$table->string('color');
-            $table->string('size');
+            
 
             //Campos de Controle do Laravel
             $table->timestamps();
