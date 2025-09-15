@@ -12,10 +12,19 @@
         </nav>
     </div>
 
-
+    {{-- BLOCO DE CÓDIGO ADICIONADO PARA EXIBIR ERROS DE VALIDAÇÃO --}}
+    @if ($errors->any())
+        <div class="alert alert-danger" style="color: #721c24; background-color: #f8d7da; border-color: #f5c6cb; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    {{-- FIM DO BLOCO DE ERROS --}}
 
     <div class="container-formulario-admin">
-        {{-- Formulário completo com enctype para upload de arquivos --}}
         <form class="formulario-admin"
               id="formAdicionarAdmin"
               action="/admin/administradores"
@@ -31,6 +40,7 @@
                     id="user"
                     name="user"
                     placeholder="Digite o nome do administrador"
+                    value="{{ old('user') }}"
                     required
                 >
             </div>
@@ -43,6 +53,7 @@
                     id="email"
                     name="email"
                     placeholder="Digite o e-mail do administrador"
+                    value="{{ old('email') }}"
                     required
                 >
             </div>

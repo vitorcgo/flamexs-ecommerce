@@ -11,7 +11,16 @@
             <span class="breadcrumb-atual">Editar administrador</span>
         </nav>
 
-
+    {{-- BLOCO DE CÓDIGO ADICIONADO PARA EXIBIR ERROS DE VALIDAÇÃO --}}
+    @if ($errors->any())
+        <div class="alert alert-danger" style="color: #721c24; background-color: #f8d7da; border-color: #f5c6cb; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
     <div class="container-formulario-admin">
         <form class="formulario-admin"
