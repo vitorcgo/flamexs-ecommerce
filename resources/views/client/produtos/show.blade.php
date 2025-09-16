@@ -1,7 +1,7 @@
 <!-- usado para puxando o layout da pagina main.blade.php -->
 @extends('client.layouts.main')
 <!-- Usado para puxar o nome da pagina que voce determinou como a tag yield apos chamar ele tera que colocar o nome da pagina que esta utilizando -->
-@section('title', 'Camiseta Básica - Flamexs')
+@section('title', 'Produto - Flamexs')
 <!-- Usado para puxar o conteudo principal da pagina, sendo ele qualquer conteudo que esteja fora do footer e do navbar -->
 @section('content')
 
@@ -34,7 +34,11 @@
             <!-- Galeria de Imagens -->
             <section class="galeria-produto">
                 <div class="imagem-destaque">
-                    <img src="{{ asset('images/cocada.png') }}" alt="Camiseta Básica" id="imagem-principal" class="img-principal">
+                    @if($product->media->first())
+                        <img src="{{ $product->media->first()->image_data_url }}" alt="{{ $product->name }}" id="imagem-principal" class="img-principal">
+                    @else
+                        <img src="{{ $product->first_image }}" alt="{{ $product->name }}" id="imagem-principal" class="img-principal">
+                    @endif
                     <button class="btn-zoom" onclick="abrirModalZoom(document.getElementById('imagem-principal').src)">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <circle cx="11" cy="11" r="8"></circle>
@@ -46,22 +50,22 @@
                 </div>
                 
                 <div class="miniaturas-grid">
-                    <div class="miniatura-item ativa" onclick="trocarImagem('{{ asset('images/cocada.png') }}')">
-                        <img src="{{ asset('images/cocada.png') }}" alt="Vista 1">
-                    </div>
-                    <div class="miniatura-item" onclick="trocarImagem('{{ asset('images/cocada2.png') }}')">
-                        <img src="{{ asset('images/cocada2.png') }}" alt="Vista 2">
-                    </div>
-                    <div class="miniatura-item" onclick="trocarImagem('{{ asset('images/cocada3.png') }}')">
-                        <img src="{{ asset('images/cocada3.png') }}" alt="Vista 3">
-                    </div>
+                    @forelse($product->media as $index => $media)
+                        <div class="miniatura-item {{ $index === 0 ? 'ativa' : '' }}" onclick="trocarImagem('{{ $media->image_data_url }}')">
+                            <img src="{{ $media->image_data_url }}" alt="Vista {{ $index + 1 }}">
+                        </div>
+                    @empty
+                        <div class="miniatura-item ativa" onclick="trocarImagem('{{ $product->first_image }}')">
+                            <img src="{{ $product->first_image }}" alt="Vista 1">
+                        </div>
+                    @endforelse
                 </div>
             </section>
 
             <!-- Informações do Produto -->
             <section class="info-produto">
                 <div class="produto-header">
-                    <h1 class="produto-titulo">Camiseta Básica Premium</h1>
+                    <h1 class="produto-titulo">{{ $product->name }}</h1>
                     <div class="produto-rating">
                         <div class="estrelas">
                             <span>★★★★★</span>
@@ -70,23 +74,39 @@
                     </div>
                 </div>
 
+                @php
+                    $preco = $product->price;
+                    $precoParcelado = $preco / 3;
+                    $precoPixDesconto = $preco * 0.9;
+                @endphp
+
                 <div class="preco-container">
-                    <span class="preco-atual">R$ 49,90</span>
+                    <span class="preco-atual">R$ {{ number_format($preco, 2, ',', '.') }}</span>
                     <div class="preco-info">
-                        <span class="parcelas">ou 3x de R$ 16,63 sem juros</span>
-                        <span class="pix-desconto">R$ 44,91 no PIX (10% off)</span>
+                        <span class="parcelas">ou 3x de R$ {{ number_format($precoParcelado, 2, ',', '.') }} sem juros</span>
+                        <span class="pix-desconto">R$ {{ number_format($precoPixDesconto, 2, ',', '.') }} no PIX (10% off)</span>
                     </div>
                 </div>
+
+                <!-- Descrição do Produto -->
+                @if($product->description)
+                <div class="produto-descricao">
+                    <p>{{ $product->description }}</p>
+                </div>
+                @endif
 
                 <!-- Seleções -->
                 <div class="selecoes-produto">
                     <div class="selecao-grupo">
                         <label class="selecao-label">Tamanho</label>
                         <div class="tamanhos-container">
-                            <button class="tamanho-btn" data-tamanho="P">P</button>
-                            <button class="tamanho-btn" data-tamanho="M">M</button>
-                            <button class="tamanho-btn ativo" data-tamanho="G">G</button>
-                            <button class="tamanho-btn" data-tamanho="GG">GG</button>
+                            @foreach($sizes as $size => $quantity)
+                                @if($quantity > 0)
+                                    <button class="tamanho-btn {{ $loop->first ? 'ativo' : '' }}" data-tamanho="{{ $size }}" data-estoque="{{ $quantity }}">
+                                        {{ $size }}
+                                    </button>
+                                @endif
+                            @endforeach
                         </div>
                         <a href="#" class="guia-tamanhos" onclick="abrirGuiaTamanhos()">Guia de tamanhos</a>
                     </div>
@@ -95,9 +115,10 @@
                         <label class="selecao-label">Quantidade</label>
                         <div class="quantidade-container">
                             <button class="qty-btn" onclick="diminuirQuantidade()">−</button>
-                            <input type="number" id="quantidade" value="1" min="1" max="10" readonly>
+                            <input type="number" id="quantidade" value="1" min="1" max="{{ $product->stock }}" readonly>
                             <button class="qty-btn" onclick="aumentarQuantidade()">+</button>
                         </div>
+                        <span class="estoque-info">{{ $product->stock }} unidades disponíveis</span>
                     </div>
 
                     <!-- Seção de Frete -->
@@ -175,5 +196,40 @@
     </div>
 
     <script src="{{ asset('js/produto-detalhes.js') }}"></script>
+
+    <style>
+        .produto-descricao {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #007bff;
+        }
+        
+        .produto-descricao p {
+            margin: 0;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .estoque-info {
+            font-size: 12px;
+            color: #28a745;
+            margin-top: 5px;
+            display: block;
+        }
+        
+        .tamanho-btn[data-estoque="0"] {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background-color: #e9ecef;
+            color: #6c757d;
+        }
+        
+        .tamanho-btn[data-estoque="0"]:hover {
+            background-color: #e9ecef;
+            color: #6c757d;
+        }
+    </style>
 
 @endsection

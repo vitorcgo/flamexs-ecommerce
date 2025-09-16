@@ -8,7 +8,8 @@
         <div class="breadcrumbs">Produtos > Adicionar novo produto</div>
     </div>
 
-    <form class="formulario-produto">
+    <form class="formulario-produto" method="POST" action="{{ route('admin.produtos.store') }}" enctype="multipart/form-data">
+        @csrf
         <div class="grid-formulario">
             <div class="coluna-esquerda">
                 <div class="campo-formulario">
@@ -18,11 +19,11 @@
 
                 <div class="campo-formulario">
                     <label for="categorias" class="rotulo-campo">Categorias</label>
-                    <select id="categorias" name="categorias" class="selecao-campo">
+                    <select id="categorias" name="categorias" class="selecao-campo" required>
                         <option value="">Selecione uma categoria</option>
-                        <option value="shorts">Shorts</option>
-                        <option value="camisetas">Camisetas</option>
-                        <option value="calcas">Calças</option>
+                        @foreach($categories as $category)
+                            <option value="{{ $category->name_category }}">{{ $category->name_category }}</option>
+                        @endforeach
                     </select>
                 </div>
 
@@ -33,34 +34,30 @@
                         <div class="icone-informacao">i</div>
                     </div>
                 </div>
-
-                <div class="campo-formulario">
-                    <label for="estoque" class="rotulo-campo">Estoque</label>
-                    <input type="number" id="estoque" name="estoque" class="entrada-texto" placeholder="Quantidade em estoque" min="0">
-                </div>
             </div>
 
             <div class="coluna-direita">
                 <div class="campo-formulario">
-                    <label class="rotulo-campo">Tamanhos</label>
-                    <div class="opcoes-tamanhos">
-                        <div class="opcao-tamanho">
-                            <input type="checkbox" id="tamanho-p" name="tamanhos[]" value="P">
-                            <label for="tamanho-p" class="rotulo-tamanho">P</label>
+                    <label class="rotulo-campo">Estoque por Tamanho</label>
+                    <div class="estoque-tamanhos">
+                        <div class="campo-tamanho">
+                            <label for="estoque-p" class="rotulo-tamanho">P</label>
+                            <input type="number" id="estoque-p" name="estoque_p" class="entrada-quantidade" placeholder="0" min="0" value="0">
                         </div>
-                        <div class="opcao-tamanho">
-                            <input type="checkbox" id="tamanho-m" name="tamanhos[]" value="M">
-                            <label for="tamanho-m" class="rotulo-tamanho">M</label>
+                        <div class="campo-tamanho">
+                            <label for="estoque-m" class="rotulo-tamanho">M</label>
+                            <input type="number" id="estoque-m" name="estoque_m" class="entrada-quantidade" placeholder="0" min="0" value="0">
                         </div>
-                        <div class="opcao-tamanho">
-                            <input type="checkbox" id="tamanho-g" name="tamanhos[]" value="G">
-                            <label for="tamanho-g" class="rotulo-tamanho">G</label>
+                        <div class="campo-tamanho">
+                            <label for="estoque-g" class="rotulo-tamanho">G</label>
+                            <input type="number" id="estoque-g" name="estoque_g" class="entrada-quantidade" placeholder="0" min="0" value="0">
                         </div>
-                        <div class="opcao-tamanho">
-                            <input type="checkbox" id="tamanho-gg" name="tamanhos[]" value="GG">
-                            <label for="tamanho-gg" class="rotulo-tamanho">GG</label>
+                        <div class="campo-tamanho">
+                            <label for="estoque-gg" class="rotulo-tamanho">GG</label>
+                            <input type="number" id="estoque-gg" name="estoque_gg" class="entrada-quantidade" placeholder="0" min="0" value="0">
                         </div>
                     </div>
+                    <small class="texto-ajuda">Digite a quantidade disponível para cada tamanho. Deixe 0 se não houver estoque.</small>
                 </div>
 
                 <div class="campo-formulario">
@@ -86,13 +83,13 @@
 
         <div class="area-upload">
             <div class="container-upload" id="container-upload" onclick="document.getElementById('input-arquivo').click()">
-                <input type="file" id="input-arquivo" name="imagens-produto[]" accept=".jpeg,.jpg,.png" multiple style="display: none;">
+                <input type="file" id="input-arquivo" name="imagens-produto[]" accept=".jpeg,.jpg,.png,.webp" multiple style="display: none;">
                 <div class="conteudo-upload" id="conteudo-upload">
                     <div class="icone-upload">📁</div>
                     <div class="texto-upload">
                         Drag & Drop or <span class="texto-vermelho">choose files</span> to upload
                     </div>
-                    <div class="texto-formatos">Formatos suportados: .jpeg, .png (máximo 4 imagens)</div>
+                    <div class="texto-formatos">Formatos suportados: .jpeg, .png, .webp (máximo 4 imagens)</div>
                 </div>
             </div>
             
@@ -142,6 +139,36 @@
 </main>
 
 <script>
+// Script para ativar/desativar estilo dos rótulos de tamanho
+document.addEventListener('DOMContentLoaded', function() {
+    const camposQuantidade = document.querySelectorAll('.entrada-quantidade');
+    
+    camposQuantidade.forEach(function(campo) {
+        const rotuloTamanho = campo.parentElement.querySelector('.rotulo-tamanho');
+        
+        // Verificar valor inicial
+        verificarValor(campo, rotuloTamanho);
+        
+        // Adicionar event listeners
+        campo.addEventListener('input', function() {
+            verificarValor(campo, rotuloTamanho);
+        });
+        
+        campo.addEventListener('change', function() {
+            verificarValor(campo, rotuloTamanho);
+        });
+    });
+    
+    function verificarValor(campo, rotulo) {
+        const valor = parseInt(campo.value) || 0;
+        if (valor > 0) {
+            rotulo.classList.add('ativo');
+        } else {
+            rotulo.classList.remove('ativo');
+        }
+    }
+});
+
 const inputArquivo = document.getElementById('input-arquivo');
 const containerUpload = document.getElementById('container-upload');
 const conteudoUpload = document.getElementById('conteudo-upload');
@@ -182,7 +209,7 @@ function processarArquivos(arquivos) {
     const arquivosImagem = arquivos.filter(arquivo => arquivo.type.startsWith('image/'));
     
     if (arquivosImagem.length === 0) {
-        alert('Por favor, selecione apenas arquivos de imagem (.jpeg, .jpg, .png)');
+        alert('Por favor, selecione apenas arquivos de imagem (.jpeg, .jpg, .png, .webp)');
         return;
     }
 
