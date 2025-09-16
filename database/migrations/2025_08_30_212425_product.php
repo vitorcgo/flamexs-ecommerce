@@ -33,8 +33,8 @@ return new class extends Migration
             
             //Avaliar Necessidade de criacao de outra tabela
             
-            //$table->string('color');
-            $table->string('size');
+            //$table->string('color')->nullable();
+            $table->text('size')->nullable(); // Mudando para text para armazenar JSON
 
             //Campos de Controle do Laravel
             $table->timestamps();

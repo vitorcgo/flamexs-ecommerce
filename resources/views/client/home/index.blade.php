@@ -85,72 +85,53 @@
     <!-- Produtos -->
     <section id="sessao-produtos">
         <h2 class="titulo-produtos">PRODUTOS</h2>
+        <div class="botao-ver-mais-container">
+            <a href="{{ route('client.produtos.index') }}" class="botao-ver-mais">VER MAIS</a>
+        </div>
         <div class="grid-produtos">
-            <div class="produto">
-                <div class="produto-imagem-container">
-                    <a href="/produto/1">
-                        <img src="./images/cocada.png" alt="Produto 1" class="produto-imagem">
-                    </a>
+            @forelse($products as $product)
+                @php
+                    $sizes = json_decode($product->size, true) ?? [];
+                    $sizeLabels = array_keys($sizes);
+                    $firstImage = $product->media->first();
+                    $secondImage = $product->media->skip(1)->first();
+                @endphp
+                <div class="produto" onclick="window.location.href='{{ route('client.produtos.show', $product->id) }}'">
+                    <div class="produto-imagem-container">
+                        @if($firstImage)
+                            <img src="{{ $firstImage->image_data_url }}" alt="{{ $product->name }}" class="produto-imagem-principal">
+                            @if($secondImage)
+                                <img src="{{ $secondImage->image_data_url }}" alt="{{ $product->name }}" class="produto-imagem-hover">
+                            @endif
+                        @else
+                            <img src="{{ $product->first_image }}" alt="{{ $product->name }}" class="produto-imagem-principal">
+                        @endif
+                    </div>
+                    <div class="produto-info">
+                        <h3 class="produto-nome">{{ strtoupper($product->name) }}</h3>
+                        <p class="produto-preco">R$ {{ number_format($product->price, 2, ',', '.') }}</p>
+                        <p class="produto-tamanhos">{{ implode(', ', $sizeLabels) }}</p>
+                    </div>
+                    <div class="produto-botoes">
+                        <button class="botao-comprar" onclick="event.stopPropagation(); window.location.href='{{ route('client.produtos.show', $product->id) }}'">COMPRAR AGORA</button>
+                        <button class="botao-carrinho" onclick="event.stopPropagation(); adicionarAoCarrinho({{ $product->id }})">ADICIONAR AO CARRINHO</button>
+                    </div>
                 </div>
-                <div class="produto-info">
-                    <h3 class="produto-nome"><a href="/produto/1">C0CADA ZIP UP</a></h3>
-                    <p class="produto-preco">R$ 49,90</p>
-                    <p class="produto-tamanhos">P, M, G, GG</p>
+            @empty
+                <div class="sem-produtos">
+                    <h3>Nenhum produto disponível no momento</h3>
+                    <p>Volte em breve para conferir nossos novos produtos!</p>
                 </div>
-                <div class="produto-botoes">
-                    <button class="botao-comprar">COMPRAR AGORA</button>
-                    <button class="botao-carrinho">ADICIONAR AO CARRINHO</button>
-                </div>
-            </div>
-            
-            <div class="produto">
-                <div class="produto-imagem-container">
-                    <img src="./images/1.png" alt="Produto 2" class="produto-imagem">
-                </div>
-                <div class="produto-info">
-                    <h3 class="produto-nome">REGATA ESPORTIVA</h3>
-                    <p class="produto-preco">R$ 39,90</p>
-                    <p class="produto-tamanhos">P, M, G</p>
-                </div>
-                <div class="produto-botoes">
-                    <button class="botao-comprar">COMPRAR AGORA</button>
-                    <button class="botao-carrinho">ADICIONAR AO CARRINHO</button>
-                </div>
-            </div>
-            
-            <div class="produto">
-                <div class="produto-imagem-container">
-                    <img src="./images/1.png" alt="Produto 3" class="produto-imagem">
-                </div>
-                <div class="produto-info">
-                    <h3 class="produto-nome">BLUSA FEMININA</h3>
-                    <p class="produto-preco">R$ 59,90</p>
-                    <p class="produto-tamanhos">PP, P, M, G</p>
-                </div>
-                <div class="produto-botoes">
-                    <button class="botao-comprar">COMPRAR AGORA</button>
-                    <button class="botao-carrinho">ADICIONAR AO CARRINHO</button>
-                </div>
-            </div>
-            
-            <div class="produto">
-                <div class="produto-imagem-container">
-                    <img src="./images/1.png" alt="Produto 4" class="produto-imagem">
-                </div>
-                <div class="produto-info">
-                    <h3 class="produto-nome">CALÇA JEANS</h3>
-                    <p class="produto-preco">R$ 89,90</p>
-                    <p class="produto-tamanhos">36, 38, 40, 42, 44</p>
-                </div>
-                <div class="produto-botoes">
-                    <button class="botao-comprar">COMPRAR AGORA</button>
-                    <button class="botao-carrinho">ADICIONAR AO CARRINHO</button>
-                </div>
-            </div>
-          
-       
-     </div>
+            @endforelse
+        </div>
     </section>
+
+    <script>
+        function adicionarAoCarrinho(productId) {
+            // Implementar lógica do carrinho aqui
+            alert('Produto adicionado ao carrinho! ID: ' + productId);
+        }
+    </script>
 
     <!-- FAQ -->
     <section id="faq">

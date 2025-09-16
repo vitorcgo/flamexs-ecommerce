@@ -27,126 +27,97 @@
     <section id="sessao-produtos">
         <h2 class="titulo-produtos">PRODUTOS</h2>
         <div class="grid-produtos">
-            <div class="produto">
-                <div class="produto-imagem-container">
-                    <img src="./images/1.png" alt="Produto 1" class="produto-imagem">
+            @forelse($products as $product)
+                @php
+                    $sizes = json_decode($product->size, true) ?? [];
+                    $sizeLabels = array_keys($sizes);
+                    $firstImage = $product->media->first();
+                    $secondImage = $product->media->skip(1)->first();
+                @endphp
+                <div class="produto" onclick="window.location.href='{{ route('client.produtos.show', $product->id) }}'">
+                    <div class="produto-imagem-container">
+                        @if($firstImage)
+                            <img src="{{ $firstImage->image_data_url }}" alt="{{ $product->name }}" class="produto-imagem produto-imagem-principal">
+                            @if($secondImage)
+                                <img src="{{ $secondImage->image_data_url }}" alt="{{ $product->name }}" class="produto-imagem produto-imagem-hover">
+                            @endif
+                        @else
+                            <img src="{{ $product->first_image }}" alt="{{ $product->name }}" class="produto-imagem produto-imagem-principal">
+                        @endif
+                    </div>
+                    <div class="produto-info">
+                        <h3 class="produto-nome">{{ strtoupper($product->name) }}</h3>
+                        <p class="produto-preco">R$ {{ number_format($product->price, 2, ',', '.') }}</p>
+                        <p class="produto-tamanhos">{{ implode(', ', $sizeLabels) }}</p>
+                    </div>
+                    <div class="produto-botoes">
+                        <button class="botao-comprar" onclick="event.stopPropagation(); window.location.href='{{ route('client.produtos.show', $product->id) }}'">COMPRAR AGORA</button>
+                        <button class="botao-carrinho" onclick="event.stopPropagation(); adicionarAoCarrinho({{ $product->id }})">ADICIONAR AO CARRINHO</button>
+                    </div>
                 </div>
-                <div class="produto-info">
-                    <h3 class="produto-nome">CAMISETA BÁSICA</h3>
-                    <p class="produto-preco">R$ 49,90</p>
-                    <p class="produto-tamanhos">P, M, G, GG</p>
+            @empty
+                <div class="sem-produtos">
+                    <h3>Nenhum produto disponível no momento</h3>
+                    <p>Volte em breve para conferir nossos novos produtos!</p>
                 </div>
-                <div class="produto-botoes">
-                    <button class="botao-comprar">COMPRAR AGORA</button>
-                    <button class="botao-carrinho">ADICIONAR AO CARRINHO</button>
-                </div>
-            </div>
-            
-            <div class="produto">
-                <div class="produto-imagem-container">
-                    <img src="./images/1.png" alt="Produto 2" class="produto-imagem">
-                </div>
-                <div class="produto-info">
-                    <h3 class="produto-nome">REGATA ESPORTIVA</h3>
-                    <p class="produto-preco">R$ 39,90</p>
-                    <p class="produto-tamanhos">P, M, G</p>
-                </div>
-                <div class="produto-botoes">
-                    <button class="botao-comprar">COMPRAR AGORA</button>
-                    <button class="botao-carrinho">ADICIONAR AO CARRINHO</button>
-                </div>
-            </div>
-            
-            <div class="produto">
-                <div class="produto-imagem-container">
-                    <img src="./images/1.png" alt="Produto 3" class="produto-imagem">
-                </div>
-                <div class="produto-info">
-                    <h3 class="produto-nome">BLUSA FEMININA</h3>
-                    <p class="produto-preco">R$ 59,90</p>
-                    <p class="produto-tamanhos">PP, P, M, G</p>
-                </div>
-                <div class="produto-botoes">
-                    <button class="botao-comprar">COMPRAR AGORA</button>
-                    <button class="botao-carrinho">ADICIONAR AO CARRINHO</button>
-                </div>
-            </div>
-            
-            <div class="produto">
-                <div class="produto-imagem-container">
-                    <img src="./images/1.png" alt="Produto 4" class="produto-imagem">
-                </div>
-                <div class="produto-info">
-                    <h3 class="produto-nome">CALÇA JEANS</h3>
-                    <p class="produto-preco">R$ 89,90</p>
-                    <p class="produto-tamanhos">36, 38, 40, 42, 44</p>
-                </div>
-                <div class="produto-botoes">
-                    <button class="botao-comprar">COMPRAR AGORA</button>
-                    <button class="botao-carrinho">ADICIONAR AO CARRINHO</button>
-                </div>
-            </div>
-            
-            <div class="produto">
-                <div class="produto-imagem-container">
-                    <img src="./images/1.png" alt="Produto 5" class="produto-imagem">
-                </div>
-                <div class="produto-info">
-                    <h3 class="produto-nome">SHORTS CASUAL</h3>
-                    <p class="produto-preco">R$ 34,90</p>
-                    <p class="produto-tamanhos">P, M, G, GG</p>
-                </div>
-                <div class="produto-botoes">
-                    <button class="botao-comprar">COMPRAR AGORA</button>
-                    <button class="botao-carrinho">ADICIONAR AO CARRINHO</button>
-                </div>
-            </div>
-            
-            <div class="produto">
-                <div class="produto-imagem-container">
-                    <img src="./images/1.png" alt="Produto 6" class="produto-imagem">
-                </div>
-                <div class="produto-info">
-                    <h3 class="produto-nome">VESTIDO ELEGANTE</h3>
-                    <p class="produto-preco">R$ 79,90</p>
-                    <p class="produto-tamanhos">PP, P, M, G, GG</p>
-                </div>
-                <div class="produto-botoes">
-                    <button class="botao-comprar">COMPRAR AGORA</button>
-                    <button class="botao-carrinho">ADICIONAR AO CARRINHO</button>
-                </div>
-            </div>
-            
-            <div class="produto">
-                <div class="produto-imagem-container">
-                    <img src="./images/1.png" alt="Produto 7" class="produto-imagem">
-                </div>
-                <div class="produto-info">
-                    <h3 class="produto-nome">JAQUETA JEANS</h3>
-                    <p class="produto-preco">R$ 99,90</p>
-                    <p class="produto-tamanhos">P, M, G, GG, XG</p>
-                </div>
-                <div class="produto-botoes">
-                    <button class="botao-comprar">COMPRAR AGORA</button>
-                    <button class="botao-carrinho">ADICIONAR AO CARRINHO</button>
-                </div>
-            </div>
-            
-            <div class="produto">
-                <div class="produto-imagem-container">
-                    <img src="./images/1.png" alt="Produto 8" class="produto-imagem">
-                </div>
-                <div class="produto-info">
-                    <h3 class="produto-nome">TÊNIS ESPORTIVO</h3>
-                    <p class="produto-preco">R$ 129,90</p>
-                    <p class="produto-tamanhos">37, 38, 39, 40, 41, 42, 43</p>
-                </div>
-                <div class="produto-botoes">
-                    <button class="botao-comprar">COMPRAR AGORA</button>
-                    <button class="botao-carrinho">ADICIONAR AO CARRINHO</button>
-                </div>
-            </div>
+            @endforelse
         </div>
     </section>
+
+    <style>
+        .produto {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .produto:hover {
+            transform: translateY(-5px);
+        }
+        
+        .produto-imagem-container {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .produto-imagem-hover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .produto-imagem-container:hover .produto-imagem-principal {
+            opacity: 0;
+        }
+        
+        .produto-imagem-container:hover .produto-imagem-hover {
+            opacity: 1;
+        }
+        
+        .sem-produtos {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+        
+        .sem-produtos h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .sem-produtos p {
+            font-size: 16px;
+        }
+    </style>
+
+    <script>
+        function adicionarAoCarrinho(productId) {
+            // Implementar lógica do carrinho aqui
+            alert('Produto adicionado ao carrinho! ID: ' + productId);
+        }
+    </script>
 
 @endsection

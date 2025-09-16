@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ClientProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\AdminController;
@@ -15,18 +17,12 @@ use App\Http\Controllers\AdminController;
 
 // Pagina Principal
 // Pagina Principal teste
-Route::get('/', function () {
-    return view('client.home.index');
-});
+Route::get('/', [ClientProductController::class, 'home'])->name('client.home.index');
 
 // Pagina de Produtos
-Route::get('/produtos', function () {
-    return view('client.produtos.index');
-});
+Route::get('/produtos', [ClientProductController::class, 'index'])->name('client.produtos.index');
 // Pagina do produto por ID
-Route::get('/produto/{id}', function ($id) {
-    return view('client.produtos.show');
-});
+Route::get('/produto/{id}', [ClientProductController::class, 'show'])->name('client.produtos.show');
 
 // Pagina de Login - Usuario
 Route::get('/login', function () {
@@ -46,21 +42,27 @@ Route::get('/admin', function () {
    return view('admin.login.store');
 });
 
-Route::get('/admin/produtos/create', function(){
-    return view('admin.produtos.create');
-});
+//---------------------------Produtos------------------------------------------//
 
-Route::get('/admin/produtos/show', function(){
-    return view('admin.produtos.show');
-});
+// Listar todos os produtos
+Route::get('/admin/produtos/index', [ProductController::class, 'index'])->name('admin.produtos.index');
 
-Route::get('/admin/produtos/index', function(){
-    return view('admin.produtos.index');
-});
+// Criar novo produto
+Route::get('/admin/produtos/create', [ProductController::class, 'create'])->name('admin.produtos.create');
+Route::post('/admin/produtos', [ProductController::class, 'store'])->name('admin.produtos.store');
 
-Route::get('/admin/produtos/edit/{id}', function($id){
-    return view('admin.produtos.edit');
-});
+// Visualizar produto específico
+Route::get('/admin/produtos/{id}/show', [ProductController::class, 'show'])->name('admin.produtos.show');
+
+// Editar produto
+Route::get('/admin/produtos/{id}/edit', [ProductController::class, 'edit'])->name('admin.produtos.edit');
+Route::put('/admin/produtos/{id}', [ProductController::class, 'update'])->name('admin.produtos.update');
+
+// Excluir produto
+Route::delete('/admin/produtos/{id}', [ProductController::class, 'destroy'])->name('admin.produtos.destroy');
+
+// Remover imagem do produto
+Route::delete('/admin/produtos/media/{id}', [ProductController::class, 'destroyMedia'])->name('admin.produtos.media.destroy');
 
 // Dashboard
 Route::get('/admin/dashboard', function(){

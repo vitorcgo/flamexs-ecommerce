@@ -65,7 +65,7 @@
                     class="campo-input-admin"
                     id="password"
                     name="password"
-                    placeholder="Digite a senha do administrador"
+                    placeholder="Digite a senha com mais de 8 caracteres!"
                     required
                 >
             </div>

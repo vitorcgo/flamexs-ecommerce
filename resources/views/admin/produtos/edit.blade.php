@@ -8,75 +8,75 @@
         <div class="breadcrumbs">Produtos > Editar produto</div>
     </div>
 
-    <form class="formulario-produto">
+    <form class="formulario-produto" method="POST" action="{{ route('admin.produtos.update', $product->id) }}" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
         <div class="grid-formulario">
             <div class="coluna-esquerda">
                 <div class="campo-formulario">
                     <label for="nome-produto" class="rotulo-campo">Nome do Produto</label>
-                    <input type="text" id="nome-produto" name="nome-produto" class="entrada-texto" placeholder="Digite o nome do produto">
+                    <input type="text" id="nome-produto" name="nome-produto" class="entrada-texto" placeholder="Digite o nome do produto" value="{{ $product->name }}" required>
                 </div>
 
                 <div class="campo-formulario">
                     <label for="categorias" class="rotulo-campo">Categorias</label>
-                    <select id="categorias" name="categorias" class="selecao-campo">
+                    <select id="categorias" name="categorias" class="selecao-campo" required>
                         <option value="">Selecione uma categoria</option>
-                        <option value="shorts">Shorts</option>
-                        <option value="camisetas">Camisetas</option>
-                        <option value="calcas">Calças</option>
+                        @foreach($categories as $category)
+                            <option value="{{ $category->name_category }}" {{ $product->category == $category->name_category ? 'selected' : '' }}>
+                                {{ $category->name_category }}
+                            </option>
+                        @endforeach
                     </select>
                 </div>
 
                 <div class="campo-formulario">
                     <label for="valor" class="rotulo-campo">Valor</label>
                     <div class="campo-com-icone">
-                        <input type="text" id="valor" name="valor" class="entrada-texto" placeholder="Ex: R$ 99,90">
+                        <input type="text" id="valor" name="valor" class="entrada-texto" placeholder="Ex: R$ 99,90" value="R$ {{ number_format($product->price, 2, ',', '.') }}" required>
                         <div class="icone-informacao">i</div>
                     </div>
-                </div>
-
-                <div class="campo-formulario">
-                    <label for="estoque" class="rotulo-campo">Estoque</label>
-                    <input type="number" id="estoque" name="estoque" class="entrada-texto" placeholder="Quantidade em estoque" min="0">
                 </div>
             </div>
 
             <div class="coluna-direita">
                 <div class="campo-formulario">
-                    <label class="rotulo-campo">Tamanhos</label>
-                    <div class="opcoes-tamanhos">
-                        <div class="opcao-tamanho">
-                            <input type="checkbox" id="tamanho-p" name="tamanhos[]" value="P">
-                            <label for="tamanho-p" class="rotulo-tamanho">P</label>
+                    <label class="rotulo-campo">Estoque por Tamanho</label>
+                    <div class="estoque-tamanhos">
+                        <div class="campo-tamanho">
+                            <label for="estoque-p" class="rotulo-tamanho">P</label>
+                            <input type="number" id="estoque-p" name="estoque_p" class="entrada-quantidade" placeholder="0" min="0" value="{{ $sizes['P'] ?? 0 }}">
                         </div>
-                        <div class="opcao-tamanho">
-                            <input type="checkbox" id="tamanho-m" name="tamanhos[]" value="M">
-                            <label for="tamanho-m" class="rotulo-tamanho">M</label>
+                        <div class="campo-tamanho">
+                            <label for="estoque-m" class="rotulo-tamanho">M</label>
+                            <input type="number" id="estoque-m" name="estoque_m" class="entrada-quantidade" placeholder="0" min="0" value="{{ $sizes['M'] ?? 0 }}">
                         </div>
-                        <div class="opcao-tamanho">
-                            <input type="checkbox" id="tamanho-g" name="tamanhos[]" value="G">
-                            <label for="tamanho-g" class="rotulo-tamanho">G</label>
+                        <div class="campo-tamanho">
+                            <label for="estoque-g" class="rotulo-tamanho">G</label>
+                            <input type="number" id="estoque-g" name="estoque_g" class="entrada-quantidade" placeholder="0" min="0" value="{{ $sizes['G'] ?? 0 }}">
                         </div>
-                        <div class="opcao-tamanho">
-                            <input type="checkbox" id="tamanho-gg" name="tamanhos[]" value="GG">
-                            <label for="tamanho-gg" class="rotulo-tamanho">GG</label>
+                        <div class="campo-tamanho">
+                            <label for="estoque-gg" class="rotulo-tamanho">GG</label>
+                            <input type="number" id="estoque-gg" name="estoque_gg" class="entrada-quantidade" placeholder="0" min="0" value="{{ $sizes['GG'] ?? 0 }}">
                         </div>
                     </div>
+                    <small class="texto-ajuda">Digite a quantidade disponível para cada tamanho. Deixe 0 se não houver estoque.</small>
                 </div>
 
                 <div class="campo-formulario">
                     <label for="descricao" class="rotulo-campo">Descrição</label>
-                    <textarea id="descricao" name="descricao" class="area-texto" rows="4" placeholder="Descreva as características do produto..."></textarea>
+                    <textarea id="descricao" name="descricao" class="area-texto" rows="4" placeholder="Descreva as características do produto..." required>{{ $product->description }}</textarea>
                 </div>
 
                 <div class="campo-formulario">
                     <label class="rotulo-campo">Status</label>
                     <div class="opcoes-radio">
                         <div class="opcao-radio">
-                            <input type="radio" id="em-estoque" name="status" value="em-estoque" checked>
+                            <input type="radio" id="em-estoque" name="status" value="em-estoque" {{ $product->status == 'available' ? 'checked' : '' }}>
                             <label for="em-estoque" class="rotulo-radio">Em estoque</label>
                         </div>
                         <div class="opcao-radio">
-                            <input type="radio" id="fora-estoque" name="status" value="fora-estoque">
+                            <input type="radio" id="fora-estoque" name="status" value="fora-estoque" {{ $product->status == 'unavailable' ? 'checked' : '' }}>
                             <label for="fora-estoque" class="rotulo-radio">Fora de estoque</label>
                         </div>
                     </div>
@@ -84,15 +84,38 @@
             </div>
         </div>
 
+        <!-- Imagens Existentes -->
+        @if($product->media->count() > 0)
+        <div class="imagens-existentes">
+            <h3>Imagens Atuais</h3>
+            <div class="grid-imagens-existentes">
+                @foreach($product->media as $index => $media)
+                    <div class="item-imagem-existente" data-media-id="{{ $media->id }}">
+                        <img src="{{ $media->image_data_url }}" alt="{{ $product->name }}" class="imagem-existente">
+                        <div class="overlay-imagem-existente">
+                            <button type="button" class="botao-remover-existente" onclick="removerImagemExistente({{ $media->id }})">✕</button>
+                            <div class="numero-imagem-existente">{{ $index + 1 }}</div>
+                        </div>
+                        <div class="info-imagem-existente">
+                            <p class="nome-arquivo-existente">{{ $media->original_name }}</p>
+                            <p class="tamanho-arquivo-existente">{{ $media->formatted_file_size }}</p>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+        @endif
+
         <div class="area-upload">
+            <h3>Adicionar Novas Imagens</h3>
             <div class="container-upload" id="container-upload" onclick="document.getElementById('input-arquivo').click()">
-                <input type="file" id="input-arquivo" name="imagens-produto[]" accept=".jpeg,.jpg,.png" multiple style="display: none;">
+                <input type="file" id="input-arquivo" name="imagens-produto[]" accept=".jpeg,.jpg,.png,.webp" multiple style="display: none;">
                 <div class="conteudo-upload" id="conteudo-upload">
                     <div class="icone-upload">📁</div>
                     <div class="texto-upload">
                         Drag & Drop or <span class="texto-vermelho">choose files</span> to upload
                     </div>
-                    <div class="texto-formatos">Formatos suportados: .jpeg, .png (máximo 4 imagens)</div>
+                    <div class="texto-formatos">Formatos suportados: .jpeg, .png, .webp (máximo 4 imagens)</div>
                 </div>
             </div>
             
@@ -142,6 +165,36 @@
 </main>
 
 <script>
+// Script para ativar/desativar estilo dos rótulos de tamanho
+document.addEventListener('DOMContentLoaded', function() {
+    const camposQuantidade = document.querySelectorAll('.entrada-quantidade');
+    
+    camposQuantidade.forEach(function(campo) {
+        const rotuloTamanho = campo.parentElement.querySelector('.rotulo-tamanho');
+        
+        // Verificar valor inicial
+        verificarValor(campo, rotuloTamanho);
+        
+        // Adicionar event listeners
+        campo.addEventListener('input', function() {
+            verificarValor(campo, rotuloTamanho);
+        });
+        
+        campo.addEventListener('change', function() {
+            verificarValor(campo, rotuloTamanho);
+        });
+    });
+    
+    function verificarValor(campo, rotulo) {
+        const valor = parseInt(campo.value) || 0;
+        if (valor > 0) {
+            rotulo.classList.add('ativo');
+        } else {
+            rotulo.classList.remove('ativo');
+        }
+    }
+});
+
 const inputArquivo = document.getElementById('input-arquivo');
 const containerUpload = document.getElementById('container-upload');
 const conteudoUpload = document.getElementById('conteudo-upload');
@@ -182,7 +235,7 @@ function processarArquivos(arquivos) {
     const arquivosImagem = arquivos.filter(arquivo => arquivo.type.startsWith('image/'));
     
     if (arquivosImagem.length === 0) {
-        alert('Por favor, selecione apenas arquivos de imagem (.jpeg, .jpg, .png)');
+        alert('Por favor, selecione apenas arquivos de imagem (.jpeg, .jpg, .png, .webp)');
         return;
     }
 
@@ -281,6 +334,41 @@ function removerTodasImagens() {
     imagensCarregadas = [];
     reorganizarPreviews();
     atualizarInterface();
+}
+
+// Função para remover imagem existente
+function removerImagemExistente(mediaId) {
+    if (confirm('Tem certeza que deseja remover esta imagem?')) {
+        fetch(`/admin/produtos/media/${mediaId}`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                'Content-Type': 'application/json',
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Remover o elemento da interface
+                const itemImagem = document.querySelector(`[data-media-id="${mediaId}"]`);
+                if (itemImagem) {
+                    itemImagem.remove();
+                }
+                
+                // Verificar se ainda há imagens existentes
+                const imagensExistentes = document.querySelector('.grid-imagens-existentes');
+                if (imagensExistentes && imagensExistentes.children.length === 0) {
+                    document.querySelector('.imagens-existentes').style.display = 'none';
+                }
+            } else {
+                alert('Erro ao remover a imagem. Tente novamente.');
+            }
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alert('Erro ao remover a imagem. Tente novamente.');
+        });
+    }
 }
 </script>
 @endsection

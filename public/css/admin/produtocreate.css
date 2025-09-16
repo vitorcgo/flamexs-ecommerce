@@ -160,60 +160,296 @@
     cursor: pointer;
 }
 
-.opcoes-tamanhos {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
+.estoque-tamanhos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 16px;
+    margin-bottom: 8px;
 }
 
-.opcao-tamanho {
+.campo-tamanho {
     display: flex;
-    align-items: center;
-    position: relative;
+    flex-direction: column;
+    gap: 6px;
 }
 
-.opcao-tamanho input[type="checkbox"] {
-    appearance: none;
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-}
-
-.rotulo-tamanho {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 45px;
-    height: 45px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    background-color: white;
-    color: #666;
-    font-size: 16px;
+.campo-tamanho .rotulo-tamanho {
+    font-size: 14px;
     font-weight: 600;
-    cursor: pointer;
+    color: #333;
+    text-align: center;
+    padding: 8px;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    border: 1px solid #e9ecef;
     transition: all 0.3s ease;
-    user-select: none;
 }
 
-.opcao-tamanho input[type="checkbox"]:checked + .rotulo-tamanho {
-    border-color: #FF0000;
-    background-color: #FF0000;
-    color: white;
-    transform: scale(1.05);
-}
-
-.opcao-tamanho input[type="checkbox"]:hover + .rotulo-tamanho {
-    border-color: #FF0000;
+.campo-tamanho .rotulo-tamanho.ativo {
+    color: #FF0000;
     background-color: #fff5f5;
+    border-color: #FF0000;
 }
 
-.opcao-tamanho input[type="checkbox"]:checked:hover + .rotulo-tamanho {
-    background-color: #e60000;
+.entrada-quantidade {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-family: 'Lexend', sans-serif;
+    font-size: 14px;
+    text-align: center;
+    transition: border-color 0.3s ease;
+}
+
+.entrada-quantidade:focus {
+    outline: none;
+    border-color: #FF0000;
+    box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.1);
+}
+
+.entrada-quantidade::-webkit-outer-spin-button,
+.entrada-quantidade::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.entrada-quantidade[type=number] {
+    -moz-appearance: textfield;
+}
+
+.texto-ajuda {
+    font-size: 12px;
+    color: #666;
+    font-style: italic;
+    margin-top: 4px;
+    display: block;
 }
 
 .area-upload {
     margin: 30px 0;
+}
+
+/* Estilos para imagens existentes */
+.imagens-existentes {
+    margin: 30px 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.imagens-existentes h3 {
+    margin: 0 0 20px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.grid-imagens-existentes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.item-imagem-existente {
+    position: relative;
+    width: 130px;
+    height: 195px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.item-imagem-existente:hover {
+    transform: translateY(-2px);
+}
+
+.imagem-existente {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.overlay-imagem-existente {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 8px;
+}
+
+.item-imagem-existente:hover .overlay-imagem-existente {
+    opacity: 1;
+}
+
+.botao-remover-existente {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.botao-remover-existente:hover {
+    background-color: #c82333;
+    transform: scale(1.1);
+}
+
+.numero-imagem-existente {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* Estilos para galeria de imagens na view show */
+.galeria-imagens {
+    margin: 30px 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.titulo-galeria {
+    margin: 0 0 20px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.grid-imagens {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.item-imagem {
+    position: relative;
+    width: 200px;
+    height: 300px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.item-imagem:hover {
+    transform: translateY(-2px);
+}
+
+.imagem-galeria {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.legenda-imagem {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 12px;
+    font-size: 12px;
+    text-align: center;
+    margin: 0;
+}
+
+/* Estilos para informações das imagens */
+.info-imagem {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 12px;
+    font-size: 11px;
+    text-align: center;
+}
+
+.nome-arquivo, .tamanho-arquivo {
+    margin: 0;
+    line-height: 1.2;
+}
+
+.nome-arquivo {
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.tamanho-arquivo {
+    opacity: 0.8;
+    font-size: 10px;
+}
+
+.info-imagem-existente {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 6px 8px;
+    font-size: 10px;
+    text-align: center;
+}
+
+.nome-arquivo-existente, .tamanho-arquivo-existente {
+    margin: 0;
+    line-height: 1.1;
+}
+
+.nome-arquivo-existente {
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.tamanho-arquivo-existente {
+    opacity: 0.8;
+    font-size: 9px;
 }
 
 .container-upload {
@@ -462,6 +698,11 @@
     .grid-formulario {
         grid-template-columns: 1fr;
         gap: 20px;
+    }
+    
+    .estoque-tamanhos {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
     }
     
     .container-upload {
