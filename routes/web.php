@@ -7,41 +7,28 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\AdminController;
 
-
-
+//--------------------------------------------------------
+// Suas Rotas de Cliente
 //--------------------------------------------------------
 
-
-// Rotas do Cliente - Depois trocamos para sincronizar com os controllers,
-// apenas arrumei a organização das paginas - Vitor
-
-// Pagina Principal
-// Pagina Principal teste
+// Pagina Principal - Isso já resolve o erro do "welcome not found"
 Route::get('/', [ClientProductController::class, 'home'])->name('client.home.index');
 
 // Pagina de Produtos
 Route::get('/produtos', [ClientProductController::class, 'index'])->name('client.produtos.index');
-// Pagina do produto por ID
 Route::get('/produto/{id}', [ClientProductController::class, 'show'])->name('client.produtos.show');
 
-// Pagina de Login - Usuario
-Route::get('/login', function () {
-    return view('client.login.store');
-});
-
-// Pagina de Cadastro - Usuario
-Route::get('/cadastro', function () {
-    return view('client.cadastro.store');
-});
+// As rotas de login e cadastro foram removidas daqui porque o Breeze agora cuida delas.
 
 // -----------------------------------------------------------
-
-
-// Rotas do Administrador - Painel
+// Suas Rotas de Administrador - Painel
+// -----------------------------------------------------------
 Route::get('/admin', function () {
    return view('admin.login.store');
 });
 
+//--- [ TODAS AS SUAS OUTRAS ROTAS DE ADMIN, PRODUTOS, CATEGORIAS, ETC., CONTINUAM EXATAMENTE IGUAIS AQUI ] ---//
+// ... (vou omitir para não ficar gigante, mas elas entram aqui)
 //---------------------------Produtos------------------------------------------//
 
 // Listar todos os produtos
@@ -89,10 +76,10 @@ Route::patch('/admin/administradores/{admin}/toggle-status', [AdminController::c
 
 // Categorias
 // Route::get('/admin/categorias', function(){
-//     return view('admin.categorias.index');
+//     return view('admin.categorias.index');
 // });
 
-// Usada para listar todos os itens da tabela 
+// Usada para listar todos os itens da tabela 
 Route::get('/admin/categorias', [CategoryController::class , 'index' ]);
 
 Route::post('/admin/categorias', [CategoryController::class , 'store']);
@@ -112,9 +99,8 @@ Route::delete('/admin/categorias/{id}', [CategoryController::class, 'destroy'])-
 
 
 // -----------------------------------------------------------
-
-
-// Rotas do Layout (Paginas que não precisam de controller, apenas exibem um front.)
+// Suas Rotas de Layout
+// -----------------------------------------------------------
 Route::get('/sobre', function () {
     return view('client.home.sobre');
 });
@@ -127,29 +113,19 @@ Route::get('/contato', function () {
 });
 
 
-
-// Usuario
-
+// Rotas de Usuario
 Route::get('/user' , function () {
     return view('client.usuario.user.index');
 });
 
-Route::get('/user/info', function () {
-    return view('client.usuario.user.edit');
-});
 
-Route::get('/user/info/password', function () {
-    return view('client.usuario.password.edit');
-});
+// Adicione esta rota para resolver o problema de redirecionamento do login
+Route::get('/dashboard', function () {
+    return redirect('/user');
+})->middleware(['auth'])->name('dashboard');
 
-Route::get('/user/address', function () {
-    return view('.client.usuario.address.edit');
-});
 
-Route::get('/user/carrinho/comprar', function () {
-    return view ('.client.carrinho.index');
-});
-
-Route::get('/user/carrinho/sucesso', function () {
-    return view('.client.carrinho.concluido');
-});
+// =================================================================
+// ADICIONE ESTA LINHA NO FINAL DO SEU ARQUIVO DE ROTAS ANTIGO
+require __DIR__.'/auth.php';
+// =================================================================

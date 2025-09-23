@@ -17,21 +17,29 @@
                 <h1>Cadastre sua conta</h1>
                 <p class="subtitulo">Crie sua conta aqui</p>
                 
-                <form class="formulario-login">
-                    <input type="email" placeholder="E-mail" class="campo-entrada" required>
-                    <input type="password" placeholder="Senha" class="campo-entrada" required>
-                    <input type="password" placeholder="Confirmar Senha" class="campo-entrada" required>
-                    
+                {{-- Código simplificado para resources/views/client/cadastro/store.blade.php --}}
+
+                <form class="formulario-login" method="POST" action="{{ route('register') }}">
+                    @csrf
+
+                    <input type="email" placeholder="E-mail" name="email" class="campo-entrada" value="{{ old('email') }}" required>
+                    @error('email') <span style="color: red; font-size: 0.8em; display: block;">{{ $message }}</span> @enderror
+
+                    <input type="password" placeholder="Senha" name="password" class="campo-entrada" required>
+                    @error('password') <span style="color: red; font-size: 0.8em; display: block;">{{ $message }}</span> @enderror
+
+                    <input type="password" placeholder="Confirmar Senha" name="password_confirmation" class="campo-entrada" required>
+
                     <div class="opcoes-formulario">
                         <div class="lembrar-me">
-                            <input type="checkbox" id="lembrar">
+                            <input type="checkbox" id="lembrar" name="terms" required>
                             <label for="lembrar">Aceito os termos</label>
                         </div>
                         <div class="link-cadastro">
-                            <p>Já tem conta? <a href="/login" class="link">Faça login aqui</a></p>
+                            <p>Já tem conta? <a href="{{ route('login') }}" class="link">Faça login aqui</a></p>
                         </div>
                     </div>
-                    
+
                     <button type="submit" class="botao-login">Cadastrar</button>
                 </form>
 

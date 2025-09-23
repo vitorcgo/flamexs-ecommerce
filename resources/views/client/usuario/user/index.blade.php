@@ -27,7 +27,6 @@
         <!-- Coluna Esquerda - Dados do Usuário -->
         <div class="coluna-esquerda">
             <div class="caixa-dados-usuario">
-                <!-- Seção Informações da Conta -->
                 <div class="secao-conta">
                     <div class="cabecalho-secao">
                         <h2 class="titulo-secao">INFORMAÇÕES DA CONTA</h2>
@@ -36,21 +35,21 @@
                     
                     <div class="campos-usuario">
                         <div class="campo-exibicao">
-                            <span class="valor-campo">João Silva Santos</span>
+                            {{-- Usamos ?? para mostrar uma mensagem caso o campo esteja vazio --}}
+                            <span class="valor-campo">{{ auth()->user()->full_name ?? 'Preencha seu nome completo' }}</span>
                         </div>
                         <div class="campo-exibicao">
-                            <span class="valor-campo">joao.silva@email.com</span>
+                            <span class="valor-campo">{{ auth()->user()->email }}</span>
                         </div>
                         <div class="campo-exibicao">
-                            <span class="valor-campo">(11) 99999-9999</span>
+                            <span class="valor-campo">{{ auth()->user()->phone ?? 'Preencha seu telefone' }}</span>
                         </div>
                         <div class="campo-exibicao">
-                            <span class="valor-campo">123.456.789-00</span>
+                            <span class="valor-campo">{{ auth()->user()->cpf ?? 'Preencha seu CPF' }}</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Seção Endereço -->
                 <div class="secao-endereco">
                     <div class="cabecalho-secao">
                         <h2 class="titulo-secao">ENDEREÇO</h2>
@@ -58,23 +57,18 @@
                     </div>
                     
                     <div class="campos-usuario">
+                        {{-- Por enquanto, vamos deixar uma mensagem padrão aqui --}}
                         <div class="campo-exibicao">
-                            <span class="valor-campo">Rua das Flores, 123</span>
-                        </div>
-                        <div class="campo-exibicao">
-                            <span class="valor-campo">Jardim Primavera</span>
-                        </div>
-                        <div class="campo-exibicao">
-                            <span class="valor-campo">São Paulo - SP</span>
-                        </div>
-                        <div class="campo-exibicao">
-                            <span class="valor-campo">01234-567</span>
+                            <span class="valor-campo">Nenhum endereço cadastrado</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Botão Finalizar Sessão -->
-                <button class="botao-finalizar-sessao">FINALIZAR SESSÃO</button>
+                {{-- MODIFICADO: O botão agora é um formulário seguro --}}
+                <form method="POST" action="{{ route('logout') }}" style="margin: 0;">
+                    @csrf
+                    <button type="submit" class="botao-finalizar-sessao">FINALIZAR SESSÃO</button>
+                </form>
             </div>
         </div>
 
