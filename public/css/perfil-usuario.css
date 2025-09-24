@@ -311,6 +311,17 @@ input.valor-campo:focus {
     border-radius: 8px;
 }
 
+.alert-success {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 8px; 
+    color: #0f5132; 
+    background-color: #d1e7dd; 
+    border-color: #badbcc; 
+    font-weight: 500;
+}
+
 /* Responsividade */
 @media (max-width: 1000px) {
     .layout-duas-colunas {

@@ -6,23 +6,14 @@ use App\Http\Controllers\ClientProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserProfileController; 
+use App\Http\Controllers\AddressController;
 
-//--------------------------------------------------------
-// Suas Rotas de Cliente
-//--------------------------------------------------------
-
-// Pagina Principal - Isso já resolve o erro do "welcome not found"
-Route::get('/', [ClientProductController::class, 'home'])->name('client.home.index');
-
-// Pagina de Produtos
-Route::get('/produtos', [ClientProductController::class, 'index'])->name('client.produtos.index');
-Route::get('/produto/{id}', [ClientProductController::class, 'show'])->name('client.produtos.show');
-
-// As rotas de login e cadastro foram removidas daqui porque o Breeze agora cuida delas.
 
 // -----------------------------------------------------------
 // Suas Rotas de Administrador - Painel
 // -----------------------------------------------------------
+
 Route::get('/admin', function () {
    return view('admin.login.store');
 });
@@ -113,9 +104,51 @@ Route::get('/contato', function () {
 });
 
 
+
+//--------------------------------------------------------
+// Suas Rotas de Cliente
+//--------------------------------------------------------
+
+
+Route::get('/user/carrinho/comprar', function () {
+    return view ('.client.carrinho.index');
+});
+
+Route::get('/user/carrinho/sucesso', function () {
+    return view('.client.carrinho.concluido');
+});
+
+// Pagina Principal - Isso já resolve o erro do "welcome not found"
+Route::get('/', [ClientProductController::class, 'home'])->name('client.home.index');
+
+// Pagina de Produtos
+Route::get('/produtos', [ClientProductController::class, 'index'])->name('client.produtos.index');
+Route::get('/produto/{id}', [ClientProductController::class, 'show'])->name('client.produtos.show');
+
+
 // Rotas de Usuario
 Route::get('/user' , function () {
     return view('client.usuario.user.index');
+})->middleware('auth'); // Adicionar middleware aqui também é uma boa ideia
+
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/user/info', function () {
+        return view('client.usuario.user.edit');
+    })->name('user.info.edit');
+
+    Route::get('/user/info/password', function () {
+        return view('client.usuario.password.edit');
+    })->name('user.password.edit');
+
+    Route::get('/user/address', function () {
+        return view('client.usuario.address.edit');
+    })->name('user.address.edit');
+
+    // ADICIONE ESTA NOVA ROTA PARA O UPDATE
+    Route::patch('/user/info', [UserProfileController::class, 'update'])->name('user.info.update');
+
+
 });
 
 
@@ -125,7 +158,13 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 
+Route::middleware(['auth'])->group(function () {
+    // ... (suas outras rotas de GET /user, /user/info, etc.)
+
+    // GARANTA QUE ESTA ROTA ESTEJA AQUI:
+    Route::patch('/user/address', [AddressController::class, 'update'])->name('user.address.update');
+});
+
 // =================================================================
-// ADICIONE ESTA LINHA NO FINAL DO SEU ARQUIVO DE ROTAS ANTIGO
 require __DIR__.'/auth.php';
 // =================================================================

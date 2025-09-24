@@ -30,6 +30,12 @@
                 <div class="secao-conta">
                     <div class="cabecalho-secao">
                         <h2 class="titulo-secao">INFORMAÇÕES DA CONTA</h2>
+                         <!--  Exibir a Mensagem de Sucesso -->
+                        @if (session('status'))
+                        <div class="alert-success">
+                            {{ session('status') }}
+                        </div>
+                        @endif
                         <a href="/user/info" class="botao-editar">EDITAR</a>
                     </div>
                     
@@ -50,17 +56,33 @@
                     </div>
                 </div>
 
+               {{-- Em /resources/views/client/usuario/user/index.blade.php --}}
+
                 <div class="secao-endereco">
                     <div class="cabecalho-secao">
                         <h2 class="titulo-secao">ENDEREÇO</h2>
-                        <a href="/user/address" class="botao-editar">EDITAR</a>
+                        <a href="{{ route('user.address.edit') }}" class="botao-editar">EDITAR</a>
                     </div>
                     
                     <div class="campos-usuario">
-                        {{-- Por enquanto, vamos deixar uma mensagem padrão aqui --}}
-                        <div class="campo-exibicao">
-                            <span class="valor-campo">Nenhum endereço cadastrado</span>
-                        </div>
+                        @if(auth()->user()->address)
+                            <div class="campo-exibicao">
+                                <span class="valor-campo">{{ auth()->user()->address->street }}, {{ auth()->user()->address->number }}</span>
+                            </div>
+                            <div class="campo-exibicao">
+                                <span class="valor-campo">{{ auth()->user()->address->neighborhood }}</span>
+                            </div>
+                            <div class="campo-exibicao">
+                                <span class="valor-campo">{{ auth()->user()->address->city }}</span>
+                            </div>
+                            <div class="campo-exibicao">
+                                <span class="valor-campo">{{ auth()->user()->address->zip_code }}</span>
+                            </div>
+                        @else
+                            <div class="campo-exibicao">
+                                <span class="valor-campo">Nenhum endereço cadastrado</span>
+                            </div>
+                        @endif
                     </div>
                 </div>
 

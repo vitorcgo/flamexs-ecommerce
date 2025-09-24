@@ -46,6 +46,8 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
+        //return redirect(RouteServiceProvider::HOME); 
+
         // Redireciona para a página correta após o cadastro
         return redirect('/user');
     }
