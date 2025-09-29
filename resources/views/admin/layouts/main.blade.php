@@ -32,6 +32,7 @@
             <nav class="menu-navegacao" id="menu-navegacao">
                 <a href="/admin/dashboard" class="link-navegacao">Dashboard</a>
                 <a href="/admin/vendas" class="link-navegacao">Vendas</a>
+                <a href="/admin/users" class="link-navegacao">Usuarios</a>
                 <a href="/admin/produtos/index" class="link-navegacao">Produtos</a>
                 <a href="/admin/administradores" class="link-navegacao">Administradores</a>
                 <a href="/admin/categorias" class="link-navegacao">Categorias</a>

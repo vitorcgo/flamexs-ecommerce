@@ -151,6 +151,11 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
+//Listagem de usuarios no admin
+Route::get('/admin/users', function() {
+    return view('admin.users.index');
+});
+
 
 // Adicione esta rota para resolver o problema de redirecionamento do login
 Route::get('/dashboard', function () {
