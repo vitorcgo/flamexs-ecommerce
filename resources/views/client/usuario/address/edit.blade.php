@@ -34,20 +34,29 @@
                             <h3 class="titulo-secao">EDITAR ENDEREÇO</h3>
                         </div>
 
-                        <form method="POST" action="">
+                        <form method="POST" action="{{ route('user.address.update') }}">
                             @csrf
+                            @method('PATCH') {{-- Método para atualização --}}
+
                             <div class="campos-usuario">
+                                {{-- O '?? ""' garante que não dará erro se o usuário ainda não tiver um endereço cadastrado --}}
                                 <div class="campo-exibicao">
-                                    <input type="text" name="address" class="valor-campo" value="Rua das Flores, 123" placeholder="Endereço" required>
+                                    <input type="text" name="zip_code" class="valor-campo" value="{{ old('zip_code', auth()->user()->address->zip_code ?? '') }}" placeholder="CEP" required>
                                 </div>
                                 <div class="campo-exibicao">
-                                    <input type="text" name="neighborhood" class="valor-campo" value="Jardim Primavera" placeholder="Bairro" required>
+                                    <input type="text" name="street" class="valor-campo" value="{{ old('street', auth()->user()->address->street ?? '') }}" placeholder="Rua / Avenida" required>
                                 </div>
                                 <div class="campo-exibicao">
-                                    <input type="text" name="city_state" class="valor-campo" value="São Paulo - SP" placeholder="Cidade - Estado" required>
+                                    <input type="number" name="number" class="valor-campo" value="{{ old('number', auth()->user()->address->number ?? '') }}" placeholder="Número" required>
                                 </div>
                                 <div class="campo-exibicao">
-                                    <input type="text" name="zipcode" class="valor-campo" value="01234-567" placeholder="CEP" required>
+                                    <input type="text" name="complement" class="valor-campo" value="{{ old('complement', auth()->user()->address->complement ?? '') }}" placeholder="Complemento (opcional)">
+                                </div>
+                                <div class="campo-exibicao">
+                                    <input type="text" name="neighborhood" class="valor-campo" value="{{ old('neighborhood', auth()->user()->address->neighborhood ?? '') }}" placeholder="Bairro" required>
+                                </div>
+                                <div class="campo-exibicao">
+                                    <input type="text" name="city" class="valor-campo" value="{{ old('city', auth()->user()->address->city ?? '') }}" placeholder="Cidade" required>
                                 </div>
                             </div>
 

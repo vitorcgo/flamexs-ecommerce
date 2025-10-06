@@ -6,42 +6,20 @@ use App\Http\Controllers\ClientProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserProfileController; 
+use App\Http\Controllers\AddressController;
 
-
-
-//--------------------------------------------------------
-
-
-// Rotas do Cliente - Depois trocamos para sincronizar com os controllers,
-// apenas arrumei a organização das paginas - Vitor
-
-// Pagina Principal
-// Pagina Principal teste
-Route::get('/', [ClientProductController::class, 'home'])->name('client.home.index');
-
-// Pagina de Produtos
-Route::get('/produtos', [ClientProductController::class, 'index'])->name('client.produtos.index');
-// Pagina do produto por ID
-Route::get('/produto/{id}', [ClientProductController::class, 'show'])->name('client.produtos.show');
-
-// Pagina de Login - Usuario
-Route::get('/login', function () {
-    return view('client.login.store');
-});
-
-// Pagina de Cadastro - Usuario
-Route::get('/cadastro', function () {
-    return view('client.cadastro.store');
-});
 
 // -----------------------------------------------------------
+// Suas Rotas de Administrador - Painel
+// -----------------------------------------------------------
 
-
-// Rotas do Administrador - Painel
 Route::get('/admin', function () {
    return view('admin.login.store');
 });
 
+//--- [ TODAS AS SUAS OUTRAS ROTAS DE ADMIN, PRODUTOS, CATEGORIAS, ETC., CONTINUAM EXATAMENTE IGUAIS AQUI ] ---//
+// ... (vou omitir para não ficar gigante, mas elas entram aqui)
 //---------------------------Produtos------------------------------------------//
 
 // Listar todos os produtos
@@ -89,10 +67,10 @@ Route::patch('/admin/administradores/{admin}/toggle-status', [AdminController::c
 
 // Categorias
 // Route::get('/admin/categorias', function(){
-//     return view('admin.categorias.index');
+//     return view('admin.categorias.index');
 // });
 
-// Usada para listar todos os itens da tabela 
+// Usada para listar todos os itens da tabela 
 Route::get('/admin/categorias', [CategoryController::class , 'index' ]);
 
 Route::post('/admin/categorias', [CategoryController::class , 'store']);
@@ -112,9 +90,8 @@ Route::delete('/admin/categorias/{id}', [CategoryController::class, 'destroy'])-
 
 
 // -----------------------------------------------------------
-
-
-// Rotas do Layout (Paginas que não precisam de controller, apenas exibem um front.)
+// Suas Rotas de Layout
+// -----------------------------------------------------------
 Route::get('/sobre', function () {
     return view('client.home.sobre');
 });
@@ -128,23 +105,10 @@ Route::get('/contato', function () {
 
 
 
-// Usuario
+//--------------------------------------------------------
+// Suas Rotas de Cliente
+//--------------------------------------------------------
 
-Route::get('/user' , function () {
-    return view('client.usuario.user.index');
-});
-
-Route::get('/user/info', function () {
-    return view('client.usuario.user.edit');
-});
-
-Route::get('/user/info/password', function () {
-    return view('client.usuario.password.edit');
-});
-
-Route::get('/user/address', function () {
-    return view('.client.usuario.address.edit');
-});
 
 Route::get('/user/carrinho/comprar', function () {
     return view ('.client.carrinho.index');
@@ -153,3 +117,59 @@ Route::get('/user/carrinho/comprar', function () {
 Route::get('/user/carrinho/sucesso', function () {
     return view('.client.carrinho.concluido');
 });
+
+// Pagina Principal - Isso já resolve o erro do "welcome not found"
+Route::get('/', [ClientProductController::class, 'home'])->name('client.home.index');
+
+// Pagina de Produtos
+Route::get('/produtos', [ClientProductController::class, 'index'])->name('client.produtos.index');
+Route::get('/produto/{id}', [ClientProductController::class, 'show'])->name('client.produtos.show');
+
+
+// Rotas de Usuario
+Route::get('/user' , function () {
+    return view('client.usuario.user.index');
+})->middleware('auth'); // Adicionar middleware aqui também é uma boa ideia
+
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/user/info', function () {
+        return view('client.usuario.user.edit');
+    })->name('user.info.edit');
+
+    Route::get('/user/info/password', function () {
+        return view('client.usuario.password.edit');
+    })->name('user.password.edit');
+
+    Route::get('/user/address', function () {
+        return view('client.usuario.address.edit');
+    })->name('user.address.edit');
+
+    // ADICIONE ESTA NOVA ROTA PARA O UPDATE
+    Route::patch('/user/info', [UserProfileController::class, 'update'])->name('user.info.update');
+
+
+});
+
+//Listagem de usuarios no admin
+Route::get('/admin/users', function() {
+    return view('admin.users.index');
+});
+
+
+// Adicione esta rota para resolver o problema de redirecionamento do login
+Route::get('/dashboard', function () {
+    return redirect('/user');
+})->middleware(['auth'])->name('dashboard');
+
+
+Route::middleware(['auth'])->group(function () {
+    // ... (suas outras rotas de GET /user, /user/info, etc.)
+
+    // GARANTA QUE ESTA ROTA ESTEJA AQUI:
+    Route::patch('/user/address', [AddressController::class, 'update'])->name('user.address.update');
+});
+
+// =================================================================
+require __DIR__.'/auth.php';
+// =================================================================

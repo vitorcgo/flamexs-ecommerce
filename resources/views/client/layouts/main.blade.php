@@ -37,9 +37,19 @@
             </div>
 
             <div class="secao-usuario">
-                <a href="/login"><img src="{{ asset('images/user.svg') }}" alt=""></a>
+                
+                {{-- Lógica para o ícone de usuário --}}
+                @auth
+                    {{-- Se o usuário ESTIVER LOGADO, o link leva para a página de perfil --}}
+                    <a href="/user"><img src="{{ asset('images/user.svg') }}" alt="Meu Perfil"></a>
+                @else
+                    {{-- Se o usuário NÃO ESTIVER LOGADO, o link leva para a página de login --}}
+                    <a href="{{ route('login') }}"><img src="{{ asset('images/user.svg') }}" alt="Login"></a>
+                @endguest
+
+                {{-- O ícone do carrinho continua o mesmo --}}
                 <a href="#" id="icone-carrinho" style="position: relative;">
-                    <img src="{{ asset('images/carrinho.svg') }}" alt="">
+                    <img src="{{ asset('images/carrinho.svg') }}" alt="Carrinho">
                     <span class="contador-carrinho" id="contador-carrinho">0</span>
                 </a>
             </div>

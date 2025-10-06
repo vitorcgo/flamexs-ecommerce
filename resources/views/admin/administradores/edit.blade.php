@@ -4,7 +4,7 @@
 @section('content')
 <main class="painel-editar-admin">
     <div class="cabecalho-adicionar-admin">
-        <h1 class="titulo-adicionar-admin">Editar administrador</h1>
+        <h1 class="titulo-adicionar-admin">Editar administradores</h1>
         <nav class="breadcrumb-admin">
             <a href="/admin/administradores" class="breadcrumb-link">Administradores</a>
             <span class="breadcrumb-separador">></span>

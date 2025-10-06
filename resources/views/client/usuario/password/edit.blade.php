@@ -16,20 +16,25 @@
                         <h2 class="titulo-secao">TROCA DE SENHA</h2>
                     </div>
                     
-                    <form method="POST" action="">
+                    <form method="POST" action="{{ route('password.update') }}"> {{-- Rota padrão do Breeze --}}
                         @csrf
+                        @method('PUT') {{-- O Laravel espera o método PUT para senhas --}}
                         <div class="campos-usuario">
                             <div class="campo-exibicao">
-                                <input type="password" name="current_password" class="valor-campo" placeholder="Confirme sua senha" required>
+                                {{-- Nome padrão do Laravel para senha atual --}}
+                                <input type="password" name="current_password" class="valor-campo" placeholder="Senha Atual" required>
+                                @error('current_password') <span style="color:red">{{$message}}</span> @enderror
                             </div>
                             <div class="campo-exibicao">
-                                <input type="password" name="new_password" class="valor-campo" placeholder="Coloque sua nova senha" required>
+                                {{-- Nome padrão do Laravel para nova senha --}}
+                                <input type="password" name="password" class="valor-campo" placeholder="Nova Senha" required>
+                                @error('password') <span style="color:red">{{$message}}</span> @enderror
                             </div>
                             <div class="campo-exibicao">
-                                <input type="password" name="new_password_confirmation" class="valor-campo" placeholder="Confirme sua nova senha" required>
+                                {{-- Nome padrão do Laravel para confirmação --}}
+                                <input type="password" name="password_confirmation" class="valor-campo" placeholder="Confirme a Nova Senha" required>
                             </div>
                         </div>
-
                         <div class="btn-caixa">
                             <a href="/user" class="btn-cancelar">Cancelar</a>
                             <button type="submit" class="btn-salvar">Salvar Alterações</button>

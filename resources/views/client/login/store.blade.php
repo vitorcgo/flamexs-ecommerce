@@ -17,17 +17,33 @@
                 <h1>Entrar na sua conta</h1>
                 <p class="subtitulo">Faça seu login aqui</p>
                 
-                <form class="formulario-login">
-                    <input type="email" placeholder="E-mail" class="campo-entrada" required>
-                    <input type="password" placeholder="Senha" class="campo-entrada" required>
+                {{-- ADICIONADO: Bloco para exibir erros gerais de login --}}
+                @if ($errors->any())
+                    <div style="color: #c53030; background-color: #fed7d7; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
+                        Ops! Verifique seus dados e tente novamente.
+                    </div>
+                @endif
+                
+                {{-- MODIFICADO: Adicionado method e action --}}
+                <form class="formulario-login" method="POST" action="{{ route('login') }}">
+                    {{-- ADICIONADO: Token de segurança do Laravel --}}
+                    @csrf
+
+                    {{-- MODIFICADO: Adicionado name="email" --}}
+                    <input type="email" placeholder="E-mail" name="email" class="campo-entrada" value="{{ old('email') }}" required>
+                    
+                    {{-- MODIFICADO: Adicionado name="password" --}}
+                    <input type="password" placeholder="Senha" name="password" class="campo-entrada" required>
                     
                     <div class="opcoes-formulario">
                         <div class="lembrar-me">
-                            <input type="checkbox" id="lembrar">
+                            {{-- MODIFICADO: Adicionado name="remember" --}}
+                            <input type="checkbox" id="lembrar" name="remember">
                             <label for="lembrar">Lembre-se</label>
                         </div>
                         <div class="link-cadastro">
-                            <p>Não tem conta? <a href="/cadastro" class="link">Cadastre-se aqui</a></p>
+                            {{-- MODIFICADO: Link usando a rota do Laravel --}}
+                            <p>Não tem conta? <a href="{{ route('register') }}" class="link">Cadastre-se aqui</a></p>
                         </div>
                     </div>
                     

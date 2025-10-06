@@ -35,29 +35,37 @@
                         <h2 class="titulo-secao">INFORMAÇÕES DA CONTA</h2>
                     </div>
                     
-                    <form method="POST" action="">
-                        @csrf
-                        <div class="campos-usuario">
-                            <div class="campo-exibicao">
-                                <input type="text" name="name" class="valor-campo" value="João Silva Santos" placeholder="Nome completo" required>
-                            </div>
-                            <div class="campo-exibicao">
-                                <input type="email" name="email" class="valor-campo" value="joao.silva@email.com" placeholder="E-mail" required>
-                            </div>
-                            <div class="campo-exibicao">
-                                <input type="tel" name="phone" class="valor-campo" value="(11) 99999-9999" placeholder="Telefone" required>
-                            </div>
-                            <div class="campo-exibicao">
-                                <input type="text" name="cpf" class="valor-campo" value="123.456.789-00" placeholder="CPF" required>
-                            </div>
-                        </div>
+                {{-- Em resources/views/client/usuario/user/edit.blade.php --}}
 
-                        <div class="btn-caixa">
-                            <a href="/user" class="btn-cancelar">Cancelar</a>
-                            <button type="submit" class="btn-salvar">Salvar Alterações</button>
-                        </div>
-                    </form>
+                {{-- O NOME DA ROTA 'user.info.update' SERÁ CRIADO NO PASSO 2 --}}
+                <form method="POST" action="{{ route('user.info.update') }}">
+                    @csrf
+                    @method('PATCH') {{-- <-- Método HTTP correto para atualização parcial --}}
 
+                    <div class="campos-usuario">
+                        <div class="campo-exibicao">
+                            {{-- MODIFICADO: name="full_name" e value dinâmico --}}
+                            <input type="text" name="full_name" class="valor-campo" value="{{ old('full_name', auth()->user()->full_name) }}" placeholder="Nome completo" required>
+                        </div>
+                        <div class="campo-exibicao">
+                            {{-- MODIFICADO: value dinâmico --}}
+                            <input type="email" name="email" class="valor-campo" value="{{ old('email', auth()->user()->email) }}" placeholder="E-mail" required>
+                        </div>
+                        <div class="campo-exibicao">
+                            {{-- MODIFICADO: value dinâmico --}}
+                            <input type="tel" name="phone" class="valor-campo" value="{{ old('phone', auth()->user()->phone) }}" placeholder="Telefone" required>
+                        </div>
+                        <div class="campo-exibicao">
+                            {{-- MODIFICADO: value dinâmico --}}
+                            <input type="text" name="cpf" class="valor-campo" value="{{ old('cpf', auth()->user()->cpf) }}" placeholder="CPF" required>
+                        </div>
+                    </div>
+
+                    <div class="btn-caixa">
+                        <a href="/user" class="btn-cancelar">Cancelar</a>
+                        <button type="submit" class="btn-salvar">Salvar Alterações</button>
+                    </div>
+                </form>
                     <div class="btn-caixa">
                         <a href="/user/info/password" class="btn-senha">Quer mudar sua senha?</a>
                     </div>
