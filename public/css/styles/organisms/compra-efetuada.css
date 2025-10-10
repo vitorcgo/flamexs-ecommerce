@@ -1,0 +1,71 @@
+.compra,
+.container { min-height: 100vh; display: flex; align-items: center; justify-content: start; padding: 10px 20px; background-color: var(--cor-branco); }
+
+.compra__conteudo,
+.content { display: flex; justify-content: center; align-items: center; width: 100%; max-width: 80%; gap: 60px; background-color: var(--cor-branco); padding: 60px 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+
+.compra__conteudo > div:first-child,
+.content > div:first-child { flex-shrink: 0; }
+
+.compra__imagem,
+.content img { object-fit: contain; }
+
+.compra__texto,
+.textoPedido { display: flex; flex-direction: column; align-items: center; text-align: center; flex: 1; }
+
+.compra__titulo,
+.textoPedido h3 { font-size: 32px; font-weight: 800; color: var(--cor-preto); margin-bottom: 20px; letter-spacing: 1px; }
+
+.compra__descricao,
+.textoPedido > p { font-size: 16px; color: #666; line-height: 1.6; margin-bottom: 30px; max-width: 400px; }
+
+.compra__info,
+.infoCompra { width: 100%; display: flex; flex-direction: column; gap: 8px; justify-content: center; align-items: center; margin-bottom: 40px; padding: 20px; background-color: var(--cor-cinza-50); border-radius: 12px; border: 1px solid var(--cor-cinza-200); }
+
+.compra__info p,
+.infoCompra p { margin: 0; padding: 0; font-size: 14px; color: #333; white-space: nowrap; }
+
+.compra__destaque,
+.textoNegrito { font-weight: 700; color: var(--cor-preto); }
+
+.compra__botao,
+.botaoPreto { background-color: var(--cor-preto); border: none; border-radius: 12px; padding: 16px 32px; color: var(--cor-branco); text-decoration: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.3s ease; min-width: 250px; }
+
+.compra__botao:hover,
+.botaoPreto:hover { background-color: #333; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+
+@media (max-width: 768px) {
+  .compra,
+  .container { padding: 20px 16px; min-height: 80vh; }
+  .compra__conteudo,
+  .content { flex-direction: column; gap: 40px; padding: 40px 20px; border-radius: 16px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); }
+  .compra__imagem,
+  .content img { width: 100px; height: 100px; }
+  .compra__titulo,
+  .textoPedido h3 { font-size: 28px; margin-bottom: 16px; }
+  .compra__descricao,
+  .textoPedido > p { font-size: 15px; margin-bottom: 24px; max-width: 100%; }
+  .compra__info,
+  .infoCompra { margin-bottom: 30px; padding: 16px; }
+  .compra__botao,
+  .botaoPreto { padding: 14px 24px; font-size: 13px; min-width: 200px; }
+}
+
+@media (max-width: 480px) {
+  .compra,
+  .container { padding: 16px 12px; }
+  .compra__conteudo,
+  .content { padding: 30px 16px; gap: 30px; }
+  .compra__imagem,
+  .content img { width: 80px; height: 80px; }
+  .compra__titulo,
+  .textoPedido h3 { font-size: 24px; margin-bottom: 12px; }
+  .compra__descricao,
+  .textoPedido > p { font-size: 14px; margin-bottom: 20px; }
+  .compra__info,
+  .infoCompra { margin-bottom: 24px; padding: 12px; }
+  .compra__info p,
+  .infoCompra p { font-size: 13px; }
+  .compra__botao,
+  .botaoPreto { padding: 12px 20px; font-size: 12px; min-width: 180px; }
+}

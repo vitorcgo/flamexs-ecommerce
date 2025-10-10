@@ -1,0 +1,29 @@
+:root {
+  /* Tipografia */
+  --fonte-admin: 'Lexend', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+  /* Paleta admin */
+  --admin-bg: #F0F2F5;
+  --admin-texto: #333333;
+  --admin-branco: #ffffff;
+  --admin-cinza-200: #e9ecef;
+  --admin-cinza-300: #e0e0e0;
+  --admin-cinza-800: rgba(0, 0, 0, 0.15);
+
+  /* Primária gradiente admin */
+  --admin-vermelho: #FF0000;
+  --admin-vermelho-escuro: #E60000;
+
+  /* Espaçamentos e bordas */
+  --espaco-xs: 8px;
+  --espaco-sm: 12px;
+  --espaco-md: 16px;
+  --espaco-lg: 24px;
+  --raio-sm: 8px;
+  --raio-full: 50px;
+
+  /* Sombras */
+  --sombra-sm: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
