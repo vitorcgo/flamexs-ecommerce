@@ -40,8 +40,13 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-    ],
 
+    'admin' => [
+        'driver' => 'session',
+        'provider' => 'admins', // Vamos criar este provedor logo abaixo
+        ],
+
+    ],
     /*
     |--------------------------------------------------------------------------
     | User Providers
@@ -63,6 +68,12 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
+        ],
+
+        'admins' => [
+            'driver' => 'eloquent',
+            // Aqui dizemos para ele usar o seu Model admin
+            'model' => App\Models\admin::class,
         ],
 
         // 'users' => [
