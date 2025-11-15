@@ -97,61 +97,45 @@
         <!-- Coluna Direita - Pedidos -->
         <div class="coluna-direita">
             <div class="lista-pedidos">
-                <!-- Pedido 1 -->
-                <div class="item-pedido">
-                    <div class="cabecalho-pedido" onclick="alternarPedido('pedido-1')">
-                        <div class="info-pedido">
-                            <span class="numero-pedido">#1001</span>
-                            <span class="data-pedido">15/12/2024</span>
-                        </div>
-                        <div class="icone-expandir" id="icone-pedido-1">+</div>
-                    </div>
-                    
-                    <div class="conteudo-pedido" id="conteudo-pedido-1">
-                        <div class="caixa-expandida">
-                            <div class="detalhes-pedido">
-                                <div class="coluna-info">
-                                    <div class="status-pedido">
-                                        <span class="badge-status">Entregue</span>
-                                    </div>
-                                    <div class="total-pedido">R$ 149,90</div>
-                                    <button class="botao-acompanhar">ACOMPANHAR PEDIDO</button>
-                                </div>
-                                <div class="coluna-produto">
-                                    <img src="/images/cocada.png" alt="Produto" class="imagem-produto">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="cabecalho-pedidos">
+                    <h2 class="titulo-pedidos">MEUS PEDIDOS</h2>
+                    <a href="{{ route('user.orders.index') }}" class="link-ver-todos">Ver todos →</a>
                 </div>
 
-                <!-- Pedido 2 -->
-                <div class="item-pedido">
-                    <div class="cabecalho-pedido" onclick="alternarPedido('pedido-2')">
-                        <div class="info-pedido">
-                            <span class="numero-pedido">#1002</span>
-                            <span class="data-pedido">10/12/2024</span>
+                @php
+                    $orders = auth()->user()->orders()->latest()->take(3)->get();
+                @endphp
+
+                @forelse($orders as $order)
+                    <div class="item-pedido">
+                        <div class="cabecalho-pedido" onclick="alternarPedido('pedido-{{ $order->id }}')">
+                            <div class="info-pedido">
+                                <span class="numero-pedido">#{{ $order->id }}</span>
+                                <span class="data-pedido">{{ $order->created_at->format('d/m/Y') }}</span>
+                            </div>
+                            <div class="icone-expandir" id="icone-pedido-{{ $order->id }}">+</div>
                         </div>
-                        <div class="icone-expandir" id="icone-pedido-2">+</div>
-                    </div>
-                    
-                    <div class="conteudo-pedido" id="conteudo-pedido-2">
-                        <div class="caixa-expandida">
-                            <div class="detalhes-pedido">
-                                <div class="coluna-info">
-                                    <div class="status-pedido">
-                                        <span class="badge-status">Em Trânsito</span>
+                        
+                        <div class="conteudo-pedido" id="conteudo-pedido-{{ $order->id }}">
+                            <div class="caixa-expandida">
+                                <div class="detalhes-pedido">
+                                    <div class="coluna-info">
+                                        <div class="status-pedido">
+                                            <span class="badge-status badge-{{ $order->status }}">{{ ucfirst($order->status) }}</span>
+                                        </div>
+                                        <div class="total-pedido">R$ {{ number_format($order->total_amount, 2, ',', '.') }}</div>
+                                        <a href="{{ route('user.orders.show', $order->id) }}" class="botao-acompanhar">VER DETALHES</a>
                                     </div>
-                                    <div class="total-pedido">R$ 89,90</div>
-                                    <button class="botao-acompanhar">ACOMPANHAR PEDIDO</button>
-                                </div>
-                                <div class="coluna-produto">
-                                    <img src="/images/1.png" alt="Produto" class="imagem-produto">
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @empty
+                    <div class="mensagem-vazia">
+                        <p>Você ainda não fez nenhum pedido.</p>
+                        <a href="{{ route('client.produtos.index') }}" class="botao-comprar-agora">COMEÇAR A COMPRAR</a>
+                    </div>
+                @endforelse
             </div>
         </div>
     </div>

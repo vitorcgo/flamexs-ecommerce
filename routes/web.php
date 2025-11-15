@@ -3,6 +3,8 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ClientProductController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\AdminDashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\AdminController;
@@ -38,14 +40,17 @@ Route::get('/contato', function () {
 });
 
 //--------------------------------------------------------
-// Suas Rotas de Cliente
+// Suas Rotas de Cliente - Carrinho (Protegidas por autenticação)
 //--------------------------------------------------------
 
-Route::get('/user/carrinho/comprar', function () {
-    return view ('.client.carrinho.index');
-});
-Route::get('/user/carrinho/sucesso', function () {
-    return view('.client.carrinho.concluido');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/user/carrinho/comprar', function () {
+        return view('client.carrinho.index');
+    })->name('client.carrinho.comprar');
+    
+    Route::get('/user/carrinho/sucesso', function () {
+        return view('client.carrinho.concluido');
+    })->name('client.carrinho.sucesso');
 });
 
 
@@ -62,6 +67,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user' , function () {
         return view('client.usuario.user.index');
     })->name('user.index');
+
+    // Rotas de Pedidos
+    Route::get('/user/pedidos', [OrderController::class, 'index'])->name('user.orders.index');
+    Route::get('/user/pedidos/{id}', [OrderController::class, 'show'])->name('user.orders.show');
+    Route::post('/user/pedidos', [OrderController::class, 'store'])->name('user.orders.store');
 
     // Páginas de edição
     Route::get('/user/info', function () {
@@ -131,9 +141,7 @@ Route::prefix('admin')->group(function () {
         Route::post('/logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
 
         // Dashboard
-        Route::get('/dashboard', function(){
-            return view('admin.dashboard.index');
-        })->name('admin.dashboard');
+        Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
         // Vendas
         Route::get('/vendas', function(){

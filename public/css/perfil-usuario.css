@@ -175,6 +175,91 @@ input.valor-campo:focus {
     gap: 12px;
 }
 
+.cabecalho-pedidos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    position: relative;
+}
+
+.titulo-pedidos {
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+    text-transform: uppercase;
+    margin: 0;
+    background-color: #ffffff;
+    padding-right: 10px;
+    z-index: 2;
+    position: relative;
+}
+
+.cabecalho-pedidos::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #dcdde3;
+    z-index: 1;
+}
+
+.link-ver-todos {
+    background-color: #000;
+    color: #ffffff;
+    border: none;
+    border-radius: 25px;
+    padding: 8px 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 2;
+    position: relative;
+    display: inline-block;
+}
+
+.link-ver-todos:hover {
+    background-color: #111111;
+}
+
+.mensagem-vazia {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    border: 1px dashed #dcdde3;
+}
+
+.mensagem-vazia p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.botao-comprar-agora {
+    background-color: #000;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.botao-comprar-agora:hover {
+    background-color: #111111;
+}
+
 .item-pedido {
     background-color: #ffffff;
     border-radius: 12px;
@@ -271,6 +356,31 @@ input.valor-campo:focus {
     font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
+}
+
+.badge-status.badge-pendente {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.badge-status.badge-processando {
+    background-color: #cfe2ff;
+    color: #084298;
+}
+
+.badge-status.badge-enviado {
+    background-color: #d1e7dd;
+    color: #0f5132;
+}
+
+.badge-status.badge-entregue {
+    background-color: #d1e7dd;
+    color: #0f5132;
+}
+
+.badge-status.badge-cancelado {
+    background-color: #f8d7da;
+    color: #842029;
 }
 
 .total-pedido {

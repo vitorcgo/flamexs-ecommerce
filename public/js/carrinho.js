@@ -57,7 +57,18 @@ class CarrinhoManager {
         const nome = produtoElement.querySelector('.produto-nome').textContent;
         const preco = produtoElement.querySelector('.produto-preco').textContent;
         const tamanhos = produtoElement.querySelector('.produto-tamanhos').textContent;
-        const imagem = produtoElement.querySelector('.produto-imagem').src;
+        
+        // Tentar pegar a imagem principal
+        let imagem = '';
+        const imagemPrincipal = produtoElement.querySelector('.produto-imagem-principal');
+        if (imagemPrincipal) {
+            imagem = imagemPrincipal.src;
+        } else {
+            const imagemContainer = produtoElement.querySelector('.produto-imagem-container img');
+            if (imagemContainer) {
+                imagem = imagemContainer.src;
+            }
+        }
         
         // Converter preço para número
         const precoNumerico = parseFloat(preco.replace('R$', '').replace(',', '.').trim());
@@ -69,7 +80,8 @@ class CarrinhoManager {
             precoFormatado: preco,
             tamanhos: tamanhos,
             imagem: imagem,
-            quantidade: 1
+            quantidade: 1,
+            product_id: null
         };
     }
 
@@ -201,6 +213,15 @@ class CarrinhoManager {
 // Inicializar o carrinho quando a página carregar
 document.addEventListener('DOMContentLoaded', function() {
     window.carrinho = new CarrinhoManager();
+    
+    // Botão de iniciar compra no modal do carrinho
+    const iniciarCompraBtn = document.querySelector('.btn-iniciar-compra');
+    if (iniciarCompraBtn) {
+        iniciarCompraBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = '/user/carrinho/comprar';
+        });
+    }
 });
 
 
@@ -419,6 +440,28 @@ document.addEventListener('DOMContentLoaded', function() {
                     alert('Por favor, insira um e-mail válido.');
                     return;
                 }
+            }
+            
+            // Se chegou aqui, todas as validações passaram
+            // Processar pedido no servidor
+            e.preventDefault();
+            
+            // Coletar dados do formulário
+            const formData = {
+                email: document.querySelector('input[name="email"]').value,
+                nome: document.querySelector('input[name="nome"]').value,
+                cep: document.querySelector('input[name="cep"]').value,
+                endereco: document.querySelector('input[name="endereco"]').value,
+                complemento: document.querySelector('input[name="complemento"]').value,
+                cidade: document.querySelector('input[name="cidade"]').value,
+                estado: document.querySelector('select[name="estado"]').value,
+                telefone: document.querySelector('input[name="telefone"]').value,
+                metodo_pagamento: metodoSelecionado.value,
+            };
+            
+            // Chamar função para processar pedido
+            if (typeof processarPedido === 'function') {
+                processarPedido(formData);
             }
         });
     }
