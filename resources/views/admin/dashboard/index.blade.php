@@ -184,7 +184,18 @@
                                     <td>R$ {{ number_format($order->total_amount, 2, ',', '.') }}</td>
                                     <td>{{ ucfirst($orderData['metodo_pagamento'] ?? 'N/A') }}</td>
                                     <td>
-                                        <span class="badge-status {{ $order->status }}">{{ ucfirst($order->status) }}</span>
+                                        <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                                            <span class="badge-status {{ $order->status }}">{{ ucfirst($order->status) }}</span>
+                                            <button class="btn-detalhes-pedido" 
+                                                data-order-id="{{ $order->id }}"
+                                                data-order-json="{{ base64_encode(json_encode($order)) }}"
+                                                title="Ver detalhes do pedido">
+                                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                                    <circle cx="12" cy="12" r="3"></circle>
+                                                </svg>
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                             @empty

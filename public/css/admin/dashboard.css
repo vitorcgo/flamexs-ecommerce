@@ -1185,3 +1185,252 @@ body {
         font-size: 13px;
     }
 }
+
+/* Botão de Detalhes do Pedido */
+.btn-detalhes-pedido {
+    background: none;
+    border: none;
+    color: #8B5CF6;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-detalhes-pedido:hover {
+    background: rgba(139, 92, 246, 0.1);
+    color: #7C3AED;
+    transform: scale(1.1);
+}
+
+.btn-detalhes-pedido:active {
+    transform: scale(0.95);
+}
+
+/* Modal de Detalhes do Pedido */
+.modal-detalhes-pedido {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-detalhes-pedido.ativo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-conteudo-detalhes {
+    background-color: white;
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 700px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    animation: slideUp 0.3s ease;
+}
+
+.modal-cabecalho-detalhes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #F3F4F6;
+}
+
+.modal-titulo-detalhes {
+    font-family: 'Lexend', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    color: #1F2937;
+}
+
+.modal-fechar-detalhes {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #6B7280;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-fechar-detalhes:hover {
+    color: #1F2937;
+    transform: rotate(90deg);
+}
+
+.modal-info-pedido {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding: 16px;
+    background: #F9FAFB;
+    border-radius: 12px;
+}
+
+.modal-info-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-info-label {
+    font-family: 'Lexend', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    color: #6B7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.modal-info-valor {
+    font-family: 'Lexend', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #1F2937;
+}
+
+.modal-tabela-itens {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 24px;
+}
+
+.modal-tabela-itens thead {
+    background: #F3F4F6;
+}
+
+.modal-tabela-itens th {
+    padding: 12px;
+    text-align: left;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    color: #6B7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #E5E7EB;
+}
+
+.modal-tabela-itens td {
+    padding: 12px;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #374151;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.modal-tabela-itens tbody tr:hover {
+    background: #F9FAFB;
+}
+
+.modal-info-endereco {
+    background: #F9FAFB;
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+}
+
+.modal-endereco-titulo {
+    font-family: 'Lexend', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #1F2937;
+    margin-bottom: 12px;
+}
+
+.modal-endereco-texto {
+    font-family: 'Lexend', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.6;
+}
+
+.modal-rodape-detalhes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 2px solid #F3F4F6;
+}
+
+.modal-botao-fechar {
+    background: #E5E7EB;
+    border: none;
+    color: #1F2937;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-botao-fechar:hover {
+    background: #D1D5DB;
+}
+
+/* Responsividade do Modal */
+@media (max-width: 768px) {
+    .modal-conteudo-detalhes {
+        padding: 24px;
+        width: 95%;
+    }
+    
+    .modal-info-pedido {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .modal-tabela-itens {
+        font-size: 12px;
+    }
+    
+    .modal-tabela-itens th,
+    .modal-tabela-itens td {
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-conteudo-detalhes {
+        padding: 16px;
+        width: 98%;
+        max-height: 90vh;
+    }
+    
+    .modal-titulo-detalhes {
+        font-size: 18px;
+    }
+    
+    .modal-info-pedido {
+        padding: 12px;
+    }
+    
+    .modal-tabela-itens th,
+    .modal-tabela-itens td {
+        padding: 6px;
+        font-size: 11px;
+    }
+}

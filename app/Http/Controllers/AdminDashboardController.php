@@ -15,8 +15,8 @@ class AdminDashboardController extends Controller
      */
     public function index()
     {
-        // Últimas 10 vendas
-        $orders = Order::with('user', 'items')
+        // Últimas 10 vendas com produtos relacionados
+        $orders = Order::with('user', 'items.product')
             ->latest()
             ->take(10)
             ->get();
@@ -34,5 +34,16 @@ class AdminDashboardController extends Controller
             'totalCategorias',
             'totalAdmins'
         ));
+    }
+
+    /**
+     * Retornar detalhes de um pedido em JSON (API)
+     */
+    public function getOrderDetails($id)
+    {
+        $order = Order::with('user', 'items.product')
+            ->findOrFail($id);
+
+        return response()->json($order);
     }
 }

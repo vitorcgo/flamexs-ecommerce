@@ -57,15 +57,34 @@ class OrderController extends Controller
                 'status' => 'pendente',
             ]);
 
-            // Criar itens do pedido
+            // Criar itens do pedido e reduzir estoque
             foreach ($carrinho as $item) {
+                // Buscar o produto pelo nome (já que o carrinho não armazena product_id)
+                $product = Product::where('name', $item['nome'] ?? '')->first();
+                
+                if ($product) {
+                    // Verificar se há estoque suficiente
+                    $quantidade = $item['quantidade'] ?? 1;
+                    if ($product->stock < $quantidade) {
+                        throw new \Exception("Estoque insuficiente para o produto: {$product->name}");
+                    }
+                    
+                    // Reduzir o estoque do produto
+                    $product->stock -= $quantidade;
+                    $product->save();
+                }
+
+                // Criar item do pedido
                 OrderItem::create([
                     'order_id' => $order->id,
-                    'product_id' => null, // Pode ser null pois o carrinho não armazena product_id
+                    'product_id' => $product ? $product->id : null,
                     'qty' => $item['quantidade'] ?? 1,
                     'price' => $item['preco'] ?? 0,
                 ]);
             }
+
+            // Atualizar status do pedido para 'pago' após sucesso
+            $order->update(['status' => 'pago']);
 
             DB::commit();
 

@@ -191,7 +191,7 @@
                 </div>
 
                 <div class="carrinho-acoes">
-                    <button class="btn-iniciar-compra">INICIAR A COMPRA</button>
+                    <button class="btn-iniciar-compra">FINALIZAR A COMPRA</button>
                     <button class="btn-continuar-comprando" id="continuar-comprando">CONTINUAR COMPRANDO</button>
                 </div>
             </div>

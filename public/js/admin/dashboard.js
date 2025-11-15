@@ -15,6 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Inicializar barras de progresso
     inicializarBarrasProgresso();
+    
+    // Inicializar botões de detalhes do pedido
+    inicializarBotoesDetalhes();
 });
 
 // Animações dos cards
@@ -409,3 +412,201 @@ estilo.textContent = `
     }
 `;
 document.head.appendChild(estilo);
+
+// Inicializar botões de detalhes do pedido
+function inicializarBotoesDetalhes() {
+    const botoesDetalhes = document.querySelectorAll('.btn-detalhes-pedido');
+    
+    botoesDetalhes.forEach(botao => {
+        botao.addEventListener('click', function(e) {
+            e.preventDefault();
+            const orderId = this.getAttribute('data-order-id');
+            const orderJsonBase64 = this.getAttribute('data-order-json');
+            
+            // Decodificar dados do pedido
+            try {
+                const orderJson = atob(orderJsonBase64);
+                const order = JSON.parse(orderJson);
+                criarModalDetalhes(order);
+            } catch (error) {
+                console.error('Erro ao decodificar dados do pedido:', error);
+                mostrarToast('Erro ao carregar detalhes do pedido', 'error');
+            }
+        });
+    });
+}
+
+// Abrir modal com detalhes do pedido (alternativa com AJAX)
+function abrirModalDetalhes(orderId) {
+    console.log('Abrindo detalhes do pedido:', orderId);
+    
+    // Buscar dados do pedido via AJAX
+    fetch(`/admin/api/orders/${orderId}`, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        }
+    })
+        .then(response => {
+            console.log('Response status:', response.status);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Dados recebidos:', data);
+            criarModalDetalhes(data);
+        })
+        .catch(error => {
+            console.error('Erro ao buscar detalhes do pedido:', error);
+            mostrarToast('Erro ao carregar detalhes do pedido: ' + error.message, 'error');
+        });
+}
+
+// Criar e exibir modal com detalhes
+function criarModalDetalhes(order) {
+    // Remover modal anterior se existir
+    const modalAnterior = document.querySelector('.modal-detalhes-pedido');
+    if (modalAnterior) {
+        modalAnterior.remove();
+    }
+    
+    // Criar HTML do modal
+    const modal = document.createElement('div');
+    modal.className = 'modal-detalhes-pedido ativo';
+    
+    // Formatar dados
+    const orderData = JSON.parse(order.order_data);
+    const dataFormatada = new Date(order.created_at).toLocaleDateString('pt-BR');
+    const horaFormatada = new Date(order.created_at).toLocaleTimeString('pt-BR');
+    
+    // Gerar linhas da tabela de itens
+    let linhasItens = '';
+    if (order.items && order.items.length > 0) {
+        order.items.forEach(item => {
+            const produtoNome = item.product ? item.product.name : 'Produto removido';
+            linhasItens += `
+                <tr>
+                    <td>${produtoNome}</td>
+                    <td>${item.qty}</td>
+                    <td>R$ ${parseFloat(item.price).toFixed(2).replace('.', ',')}</td>
+                    <td>R$ ${(item.qty * item.price).toFixed(2).replace('.', ',')}</td>
+                </tr>
+            `;
+        });
+    } else {
+        linhasItens = '<tr><td colspan="4" style="text-align: center;">Nenhum item neste pedido</td></tr>';
+    }
+    
+    // Endereço completo
+    const endereco = `${orderData.endereco}${orderData.complemento ? ', ' + orderData.complemento : ''}, ${orderData.cidade} - ${orderData.estado}, ${orderData.cep}`;
+    
+    modal.innerHTML = `
+        <div class="modal-conteudo-detalhes">
+            <div class="modal-cabecalho-detalhes">
+                <h2 class="modal-titulo-detalhes">Detalhes do Pedido #${order.id}</h2>
+                <button class="modal-fechar-detalhes" onclick="fecharModalDetalhes()">×</button>
+            </div>
+            
+            <div class="modal-info-pedido">
+                <div class="modal-info-item">
+                    <span class="modal-info-label">ID do Pedido</span>
+                    <span class="modal-info-valor">#${order.id}</span>
+                </div>
+                <div class="modal-info-item">
+                    <span class="modal-info-label">Data</span>
+                    <span class="modal-info-valor">${dataFormatada}</span>
+                </div>
+                <div class="modal-info-item">
+                    <span class="modal-info-label">Hora</span>
+                    <span class="modal-info-valor">${horaFormatada}</span>
+                </div>
+                <div class="modal-info-item">
+                    <span class="modal-info-label">Status</span>
+                    <span class="modal-info-valor" style="text-transform: capitalize;">${order.status}</span>
+                </div>
+                <div class="modal-info-item">
+                    <span class="modal-info-label">Cliente</span>
+                    <span class="modal-info-valor">${order.user.full_name || 'Usuário'}</span>
+                </div>
+                <div class="modal-info-item">
+                    <span class="modal-info-label">Email</span>
+                    <span class="modal-info-valor">${orderData.email}</span>
+                </div>
+                <div class="modal-info-item">
+                    <span class="modal-info-label">Telefone</span>
+                    <span class="modal-info-valor">${orderData.telefone}</span>
+                </div>
+                <div class="modal-info-item">
+                    <span class="modal-info-label">Método de Pagamento</span>
+                    <span class="modal-info-valor" style="text-transform: capitalize;">${orderData.metodo_pagamento}</span>
+                </div>
+            </div>
+            
+            <h3 style="font-family: 'Lexend', sans-serif; font-weight: 600; font-size: 16px; color: #1F2937; margin-bottom: 12px;">Itens do Pedido</h3>
+            <table class="modal-tabela-itens">
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Quantidade</th>
+                        <th>Preço Unitário</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${linhasItens}
+                </tbody>
+            </table>
+            
+            <div class="modal-info-endereco">
+                <div class="modal-endereco-titulo">Endereço de Entrega</div>
+                <div class="modal-endereco-texto">${endereco}</div>
+            </div>
+            
+            <div style="background: #F9FAFB; padding: 16px; border-radius: 12px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-family: 'Lexend', sans-serif; font-weight: 600; font-size: 16px; color: #1F2937;">Total do Pedido:</span>
+                <span style="font-family: 'Lexend', sans-serif; font-weight: 700; font-size: 20px; color: #8B5CF6;">R$ ${parseFloat(order.total_amount).toFixed(2).replace('.', ',')}</span>
+            </div>
+            
+            <div class="modal-rodape-detalhes">
+                <button class="modal-botao-fechar" onclick="fecharModalDetalhes()">Fechar</button>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Fechar ao clicar fora do modal
+    modal.addEventListener('click', function(e) {
+        if (e.target === this) {
+            fecharModalDetalhes();
+        }
+    });
+}
+
+// Fechar modal
+function fecharModalDetalhes() {
+    const modal = document.querySelector('.modal-detalhes-pedido');
+    if (modal) {
+        modal.style.animation = 'fadeOut 0.3s ease';
+        setTimeout(() => {
+            modal.remove();
+        }, 300);
+    }
+}
+
+// Adicionar animação de fade out
+const estiloFadeOut = document.createElement('style');
+estiloFadeOut.textContent = `
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(estiloFadeOut);

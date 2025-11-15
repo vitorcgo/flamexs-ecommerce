@@ -143,6 +143,9 @@ Route::prefix('admin')->group(function () {
         // Dashboard
         Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
+        // API para detalhes do pedido
+        Route::get('/api/orders/{id}', [AdminDashboardController::class, 'getOrderDetails'])->name('admin.api.order.details');
+
         // Vendas
         Route::get('/vendas', function(){
             return view('admin.vendas.index');

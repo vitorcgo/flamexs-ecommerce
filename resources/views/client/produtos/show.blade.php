@@ -29,7 +29,7 @@
     </div>
 
     <!-- Produto Principal -->
-    <div class="produto-container">
+    <div class="produto-container" data-product-id="{{ $product->id }}">
         <div class="produto-wrapper">
             <!-- Galeria de Imagens -->
             <section class="galeria-produto">
@@ -118,7 +118,11 @@
                             <input type="number" id="quantidade" value="1" min="1" max="{{ $product->stock }}" readonly>
                             <button class="qty-btn" onclick="aumentarQuantidade()">+</button>
                         </div>
-                        <span class="estoque-info">{{ $product->stock }} unidades disponíveis</span>
+                        @php
+                            $primeiroTamanho = array_key_first($sizes) ?? 'G';
+                            $primeiroEstoque = $sizes[$primeiroTamanho] ?? 0;
+                        @endphp
+                        <span class="estoque-info">{{ $primeiroEstoque }} unidades disponíveis em {{ $primeiroTamanho }}</span>
                     </div>
 
                     <!-- Seção de Frete -->

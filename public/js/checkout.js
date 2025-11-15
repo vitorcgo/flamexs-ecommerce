@@ -122,6 +122,12 @@ function processarPedido(formData) {
         _token: document.querySelector('input[name="_token"]').value
     };
     
+    // Mostrar loading
+    const botaoPagar = document.querySelector('.botao-pagar');
+    const textoOriginal = botaoPagar.textContent;
+    botaoPagar.disabled = true;
+    botaoPagar.textContent = 'Processando...';
+    
     // Enviar para o servidor
     fetch('/user/pedidos', {
         method: 'POST',
@@ -139,11 +145,15 @@ function processarPedido(formData) {
             // Redirecionar para página de sucesso
             window.location.href = '/user/carrinho/sucesso';
         } else {
+            botaoPagar.disabled = false;
+            botaoPagar.textContent = textoOriginal;
             alert('Erro ao processar pedido: ' + (data.error || 'Erro desconhecido'));
         }
     })
     .catch(error => {
         console.error('Erro:', error);
+        botaoPagar.disabled = false;
+        botaoPagar.textContent = textoOriginal;
         alert('Erro ao processar pedido. Tente novamente.');
     });
     
