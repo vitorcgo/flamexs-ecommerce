@@ -16,14 +16,14 @@
                 <img src="./images/logo.gif" alt="Logo" class="logotipo">
                 <h1>Entrar na sua conta</h1>
                 <p class="subtitulo">Faça seu login aqui</p>
-                
+
                 {{-- ADICIONADO: Bloco para exibir erros gerais de login --}}
                 @if ($errors->any())
                     <div style="color: #c53030; background-color: #fed7d7; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
                         Ops! Verifique seus dados e tente novamente.
                     </div>
                 @endif
-                
+
                 {{-- MODIFICADO: Adicionado method e action --}}
                 <form class="formulario-login" method="POST" action="{{ route('login') }}">
                     {{-- ADICIONADO: Token de segurança do Laravel --}}
@@ -31,10 +31,10 @@
 
                     {{-- MODIFICADO: Adicionado name="email" --}}
                     <input type="email" placeholder="E-mail" name="email" class="campo-entrada" value="{{ old('email') }}" required>
-                    
+
                     {{-- MODIFICADO: Adicionado name="password" --}}
                     <input type="password" placeholder="Senha" name="password" class="campo-entrada" required>
-                    
+
                     <div class="opcoes-formulario">
                         <div class="lembrar-me">
                             {{-- MODIFICADO: Adicionado name="remember" --}}
@@ -46,7 +46,7 @@
                             <p>Não tem conta? <a href="{{ route('register') }}" class="link">Cadastre-se aqui</a></p>
                         </div>
                     </div>
-                    
+
                     <button type="submit" class="botao-login">Entrar</button>
                 </form>
 
@@ -55,10 +55,12 @@
                     <p>ou</p>
                     <div class="linha"></div>
                 </div>
-                
+
                 <button class="botao-google">
+                    <a href="{{ route('login.google') }}" >
                     <img src="./images/google.svg" alt="Google">
-                    <span>Continuar com Google</span>
+                    <span> Entrar com o Google</span>
+                    </a>
                 </button>
             </div>
         </div>

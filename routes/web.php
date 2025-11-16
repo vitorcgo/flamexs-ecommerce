@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\AdminLoginController;
+use App\Http\Controllers\Auth\SocialLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,10 @@ Route::get('/user/carrinho/comprar', function () {
 Route::get('/user/carrinho/sucesso', function () {
     return view('.client.carrinho.concluido');
 });
+
+// Rotas para Login Social (Google)
+Route::get('/login/google', [SocialLoginController::class, 'redirectToGoogle'])->name('login.google');
+Route::get('/login/google/callback', [SocialLoginController::class, 'handleGoogleCallback']);
 
 
 /*
