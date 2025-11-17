@@ -37,6 +37,19 @@ class AdminDashboardController extends Controller
     }
 
     /**
+     * Exibir página de vendas com todos os pedidos
+     */
+    public function vendas()
+    {
+        // Buscar todos os pedidos com paginação
+        $orders = Order::with(['user', 'items.product'])
+            ->latest()
+            ->paginate(10);
+
+        return view('admin.vendas.index', compact('orders'));
+    }
+
+    /**
      * Retornar detalhes de um pedido em JSON (API)
      */
     public function getOrderDetails($id)

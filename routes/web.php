@@ -147,9 +147,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/api/orders/{id}', [AdminDashboardController::class, 'getOrderDetails'])->name('admin.api.order.details');
 
         // Vendas
-        Route::get('/vendas', function(){
-            return view('admin.vendas.index');
-        })->name('admin.vendas');
+        Route::get('/vendas', [AdminDashboardController::class, 'vendas'])->name('admin.vendas');
 
         // Listagem de Clientes (Users)
         Route::get('/users', function() {
