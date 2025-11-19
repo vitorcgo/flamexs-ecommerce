@@ -41,13 +41,13 @@
                             <div class="campos-usuario">
                                 {{-- O '?? ""' garante que não dará erro se o usuário ainda não tiver um endereço cadastrado --}}
                                 <div class="campo-exibicao">
-                                    <input type="text" name="zip_code" class="valor-campo" value="{{ old('zip_code', auth()->user()->address->zip_code ?? '') }}" placeholder="CEP" required>
+                                    <input type="text" name="zip_code" id="cep" maxlength="9" class="valor-campo" value="{{ old('zip_code', auth()->user()->address->zip_code ?? '') }}" placeholder="CEP" required>
                                 </div>
                                 <div class="campo-exibicao">
                                     <input type="text" name="street" class="valor-campo" value="{{ old('street', auth()->user()->address->street ?? '') }}" placeholder="Rua / Avenida" required>
                                 </div>
                                 <div class="campo-exibicao">
-                                    <input type="number" name="number" class="valor-campo" value="{{ old('number', auth()->user()->address->number ?? '') }}" placeholder="Número" required>
+                                    <input type="number" name="number" maxlength="6"class="valor-campo" value="{{ old('number', auth()->user()->address->number ?? '') }}" placeholder="Número" required>
                                 </div>
                                 <div class="campo-exibicao">
                                     <input type="text" name="complement" class="valor-campo" value="{{ old('complement', auth()->user()->address->complement ?? '') }}" placeholder="Complemento (opcional)">
@@ -66,7 +66,32 @@
                             </div>
                         </form>
                     </div>
+                </div>  
+            </div> 
+        </div> 
+    </div> 
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputCEP = document.getElementById('cep');
+            
+            if (inputCEP) {
+                inputCEP.addEventListener('input', function(e) {
+                    let value = e.target.value;
+                    
+                    // 1. Remove tudo que não é número
+                    value = value.replace(/\D/g, "");
+                    
+                    // 2. Limita a 8 dígitos (caso o maxlength falhe)
+                    if (value.length > 8) value = value.slice(0, 8);
 
-
-                @endsection
+                    // 3. Aplica a máscara: 12345-678
+                    // Se tiver mais de 5 números, coloca o traço depois do quinto
+                    value = value.replace(/^(\d{5})(\d)/, "$1-$2");
+                    
+                    e.target.value = value;
+                });
+            }
+        });
+    </script>
+ @endsection
