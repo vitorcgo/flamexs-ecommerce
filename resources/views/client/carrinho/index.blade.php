@@ -111,7 +111,7 @@
                     
                     <!-- Linha 6: Telefone -->
                     <div class="campo-grupo">
-                        <input type="tel" name="telefone" class="campo-input" placeholder="Telefone (11) 9000-0000" value="{{ old('telefone') }}" required>
+                        <input type="tel" name="telefone" maxlength="15" class="campo-input" placeholder="Telefone (11) 9000-0000" value="{{ old('telefone') }}" required>
                         @error('telefone')
                             <span class="erro-campo">{{ $message }}</span>
                         @enderror

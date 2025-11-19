@@ -55,11 +55,14 @@
                     <p>ou</p>
                     <div class="linha"></div>
                 </div>
-                
-                <button class="botao-google">
-                    <img src="./images/google.svg" alt="Google">
+                {{-- Transformamos o BUTTON em A (link) apontando para a rota --}}
+                <a href="{{ route('login.google') }}" class="botao-google" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">
+                    
+                    {{-- Usamos asset() para garantir que a imagem carregue sempre --}}
+                    <img src="{{ asset('images/google.svg') }}" alt="Google">
+                    
                     <span>Continuar com Google</span>
-                </button>
+                </a>
             </div>
         </div>
     </section>

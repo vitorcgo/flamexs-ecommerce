@@ -12,6 +12,7 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\Auth\SocialLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,11 @@ Route::get('/troca', function () {
 Route::get('/contato', function () {
     return view('client.home.contato');
 });
+
+
+//Login com a conta do Google
+Route::get('/login/google', [SocialLoginController::class,'redirectToGoogle'])->name('login.google');
+Route::get('/login/google/callback', [SocialLoginController::class,'handleGoogleCallback']);
 
 //--------------------------------------------------------
 // Suas Rotas de Cliente - Carrinho (Protegidas por autenticação)
