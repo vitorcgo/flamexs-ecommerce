@@ -31,22 +31,30 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="linha-venda" data-delay="0">
-                    <td class="celula-id">#001</td>
-                    <td>Guilherme Aranha</td>
-                    <td>guilhermearanha@gmail.com</td>
-                    <td>165.922.123-90</td>
-                    <td>São Paulo</td>
-                    <td>(11)94450-6528</td>
-                    <td>
-                        <button class="botao-visualizar" onclick="abrirModalVenda()">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                <circle cx="12" cy="12" r="3"></circle>
-                            </svg>
-                        </button>
-                    </td>
-                </tr>
+                @forelse($users as $user)
+                    <tr class="linha-venda" data-delay="0" data-user-id="{{ $user->id }}">
+                        <td class="celula-id">#{{ str_pad($user->id, 3, '0', STR_PAD_LEFT) }}</td>
+                        <td>{{ $user->full_name ?? 'N/A' }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->cpf ?? 'N/A' }}</td>
+                        <td>{{ $user->address->estado ?? 'N/A' }}</td>
+                        <td>{{ $user->phone ?? 'N/A' }}</td>
+                        <td>
+                            <button class="botao-visualizar" onclick="abrirModalVenda({{ $user->id }})">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </button>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="7" style="text-align: center; padding: 20px; color: #999;">
+                            Nenhum usuário cadastrado
+                        </td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
@@ -157,10 +165,62 @@
 </main>
 
 <script>
-function abrirModalVenda() {
-    const modal = document.getElementById('modalVisualizarVenda');
-    modal.classList.add('ativo');
-    document.body.style.overflow = 'hidden';
+function abrirModalVenda(userId) {
+    // Buscar dados do usuário via API
+    fetch(`/admin/users/${userId}`)
+        .then(response => response.json())
+        .then(data => {
+            const user = data.user;
+            const totalGasto = data.totalGasto;
+            const orders = data.orders;
+            
+            // Atualizar modal com dados do usuário
+            document.querySelector('.valor-info:nth-of-type(1)').textContent = `#${String(user.id).padStart(3, '0')}`;
+            document.querySelector('.valor-info:nth-of-type(2)').textContent = user.full_name || 'N/A';
+            document.querySelector('.valor-info:nth-of-type(3)').textContent = user.email;
+            document.querySelector('.valor-info:nth-of-type(4)').textContent = user.cpf || 'N/A';
+            document.querySelector('.valor-info:nth-of-type(5)').textContent = user.address?.estado || 'N/A';
+            document.querySelector('.valor-info:nth-of-type(6)').textContent = user.phone || 'N/A';
+            document.querySelector('.badge-status').textContent = user.address?.cidade || 'N/A';
+            document.querySelector('.valor-info:nth-of-type(8)').textContent = `R$ ${totalGasto.toFixed(2).replace('.', ',')}`;
+            
+            // Atualizar lista de compras
+            const listaCompras = document.querySelector('.lista-produtos-venda');
+            listaCompras.innerHTML = '';
+            
+            if (orders.length > 0) {
+                orders.forEach(order => {
+                    const dataFormatada = new Date(order.created_at).toLocaleDateString('pt-BR');
+                    const html = `
+                        <div class="item-produto-venda">
+                            <div class="info-produto-venda">
+                                <span class="nome-produto-venda">Pedido #${String(order.id).padStart(3, '0')}</span>
+                                <span class="valor-produto-venda">Data: ${dataFormatada} - Total: R$ ${order.total_amount.toFixed(2).replace('.', ',')}</span>
+                            </div>
+                        </div>
+                    `;
+                    listaCompras.innerHTML += html;
+                });
+            } else {
+                listaCompras.innerHTML = `
+                    <div class="item-produto-venda">
+                        <div class="info-produto-venda">
+                            <span class="nome-produto-venda">Nenhuma compra</span>
+                            <span class="valor-produto-venda">Este usuário ainda não realizou nenhuma compra</span>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Abrir modal
+            const modal = document.getElementById('modalVisualizarVenda');
+            modal.classList.add('ativo');
+            document.body.style.overflow = 'hidden';
+        })
+        .catch(error => {
+            console.error('Erro ao buscar dados do usuário:', error);
+            alert('Erro ao carregar dados do usuário');
+        });
 }
 
 function fecharModalVenda() {

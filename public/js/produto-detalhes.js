@@ -21,14 +21,14 @@ function trocarImagem(src) {
 
 // Seleção de tamanho
 document.addEventListener('DOMContentLoaded', function() {
-    const tamanhos = document.querySelectorAll('.tamanho-btn');
+    const tamanhos = document.querySelectorAll('.tamanho-btn:not(.indisponivel)');
     const estoqueInfo = document.querySelector('.estoque-info');
     const quantidadeInput = document.getElementById('quantidade');
     
     tamanhos.forEach(tamanho => {
         tamanho.addEventListener('click', function() {
             // Remove ativo de todos
-            tamanhos.forEach(t => t.classList.remove('ativo'));
+            document.querySelectorAll('.tamanho-btn').forEach(t => t.classList.remove('ativo'));
             // Adiciona ativo ao clicado
             this.classList.add('ativo');
             
@@ -57,11 +57,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Inicializar com o primeiro tamanho selecionado
-    const primeiroTamanho = document.querySelector('.tamanho-btn.ativo');
-    if (primeiroTamanho) {
-        const estoque = parseInt(primeiroTamanho.getAttribute('data-estoque')) || 0;
-        const tamanho = primeiroTamanho.getAttribute('data-tamanho');
+    // Inicializar com o primeiro tamanho disponível
+    const primeiroTamanhoDisponivel = document.querySelector('.tamanho-btn:not(.indisponivel)');
+    if (primeiroTamanhoDisponivel) {
+        primeiroTamanhoDisponivel.classList.add('ativo');
+        const estoque = parseInt(primeiroTamanhoDisponivel.getAttribute('data-estoque')) || 0;
+        const tamanho = primeiroTamanhoDisponivel.getAttribute('data-tamanho');
         quantidadeInput.max = estoque;
         if (estoqueInfo) {
             estoqueInfo.textContent = `${estoque} unidades disponíveis em ${tamanho}`;
@@ -311,6 +312,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (btnComprarAgora) {
         btnComprarAgora.addEventListener('click', function() {
+            // Validar se um tamanho foi selecionado
+            const tamanhoSelecionado = document.querySelector('.tamanho-btn.ativo')?.dataset.tamanho;
+            
+            if (!tamanhoSelecionado) {
+                // Mostrar mensagem de erro
+                alert('Por favor, selecione um tamanho antes de comprar.');
+                return;
+            }
+            
             // Obter ID do produto do atributo data
             const produtoContainer = document.querySelector('.produto-container');
             const productId = produtoContainer ? produtoContainer.getAttribute('data-product-id') : null;
@@ -318,7 +328,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // Coletar informações do produto
             const nome = document.querySelector('.produto-titulo').textContent;
             const precoTexto = document.querySelector('.preco-atual').textContent;
-            const tamanhoSelecionado = document.querySelector('.tamanho-btn.ativo')?.dataset.tamanho || 'G';
             const quantidade = parseInt(document.getElementById('quantidade').value);
             const imagem = document.getElementById('imagem-principal').src;
             

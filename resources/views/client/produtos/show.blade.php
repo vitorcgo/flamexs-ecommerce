@@ -100,10 +100,17 @@
                     <div class="selecao-grupo">
                         <label class="selecao-label">Tamanho</label>
                         <div class="tamanhos-container">
-                            @foreach($sizes as $size => $quantity)
-                                @if($quantity > 0)
-                                    <button class="tamanho-btn {{ $loop->first ? 'ativo' : '' }}" data-tamanho="{{ $size }}" data-estoque="{{ $quantity }}">
+                            @php
+                                $todosOsTamanhos = ['P', 'M', 'G', 'GG'];
+                            @endphp
+                            @foreach($todosOsTamanhos as $size)
+                                @if(isset($sizes[$size]) && $sizes[$size] > 0)
+                                    <button class="tamanho-btn {{ $loop->first ? 'ativo' : '' }}" data-tamanho="{{ $size }}" data-estoque="{{ $sizes[$size] }}">
                                         {{ $size }}
+                                    </button>
+                                @else
+                                    <button class="tamanho-btn indisponivel" data-tamanho="{{ $size }}" data-estoque="0" disabled title="Fora de estoque">
+                                        {{ $size }} <span class="badge-indisponivel">Indisponível</span>
                                     </button>
                                 @endif
                             @endforeach

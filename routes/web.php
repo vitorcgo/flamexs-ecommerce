@@ -11,6 +11,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\AdminLoginController;
+use App\Http\Controllers\AdminUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -150,9 +151,8 @@ Route::prefix('admin')->group(function () {
         Route::get('/vendas', [AdminDashboardController::class, 'vendas'])->name('admin.vendas');
 
         // Listagem de Clientes (Users)
-        Route::get('/users', function() {
-            return view('admin.users.index');
-        })->name('admin.users.index');
+        Route::get('/users', [AdminUserController::class, 'index'])->name('admin.users.index');
+        Route::get('/users/{id}', [AdminUserController::class, 'show'])->name('admin.users.show');
 
 
         // --- CRUD de Produtos ---

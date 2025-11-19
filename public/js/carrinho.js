@@ -11,22 +11,9 @@ class CarrinhoManager {
     }
 
     bindEvents() {
-        // Botões de adicionar ao carrinho
-        document.querySelectorAll('.botao-carrinho').forEach(botao => {
-            botao.addEventListener('click', (e) => {
-                const produto = this.extrairDadosProduto(e.target);
-                this.adicionarAoCarrinho(produto);
-            });
-        });
-
-        // Botões de comprar agora
-        document.querySelectorAll('.botao-comprar').forEach(botao => {
-            botao.addEventListener('click', (e) => {
-                const produto = this.extrairDadosProduto(e.target);
-                this.adicionarAoCarrinho(produto);
-                this.abrirModal();
-            });
-        });
+        // Nota: Os botões de adicionar ao carrinho nas páginas de listagem
+        // agora redirecionam para a página do produto via função adicionarAoCarrinho()
+        // definida nas views. Não precisamos fazer nada aqui.
 
         // Abrir modal ao clicar no ícone do carrinho
         document.getElementById('icone-carrinho').addEventListener('click', (e) => {

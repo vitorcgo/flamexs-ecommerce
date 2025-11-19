@@ -65,12 +65,34 @@ class OrderController extends Controller
                 if ($product) {
                     // Verificar se há estoque suficiente
                     $quantidade = $item['quantidade'] ?? 1;
-                    if ($product->stock < $quantidade) {
-                        throw new \Exception("Estoque insuficiente para o produto: {$product->name}");
+                    $tamanho = $item['tamanhos'] ?? null;
+                    
+                    // Decodificar tamanhos do produto
+                    $sizes = json_decode($product->size, true) ?? [];
+                    
+                    // Verificar se o tamanho existe e tem estoque
+                    if ($tamanho && isset($sizes[$tamanho])) {
+                        if ($sizes[$tamanho] < $quantidade) {
+                            throw new \Exception("Estoque insuficiente para o tamanho {$tamanho} do produto: {$product->name}");
+                        }
+                        
+                        // Reduzir o estoque do tamanho específico
+                        $sizes[$tamanho] -= $quantidade;
+                        
+                        // Se o estoque do tamanho ficar zerado, remover do array
+                        if ($sizes[$tamanho] <= 0) {
+                            unset($sizes[$tamanho]);
+                        }
+                    } else {
+                        throw new \Exception("Tamanho {$tamanho} não disponível para o produto: {$product->name}");
                     }
                     
-                    // Reduzir o estoque do produto
-                    $product->stock -= $quantidade;
+                    // Calcular novo estoque total
+                    $estoqueTotal = array_sum($sizes);
+                    
+                    // Atualizar o produto com os novos tamanhos e estoque total
+                    $product->size = json_encode($sizes);
+                    $product->stock = $estoqueTotal;
                     $product->save();
                 }
 
