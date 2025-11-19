@@ -23,9 +23,28 @@
         </div>
     </div>
 
+
     <!-- Produtos -->
     <section id="sessao-produtos">
         <h2 class="titulo-produtos">PRODUTOS</h2>
+
+         <!-- Filtro de Categorias -->
+    <div class="container-filtro-categorias">
+        <div class="filtro-categorias">
+            <div class="opcoes-filtro">
+                <a href="{{ route('client.produtos.index') }}" class="opcao-filtro @if(!$categoriaAtiva) ativa @endif">
+                    Todas as Categorias
+                </a>
+                @foreach($categories as $categoria)
+                    <a href="{{ route('client.produtos.index', ['categoria' => $categoria->name_category]) }}" 
+                       class="opcao-filtro @if($categoriaAtiva === $categoria->name_category) ativa @endif">
+                        {{ $categoria->name_category }}
+                    </a>
+                @endforeach
+            </div>
+        </div>
+    </div>
+
         <div class="grid-produtos">
             @forelse($products as $product)
                 @php

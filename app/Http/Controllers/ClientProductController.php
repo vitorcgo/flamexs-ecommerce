@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 
 class ClientProductController extends Controller
 {
@@ -15,18 +16,31 @@ class ClientProductController extends Controller
             ->where('stock', '>', 0)
             ->limit(12)
             ->get();
+        
+        // Buscar categorias ativas
+        $categories = Category::where('ativo', true)->get();
             
-        return view('client.home.index', compact('products'));
+        return view('client.home.index', compact('products', 'categories'));
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::with('media')
+        $query = Product::with('media')
             ->where('status', 'available')
-            ->where('stock', '>', 0)
-            ->get();
+            ->where('stock', '>', 0);
+        
+        // Filtrar por categoria se fornecida
+        if ($request->has('categoria') && $request->categoria) {
+            $query->where('category', $request->categoria);
+        }
+        
+        $products = $query->get();
+        
+        // Buscar categorias ativas para o filtro
+        $categories = Category::where('ativo', true)->get();
+        $categoriaAtiva = $request->categoria ?? null;
             
-        return view('client.produtos.index', compact('products'));
+        return view('client.produtos.index', compact('products', 'categories', 'categoriaAtiva'));
     }
 
     public function show($id)

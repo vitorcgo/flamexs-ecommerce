@@ -54,25 +54,33 @@
         <section class="secao-categorias">
             <div class="carrossel-categorias">
                 <div class="lista-categorias">
-                    <div class="primeira-linha">
-                        <div class="card-categoria">
-                            <a href="#"><img src="./images/camisetas.png" alt="Camisetas"></a>
+                    @php
+                        $categoriasPorLinha = [];
+                        $linhaAtual = [];
+                        foreach($categories as $index => $categoria) {
+                            $linhaAtual[] = $categoria;
+                            if (count($linhaAtual) == 3 || $index == count($categories) - 1) {
+                                $categoriasPorLinha[] = $linhaAtual;
+                                $linhaAtual = [];
+                            }
+                        }
+                    @endphp
+                    
+                    @foreach($categoriasPorLinha as $linhaIndex => $linhaCategories)
+                        <div class="@if($linhaIndex == 0)primeira-linha @else segunda-linha @endif">
+                            @foreach($linhaCategories as $categoria)
+                                <div class="card-categoria">
+                                    <a href="{{ route('client.produtos.index', ['categoria' => $categoria->name_category]) }}">
+                                        @php
+                                            $nomeCategoria = strtolower(str_replace(' ', '', $categoria->name_category));
+                                            $imagemPossivel = "./images/{$nomeCategoria}.png";
+                                        @endphp
+                                        <img src="{{ $imagemPossivel }}" alt="{{ $categoria->name_category }}" onerror="this.src='./images/produto-exemplo.jpg'">
+                                    </a>
+                                </div>
+                            @endforeach
                         </div>
-                        <div class="card-categoria">
-                            <a href="#"><img src="./images/regatas.png" alt="Regatas"></a>
-                        </div>
-                        <div class="card-categoria">
-                            <a href="#"><img src="./images/blusas.png" alt="Blusas"></a>
-                        </div>
-                    </div>
-                    <div class="segunda-linha">
-                        <div class="card-categoria">
-                            <a href="#"><img src="./images/calças.png" alt="Calças"></a>
-                        </div>
-                        <div class="card-categoria">
-                            <a href="#"><img src="./images/shorts.png" alt="Shorts"></a>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 
                 <div class="mini-botoes-categoria">

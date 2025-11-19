@@ -39,6 +39,63 @@ body {
     }
 }
 
+/* Filtro de Categorias */
+.container-filtro-categorias {
+    background-color: #ffffff;
+    padding: 2rem;
+    font-family: 'Lexend', sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+.filtro-categorias {
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.titulo-filtro {
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.opcoes-filtro {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+}
+
+.opcao-filtro {
+    padding: 10px 16px;
+    border: 1px solid #000;
+    background-color: transparent;
+    color: #000;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    font-family: 'Lexend', sans-serif;
+    display: inline-block;
+}
+
+.opcao-filtro:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.opcao-filtro.ativa {
+    background-color: #000;
+    color: #fff;
+}
+
 /* Seção de Produtos - Estilo Minimalista Pace */
 #sessao-produtos {
     background-color: #ffffff;
@@ -51,7 +108,7 @@ body {
     font-size: 64px;
     font-weight: 600;
     color: #000000;
-    margin-bottom: 4rem;
+    margin-bottom: 1rem;
     letter-spacing: -1.28px;
     line-height: 150%;
 }
@@ -184,6 +241,19 @@ body {
 
 /* Responsividade */
 @media (max-width: 1024px) {
+    .container-filtro-categorias {
+        padding: 1.5rem 1.5rem 1rem;
+    }
+    
+    .opcoes-filtro {
+        gap: 10px;
+    }
+    
+    .opcao-filtro {
+        padding: 8px 14px;
+        font-size: 11px;
+    }
+    
     #sessao-produtos {
         padding: 3rem 1.5rem;
     }
@@ -207,6 +277,23 @@ body {
     /* Ajuste do padding-top para mobile */
     body {
         padding-top: 100px !important;
+    }
+    
+    .container-filtro-categorias {
+        padding: 1.5rem 1rem 1rem;
+    }
+    
+    .titulo-filtro {
+        font-size: 14px;
+    }
+    
+    .opcoes-filtro {
+        gap: 8px;
+    }
+    
+    .opcao-filtro {
+        padding: 8px 12px;
+        font-size: 10px;
     }
     
     #sessao-produtos {
@@ -247,6 +334,24 @@ body {
 }
 
 @media (max-width: 480px) {
+    .container-filtro-categorias {
+        padding: 1rem 0.5rem 0.5rem;
+    }
+    
+    .titulo-filtro {
+        font-size: 12px;
+        margin-bottom: 0.8rem;
+    }
+    
+    .opcoes-filtro {
+        gap: 6px;
+    }
+    
+    .opcao-filtro {
+        padding: 6px 10px;
+        font-size: 9px;
+    }
+    
     #sessao-produtos {
         padding: 2rem 0.5rem;
     }
