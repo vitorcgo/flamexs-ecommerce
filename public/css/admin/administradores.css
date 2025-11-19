@@ -364,6 +364,10 @@
     color: #000000;
 }
 
+.botao-funcao-categoria a {
+    color: gray;
+}
+
 .botao-funcao.excluir:hover {
     background-color: #FEE2E2;
     color: #FF0000;

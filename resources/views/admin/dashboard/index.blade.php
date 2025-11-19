@@ -7,27 +7,9 @@
     <section class="secao-boas-vindas">
         <div class="conteudo-boas-vindas">
             <div class="texto-boas-vindas">
-                <h1 class="titulo-boas-vindas">Bem vindo, Admin</h1>
+                <h1 class="titulo-boas-vindas">Bem vindo ao painel!</h1>
                 <p class="subtitulo-boas-vindas">Cuide do seu site comigo!</p>
             </div>
-            <div class="acoes-boas-vindas">
-                <div class="container-dropdown">
-                    <select class="dropdown-mes">
-                        <option>Mês atual</option>
-                        <option>Janeiro</option>
-                        <option>Fevereiro</option>
-                        <option>Março</option>
-                        <option>Abril</option>
-                        <option>Maio</option>
-                        <option>Junho</option>
-                        <option>Julho</option>
-                        <option>Agosto</option>
-                        <option>Setembro</option>
-                        <option>Outubro</option>
-                        <option>Novembro</option>
-                        <option>Dezembro</option>
-                    </select>
-                </div>
                 <button class="botao-download">
                     <span>Download</span>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -55,7 +37,6 @@
                     <p class="titulo-estatistica">Total arrecadados</p>
                     <p class="descricao-estatistica">Dado obtido com bases em um mês.</p>
                     <div class="rodape-estatistica">
-                        <span class="porcentagem-estatistica positiva">+0%</span>
                         <div class="barra-progresso">
                             <div class="preenchimento-progresso" data-width="0"></div>
                         </div>
@@ -72,11 +53,10 @@
                     </svg>
                 </div>
                 <div class="conteudo-estatistica">
-                    <h3 class="numero-estatistica">0</h3>
+                    <h3 class="numero-estatistica">{{$totalProdutos}}</h3>
                     <p class="titulo-estatistica">Total de Produtos</p>
                     <p class="descricao-estatistica">Dado obtido com bases em um mês.</p>
                     <div class="rodape-estatistica">
-                        <span class="porcentagem-estatistica positiva">+0%</span>
                         <div class="barra-progresso">
                             <div class="preenchimento-progresso" data-width="0"></div>
                         </div>
@@ -91,11 +71,10 @@
                     </svg>
                 </div>
                 <div class="conteudo-estatistica">
-                    <h3 class="numero-estatistica">0</h3>
+                    <h3 class="numero-estatistica">{{$totalCategorias}}</h3>
                     <p class="titulo-estatistica">Total de Categorias</p>
                     <p class="descricao-estatistica">Dado obtido com bases em um mês.</p>
                     <div class="rodape-estatistica">
-                        <span class="porcentagem-estatistica positiva">+0%</span>
                         <div class="barra-progresso">
                             <div class="preenchimento-progresso" data-width="0"></div>
                         </div>
@@ -111,11 +90,10 @@
                     </svg>
                 </div>
                 <div class="conteudo-estatistica">
-                    <h3 class="numero-estatistica">0</h3>
+                    <h3 class="numero-estatistica">{{$totalAdmins}}</h3>
                     <p class="titulo-estatistica">Total de Administradores</p>
                     <p class="descricao-estatistica">Dado obtido com bases em um mês.</p>
                     <div class="rodape-estatistica">
-                        <span class="porcentagem-estatistica positiva">+0%</span>
                         <div class="barra-progresso">
                             <div class="preenchimento-progresso" data-width="0"></div>
                         </div>
@@ -139,74 +117,6 @@
                 </div>
                 <div class="container-grafico">
                     <canvas id="grafico-painel"></canvas>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Últimas Vendas -->
-    <section class="secao-vendas">
-        <div class="container-vendas">
-            <div class="card-vendas">
-                <div class="cabecalho-card">
-                    <h2 class="titulo-card">Últimas Vendas</h2>
-                    <a href="/admin/vendas" class="botao-ver-mais">Ver mais</a>
-                </div>
-                <div class="container-tabela">
-                    <table class="tabela-vendas">
-                        <thead>
-                            <tr>
-                                <th>ID Compra</th>
-                                <th>Cliente</th>
-                                <th>Data</th>
-                                <th>Hora</th>
-                                <th>Valor</th>
-                                <th>Tipo</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse($orders as $order)
-                                @php
-                                    $orderData = json_decode($order->order_data, true);
-                                    $primeiraLetra = strtoupper(substr($order->user->full_name ?? 'U', 0, 1));
-                                @endphp
-                                <tr class="linha-venda" data-delay="0">
-                                    <td>#{{ $order->id }}</td>
-                                    <td>
-                                        <div class="info-cliente">
-                                            <div class="avatar-cliente">{{ $primeiraLetra }}</div>
-                                            <span>{{ $order->user->full_name ?? 'Usuário' }}</span>
-                                        </div>
-                                    </td>
-                                    <td>{{ $order->created_at->format('M d, Y') }}</td>
-                                    <td>{{ $order->created_at->format('h:i A') }}</td>
-                                    <td>R$ {{ number_format($order->total_amount, 2, ',', '.') }}</td>
-                                    <td>{{ ucfirst($orderData['metodo_pagamento'] ?? 'N/A') }}</td>
-                                    <td>
-                                        <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-                                            <span class="badge-status {{ $order->status }}">{{ ucfirst($order->status) }}</span>
-                                            <button class="btn-detalhes-pedido" 
-                                                data-order-id="{{ $order->id }}"
-                                                data-order-json="{{ base64_encode(json_encode($order)) }}"
-                                                title="Ver detalhes do pedido">
-                                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                                    <circle cx="12" cy="12" r="3"></circle>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="7" style="text-align: center; padding: 20px;">
-                                        Nenhuma venda registrada
-                                    </td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>
