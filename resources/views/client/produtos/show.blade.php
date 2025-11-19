@@ -29,7 +29,7 @@
     </div>
 
     <!-- Produto Principal -->
-    <div class="produto-container">
+    <div class="produto-container" data-product-id="{{ $product->id }}">
         <div class="produto-wrapper">
             <!-- Galeria de Imagens -->
             <section class="galeria-produto">
@@ -100,10 +100,17 @@
                     <div class="selecao-grupo">
                         <label class="selecao-label">Tamanho</label>
                         <div class="tamanhos-container">
-                            @foreach($sizes as $size => $quantity)
-                                @if($quantity > 0)
-                                    <button class="tamanho-btn {{ $loop->first ? 'ativo' : '' }}" data-tamanho="{{ $size }}" data-estoque="{{ $quantity }}">
+                            @php
+                                $todosOsTamanhos = ['P', 'M', 'G', 'GG'];
+                            @endphp
+                            @foreach($todosOsTamanhos as $size)
+                                @if(isset($sizes[$size]) && $sizes[$size] > 0)
+                                    <button class="tamanho-btn {{ $loop->first ? 'ativo' : '' }}" data-tamanho="{{ $size }}" data-estoque="{{ $sizes[$size] }}">
                                         {{ $size }}
+                                    </button>
+                                @else
+                                    <button class="tamanho-btn indisponivel" data-tamanho="{{ $size }}" data-estoque="0" disabled title="Fora de estoque">
+                                        {{ $size }} <span class="badge-indisponivel">Indisponível</span>
                                     </button>
                                 @endif
                             @endforeach
@@ -118,7 +125,11 @@
                             <input type="number" id="quantidade" value="1" min="1" max="{{ $product->stock }}" readonly>
                             <button class="qty-btn" onclick="aumentarQuantidade()">+</button>
                         </div>
-                        <span class="estoque-info">{{ $product->stock }} unidades disponíveis</span>
+                        @php
+                            $primeiroTamanho = array_key_first($sizes) ?? 'G';
+                            $primeiroEstoque = $sizes[$primeiroTamanho] ?? 0;
+                        @endphp
+                        <span class="estoque-info">{{ $primeiroEstoque }} unidades disponíveis em {{ $primeiroTamanho }}</span>
                     </div>
 
                     <!-- Seção de Frete -->

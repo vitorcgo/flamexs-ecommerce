@@ -12,14 +12,7 @@
 
             <!-- Item do Pedido - Mobile -->
             <div class="item-pedido-mobile">
-                <div class="imagem-produto">
-                    <img src="{{ asset('images/img-carrinho.png') }}" alt="Short Carpenter Cyan">
-                </div>
-                <div class="detalhes-produto">
-                    <h4 class="nome-produto">Short Carpenter Cyan</h4>
-                    <p class="variacao-produto">XG</p>
-                    <p class="preco-produto">R$ 169,99</p>
-                </div>
+                <!-- Será preenchido dinamicamente pelo JavaScript -->
             </div>
 
             <!-- Seção Contato -->
@@ -248,25 +241,13 @@
 
     <!-- Coluna Direita - Resumo do Pedido -->
     <div class="coluna-direita">
-
-        <!-- Item do Pedido -->
-        <div class="item-pedido">
-            <div class="imagem-produto">
-                <img src="{{ asset('images/img-carrinho.png') }}" alt="Short Carpenter Cyan">
-            </div>
-            <div class="detalhes-produto">
-                <h4 class="nome-produto">Short Carpenter Cyan</h4>
-                <p class="variacao-produto">XG</p>
-                <p class="preco-produto">R$ 169,99</p>
-            </div>
-        </div>
-
+        <!-- Itens do Pedido serão preenchidos dinamicamente pelo JavaScript -->
 
         <!-- Resumo de Valores -->
         <div class="resumo-valores">
             <div class="linha-valor">
                 <span class="label-valor">Subtotal:</span>
-                <span class="valor">R$ 169,99</span>
+                <span class="valor">R$ 0,00</span>
             </div>
             <div class="linha-valor">
                 <span class="label-valor">Frete:</span>
@@ -274,12 +255,13 @@
             </div>
             <div class="linha-valor linha-total">
                 <span class="label-valor">Total:</span>
-                <span class="valor-total">R$ 169,99</span>
+                <span class="valor-total">R$ 0,00</span>
             </div>
         </div>
     </div>
 </form>
 
 <script src="{{ asset('js/carrinho.js') }}"></script>
+<script src="{{ asset('js/checkout.js') }}"></script>
 
 @endsection

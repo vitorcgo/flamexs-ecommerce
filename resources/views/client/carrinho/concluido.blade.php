@@ -15,18 +15,48 @@
             </div>
 
             <div class="textoPedido">
-                <h3>COMPRA EFETUADA</h3>
+                <h3>COMPRA EFETUADA COM SUCESSO!</h3>
                 <p>Nós da Flamexs agradecemos pela sua compra e esperamos que aproveite seu produto.</p>
 
                 <div class="infoCompra">
-                    <p>ID da Compra: <span class="textoNegrito">#2223</span></p>
-                    <p>Data da Compra: <span class="textoNegrito">05/09/2025</span></p>
+                    <p>Seu pedido foi processado e armazenado em nosso sistema.</p>
+                    <p>Você receberá um email de confirmação em breve.</p>
                 </div>
 
-                <a href="/" class="botaoPreto">VOLTAR A PÁGINA INICIAL</a>
+                <div class="botoes-acao">
+                    @auth
+                        <a href="{{ route('user.orders.index') }}" class="botaoPreto">VER MEUS PEDIDOS</a>
+                    @endauth
+                    <a href="/" class="botaoPreto">VOLTAR A PÁGINA INICIAL</a>
+                </div>
             </div>
 
         </div>
     </div>
+
+    <style>
+        .botoes-acao {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .botoes-acao .botaoPreto {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .botoes-acao {
+                flex-direction: column;
+            }
+
+            .botoes-acao .botaoPreto {
+                width: 100%;
+            }
+        }
+    </style>
     
 @endsection

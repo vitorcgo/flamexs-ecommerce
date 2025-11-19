@@ -21,16 +21,53 @@ function trocarImagem(src) {
 
 // Seleção de tamanho
 document.addEventListener('DOMContentLoaded', function() {
-    const tamanhos = document.querySelectorAll('.tamanho-btn');
+    const tamanhos = document.querySelectorAll('.tamanho-btn:not(.indisponivel)');
+    const estoqueInfo = document.querySelector('.estoque-info');
+    const quantidadeInput = document.getElementById('quantidade');
     
     tamanhos.forEach(tamanho => {
         tamanho.addEventListener('click', function() {
             // Remove ativo de todos
-            tamanhos.forEach(t => t.classList.remove('ativo'));
+            document.querySelectorAll('.tamanho-btn').forEach(t => t.classList.remove('ativo'));
             // Adiciona ativo ao clicado
             this.classList.add('ativo');
+            
+            // Atualizar quantidade disponível baseado no tamanho selecionado
+            const estoque = parseInt(this.getAttribute('data-estoque')) || 0;
+            const tamanhoSelecionado = this.getAttribute('data-tamanho');
+            
+            // Atualizar o input de quantidade máxima
+            quantidadeInput.max = estoque;
+            
+            // Resetar quantidade para 1
+            quantidadeInput.value = 1;
+            
+            // Atualizar texto de estoque
+            if (estoqueInfo) {
+                if (estoque > 0) {
+                    estoqueInfo.textContent = `${estoque} unidades disponíveis em ${tamanhoSelecionado}`;
+                    estoqueInfo.style.color = '#28a745';
+                } else {
+                    estoqueInfo.textContent = `Fora de estoque em ${tamanhoSelecionado}`;
+                    estoqueInfo.style.color = '#dc3545';
+                }
+            }
+            
+            console.log(`Tamanho selecionado: ${tamanhoSelecionado}, Estoque: ${estoque}`);
         });
     });
+    
+    // Inicializar com o primeiro tamanho disponível
+    const primeiroTamanhoDisponivel = document.querySelector('.tamanho-btn:not(.indisponivel)');
+    if (primeiroTamanhoDisponivel) {
+        primeiroTamanhoDisponivel.classList.add('ativo');
+        const estoque = parseInt(primeiroTamanhoDisponivel.getAttribute('data-estoque')) || 0;
+        const tamanho = primeiroTamanhoDisponivel.getAttribute('data-tamanho');
+        quantidadeInput.max = estoque;
+        if (estoqueInfo) {
+            estoqueInfo.textContent = `${estoque} unidades disponíveis em ${tamanho}`;
+        }
+    }
 });
 
 // Controle de quantidade
@@ -187,19 +224,35 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (btnAdicionarCarrinho) {
         btnAdicionarCarrinho.addEventListener('click', function() {
+            // Validar se um tamanho foi selecionado
+            const tamanhoSelecionado = document.querySelector('.tamanho-btn.ativo')?.dataset.tamanho;
+            
+            if (!tamanhoSelecionado) {
+                // Mostrar mensagem de erro
+                alert('Por favor, selecione um tamanho antes de adicionar ao carrinho.');
+                return;
+            }
+            
+            // Obter ID do produto do atributo data
+            const produtoContainer = document.querySelector('.produto-container');
+            const productId = produtoContainer ? produtoContainer.getAttribute('data-product-id') : null;
+            
             // Coletar informações do produto
             const nome = document.querySelector('.produto-titulo').textContent;
             const precoTexto = document.querySelector('.preco-atual').textContent;
-            const tamanhoSelecionado = document.querySelector('.tamanho-btn.ativo')?.dataset.tamanho || 'G';
             const quantidade = parseInt(document.getElementById('quantidade').value);
             const imagem = document.getElementById('imagem-principal').src;
             
             // Converter preço para número
             const precoNumerico = parseFloat(precoTexto.replace('R$', '').replace(',', '.').trim());
             
+            // Criar ID único combinando product_id e tamanho
+            const idUnico = productId ? `produto-${productId}-${tamanhoSelecionado}` : `produto-${Date.now()}-${tamanhoSelecionado}`;
+            
             // Criar objeto do produto
             const produto = {
-                id: 'camiseta-basica',
+                id: idUnico,
+                product_id: productId,
                 nome: nome,
                 preco: precoNumerico,
                 precoFormatado: precoTexto,
@@ -259,8 +312,62 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (btnComprarAgora) {
         btnComprarAgora.addEventListener('click', function() {
-            // Simular compra direta
-            alert('Redirecionando para o checkout...');
+            // Validar se um tamanho foi selecionado
+            const tamanhoSelecionado = document.querySelector('.tamanho-btn.ativo')?.dataset.tamanho;
+            
+            if (!tamanhoSelecionado) {
+                // Mostrar mensagem de erro
+                alert('Por favor, selecione um tamanho antes de comprar.');
+                return;
+            }
+            
+            // Obter ID do produto do atributo data
+            const produtoContainer = document.querySelector('.produto-container');
+            const productId = produtoContainer ? produtoContainer.getAttribute('data-product-id') : null;
+            
+            // Coletar informações do produto
+            const nome = document.querySelector('.produto-titulo').textContent;
+            const precoTexto = document.querySelector('.preco-atual').textContent;
+            const quantidade = parseInt(document.getElementById('quantidade').value);
+            const imagem = document.getElementById('imagem-principal').src;
+            
+            // Converter preço para número
+            const precoNumerico = parseFloat(precoTexto.replace('R$', '').replace(',', '.').trim());
+            
+            // Criar ID único combinando product_id e tamanho
+            const idUnico = productId ? `produto-${productId}-${tamanhoSelecionado}` : `produto-${Date.now()}-${tamanhoSelecionado}`;
+            
+            // Criar objeto do produto
+            const produto = {
+                id: idUnico,
+                product_id: productId,
+                nome: nome,
+                preco: precoNumerico,
+                precoFormatado: precoTexto,
+                tamanhos: tamanhoSelecionado,
+                imagem: imagem,
+                quantidade: quantidade,
+                frete: freteSelecionado
+            };
+            
+            // Adicionar ao carrinho
+            let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+            
+            const produtoExistente = carrinho.find(item => 
+                item.id === produto.id && 
+                item.tamanhos === produto.tamanhos
+            );
+            
+            if (produtoExistente) {
+                produtoExistente.quantidade += produto.quantidade;
+            } else {
+                carrinho.push(produto);
+            }
+            
+            localStorage.setItem('carrinho', JSON.stringify(carrinho));
+            
+            // Redirecionar para o checkout
+            window.location.href = '/user/carrinho/comprar';
         });
     }
 });

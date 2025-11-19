@@ -13,7 +13,7 @@
                 <circle cx="11" cy="11" r="8"></circle>
                 <path d="m21 21-4.35-4.35"></path>
             </svg>
-            <input type="text" class="input-pesquisa" placeholder="Pesquisar vendas...">
+            <input type="text" class="input-pesquisa" placeholder="Pesquisar vendas..." id="pesquisaVendas">
         </div>
     </div>
 
@@ -22,42 +22,50 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>ID da Compra</th>
                     <th>Cliente</th>
+                    <th>Email</th>
                     <th>Data</th>
-                    <th>Hora</th>
-                    <th>Valor</th>
-                    <th>Tipo</th>
+                    <th>Qtd. Produtos</th>
+                    <th>Valor Total</th>
                     <th>Status</th>
                     <th>Funções</th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="linha-venda" data-delay="0">
-                    <td class="celula-id">#001</td>
-                    <td>#9102344</td>
-                    <td>
-                        <div class="info-cliente">
-                            <div class="avatar-cliente">G</div>
-                            <span>Guilherme Navarro</span>
-                        </div>
-                    </td>
-                    <td>Dez 25, 2024</td>
-                    <td>04:00 PM</td>
-                    <td>R$400.00</td>
-                    <td>PIX</td>
-                    <td>
-                        <span class="badge-status pago">Pago</span>
-                    </td>
-                    <td>
-                        <button class="botao-visualizar" onclick="abrirModalVenda()">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                <circle cx="12" cy="12" r="3"></circle>
-                            </svg>
-                        </button>
-                    </td>
-                </tr>
+                @forelse($orders as $order)
+                    <tr class="linha-venda" data-delay="{{ $loop->index * 100 }}">
+                        <td class="celula-id">#{{ str_pad($order->id, 4, '0', STR_PAD_LEFT) }}</td>
+                        <td>
+                            <div class="info-cliente">
+                                <div class="avatar-cliente">
+                                    {{ strtoupper(substr($order->user->full_name ?? 'U', 0, 1)) }}
+                                </div>
+                                <span>{{ $order->user->full_name ?? 'Usuário Deletado' }}</span>
+                            </div>
+                        </td>
+                        <td>{{ $order->user->email ?? 'N/A' }}</td>
+                        <td>{{ $order->created_at->format('d/m/Y') }}</td>
+                        <td>{{ $order->items->count() }}</td>
+                        <td>R$ {{ number_format($order->total_amount, 2, ',', '.') }}</td>
+                        <td>
+                            <span class="badge-status pago">Pago</span>
+                        </td>
+                        <td>
+                            <button class="botao-visualizar" onclick="abrirModalVenda({{ $order->id }})">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </button>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="8" style="text-align: center; padding: 40px; color: #999;">
+                            Nenhum pedido encontrado
+                        </td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
@@ -65,30 +73,14 @@
     <div class="rodape-paginacao-vendas">
         <div class="dropdown-itens">
             <span>Mostrando</span>
-            <select class="select-itens">
-                <option value="10" selected>10</option>
-                <option value="25">25</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-            </select>
+            <span style="font-weight: 600;">{{ $orders->count() }}</span>
+            <span>de</span>
+            <span style="font-weight: 600;">{{ $orders->total() }}</span>
             <span>itens</span>
         </div>
         
         <div class="controles-paginacao-vendas">
-            <button class="botao-paginacao-vendas">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="15,18 9,12 15,6"></polyline>
-                </svg>
-            </button>
-            <button class="numero-pagina-vendas ativo">1</button>
-            <button class="numero-pagina-vendas">2</button>
-            <button class="numero-pagina-vendas">3</button>
-            <button class="numero-pagina-vendas">4</button>
-            <button class="botao-paginacao-vendas">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="9,18 15,12 9,6"></polyline>
-                </svg>
-            </button>
+            {{ $orders->links('pagination::bootstrap-4') }}
         </div>
     </div>
 
@@ -96,7 +88,7 @@
     <div class="modal-overlay-venda" id="modalVisualizarVenda">
         <div class="modal-container-venda">
             <div class="modal-header-venda">
-                <h2 class="modal-titulo-venda">Detalhes da Venda #9102344</h2>
+                <h2 class="modal-titulo-venda" id="modalTitulo">Detalhes da Venda</h2>
                 <button class="modal-fechar-venda" onclick="fecharModalVenda()">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -112,35 +104,35 @@
                     <div class="grid-info-venda">
                         <div class="campo-info">
                             <span class="label-info">ID:</span>
-                            <span class="valor-info">#001</span>
-                        </div>
-                        <div class="campo-info">
-                            <span class="label-info">ID da Compra:</span>
-                            <span class="valor-info">#9102344</span>
+                            <span class="valor-info" id="modalId"></span>
                         </div>
                         <div class="campo-info">
                             <span class="label-info">Cliente:</span>
-                            <span class="valor-info">Guilherme Navarro</span>
+                            <span class="valor-info" id="modalCliente"></span>
+                        </div>
+                        <div class="campo-info">
+                            <span class="label-info">Email:</span>
+                            <span class="valor-info" id="modalEmail"></span>
+                        </div>
+                        <div class="campo-info">
+                            <span class="label-info">Telefone:</span>
+                            <span class="valor-info" id="modalTelefone"></span>
                         </div>
                         <div class="campo-info">
                             <span class="label-info">Data:</span>
-                            <span class="valor-info">Dez 25, 2024</span>
+                            <span class="valor-info" id="modalData"></span>
                         </div>
                         <div class="campo-info">
-                            <span class="label-info">Hora:</span>
-                            <span class="valor-info">04:00 PM</span>
-                        </div>
-                        <div class="campo-info">
-                            <span class="label-info">Tipo de Pagamento:</span>
-                            <span class="valor-info">PIX</span>
+                            <span class="label-info">Qtd. Produtos:</span>
+                            <span class="valor-info" id="modalQtdProdutos"></span>
                         </div>
                         <div class="campo-info">
                             <span class="label-info">Status:</span>
-                            <span class="badge-status pago">Pago</span>
+                            <span class="badge-status pago" id="modalStatus">Pago</span>
                         </div>
                         <div class="campo-info">
                             <span class="label-info">Valor Total:</span>
-                            <span class="valor-info valor-destaque">R$400.00</span>
+                            <span class="valor-info valor-destaque" id="modalValorTotal"></span>
                         </div>
                     </div>
                 </div>
@@ -148,35 +140,12 @@
                 <!-- Produtos da Venda -->
                 <div class="secao-produtos-venda">
                     <h3 class="subtitulo-modal">Produtos</h3>
-                    <div class="lista-produtos-venda">
-                        <div class="item-produto-venda">
-                            <div class="info-produto-venda">
-                                <span class="nome-produto-venda">Short Metallic Ultimate</span>
-                                <span class="valor-produto-venda">R$150.00</span>
-                            </div>
-                        </div>
-                        <div class="item-produto-venda">
-                            <div class="info-produto-venda">
-                                <span class="nome-produto-venda">Camiseta Premium Cotton</span>
-                                <span class="valor-produto-venda">R$120.00</span>
-                            </div>
-                        </div>
-                        <div class="item-produto-venda">
-                            <div class="info-produto-venda">
-                                <span class="nome-produto-venda">Boné Snapback Classic</span>
-                                <span class="valor-produto-venda">R$80.00</span>
-                            </div>
-                        </div>
-                        <div class="item-produto-venda">
-                            <div class="info-produto-venda">
-                                <span class="nome-produto-venda">Meia Esportiva Pro</span>
-                                <span class="valor-produto-venda">R$50.00</span>
-                            </div>
-                        </div>
+                    <div class="lista-produtos-venda" id="listaProdutos">
+                        <!-- Preenchido dinamicamente -->
                     </div>
                     <div class="total-produtos">
                         <span class="label-total">Total dos Produtos:</span>
-                        <span class="valor-total">R$400.00</span>
+                        <span class="valor-total" id="modalTotalProdutos"></span>
                     </div>
                 </div>
             </div>
@@ -191,10 +160,57 @@
 </main>
 
 <script>
-function abrirModalVenda() {
-    const modal = document.getElementById('modalVisualizarVenda');
-    modal.classList.add('ativo');
-    document.body.style.overflow = 'hidden';
+function abrirModalVenda(orderId) {
+    // Buscar dados do pedido via API
+    fetch(`/admin/api/orders/${orderId}`)
+        .then(response => response.json())
+        .then(order => {
+            // Preencher informações da venda
+            document.getElementById('modalTitulo').textContent = `Detalhes da Venda #${String(order.id).padStart(4, '0')}`;
+            document.getElementById('modalId').textContent = `#${String(order.id).padStart(4, '0')}`;
+            document.getElementById('modalCliente').textContent = order.user?.full_name || 'Usuário Deletado';
+            document.getElementById('modalEmail').textContent = order.user?.email || 'N/A';
+            document.getElementById('modalTelefone').textContent = order.user?.phone || 'N/A';
+            document.getElementById('modalData').textContent = new Date(order.created_at).toLocaleDateString('pt-BR');
+            document.getElementById('modalQtdProdutos').textContent = order.items?.length || 0;
+            document.getElementById('modalValorTotal').textContent = `R$ ${parseFloat(order.total_amount).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            document.getElementById('modalTotalProdutos').textContent = `R$ ${parseFloat(order.total_amount).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+            // Preencher lista de produtos
+            const listaProdutos = document.getElementById('listaProdutos');
+            listaProdutos.innerHTML = '';
+
+            if (order.items && order.items.length > 0) {
+                order.items.forEach(item => {
+                    const subtotal = (item.qty * item.price).toFixed(2);
+                    const produtoHTML = `
+                        <div class="item-produto-venda">
+                            <div class="info-produto-venda">
+                                <div style="flex: 1;">
+                                    <span class="nome-produto-venda">${item.product?.name || 'Produto Deletado'}</span>
+                                    <div style="font-size: 12px; color: #666; margin-top: 4px;">
+                                        Qtd: <strong>${item.qty}</strong> | Preço Unit.: <strong>R$ ${parseFloat(item.price).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong>
+                                    </div>
+                                </div>
+                                <span class="valor-produto-venda">R$ ${parseFloat(subtotal).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                            </div>
+                        </div>
+                    `;
+                    listaProdutos.innerHTML += produtoHTML;
+                });
+            } else {
+                listaProdutos.innerHTML = '<p style="text-align: center; color: #999;">Nenhum produto neste pedido</p>';
+            }
+
+            // Abrir modal
+            const modal = document.getElementById('modalVisualizarVenda');
+            modal.classList.add('ativo');
+            document.body.style.overflow = 'hidden';
+        })
+        .catch(error => {
+            console.error('Erro ao buscar detalhes do pedido:', error);
+            alert('Erro ao carregar detalhes do pedido');
+        });
 }
 
 function fecharModalVenda() {
@@ -216,7 +232,55 @@ document.addEventListener('keydown', function(e) {
         fecharModalVenda();
     }
 });
+
+// Pesquisa em tempo real
+document.getElementById('pesquisaVendas').addEventListener('keyup', function(e) {
+    const termo = e.target.value.toLowerCase();
+    const linhas = document.querySelectorAll('.linha-venda');
+    
+    linhas.forEach(linha => {
+        const texto = linha.textContent.toLowerCase();
+        if (texto.includes(termo)) {
+            linha.style.display = '';
+        } else {
+            linha.style.display = 'none';
+        }
+    });
+});
 </script>
 
-<script src="/js/admin/vendas.js"></script>
+<style>
+    /* Ajuste para paginação */
+    .rodape-paginacao-vendas .pagination {
+        margin: 0;
+        gap: 8px;
+    }
+
+    .rodape-paginacao-vendas .page-link {
+        border-radius: 8px;
+        border: 1px solid #E0E0E0;
+        color: #666666;
+        padding: 8px 12px;
+        font-family: 'Lexend', sans-serif;
+        transition: all 0.3s ease;
+    }
+
+    .rodape-paginacao-vendas .page-link:hover {
+        background-color: #F5F5F5;
+        border-color: #FF0000;
+        color: #FF0000;
+    }
+
+    .rodape-paginacao-vendas .page-item.active .page-link {
+        background-color: #FF0000;
+        border-color: #FF0000;
+        color: white;
+    }
+
+    .rodape-paginacao-vendas .page-item.disabled .page-link {
+        color: #ccc;
+        cursor: not-allowed;
+    }
+</style>
+
 @endsection

@@ -128,8 +128,8 @@
 
     <script>
         function adicionarAoCarrinho(productId) {
-            // Implementar lógica do carrinho aqui
-            alert('Produto adicionado ao carrinho! ID: ' + productId);
+            // Redirecionar para a página do produto para o usuário escolher o tamanho
+            window.location.href = '/produto/' + productId;
         }
     </script>
 

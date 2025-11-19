@@ -51,7 +51,7 @@
                     </svg>
                 </div>
                 <div class="conteudo-estatistica">
-                    <h3 class="numero-estatistica">R$ 0,00</h3>
+                    <h3 class="numero-estatistica">R$ {{ number_format($totalVendas, 2, ',', '.') }}</h3>
                     <p class="titulo-estatistica">Total arrecadados</p>
                     <p class="descricao-estatistica">Dado obtido com bases em um mês.</p>
                     <div class="rodape-estatistica">
@@ -166,22 +166,45 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="linha-venda" data-delay="0">
-                                <td>#9102344</td>
-                                <td>
-                                    <div class="info-cliente">
-                                        <div class="avatar-cliente">G</div>
-                                        <span>Guilherme Navarro</span>
-                                    </div>
-                                </td>
-                                <td>Dez 25, 2024</td>
-                                <td>04:00 PM</td>
-                                <td>R$400.00</td>
-                                <td>PIX</td>
-                                <td>
-                                    <span class="badge-status pago">Pago</span>
-                                </td>
-                            </tr>
+                            @forelse($orders as $order)
+                                @php
+                                    $orderData = json_decode($order->order_data, true);
+                                    $primeiraLetra = strtoupper(substr($order->user->full_name ?? 'U', 0, 1));
+                                @endphp
+                                <tr class="linha-venda" data-delay="0">
+                                    <td>#{{ $order->id }}</td>
+                                    <td>
+                                        <div class="info-cliente">
+                                            <div class="avatar-cliente">{{ $primeiraLetra }}</div>
+                                            <span>{{ $order->user->full_name ?? 'Usuário' }}</span>
+                                        </div>
+                                    </td>
+                                    <td>{{ $order->created_at->format('M d, Y') }}</td>
+                                    <td>{{ $order->created_at->format('h:i A') }}</td>
+                                    <td>R$ {{ number_format($order->total_amount, 2, ',', '.') }}</td>
+                                    <td>{{ ucfirst($orderData['metodo_pagamento'] ?? 'N/A') }}</td>
+                                    <td>
+                                        <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                                            <span class="badge-status {{ $order->status }}">{{ ucfirst($order->status) }}</span>
+                                            <button class="btn-detalhes-pedido" 
+                                                data-order-id="{{ $order->id }}"
+                                                data-order-json="{{ base64_encode(json_encode($order)) }}"
+                                                title="Ver detalhes do pedido">
+                                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                                    <circle cx="12" cy="12" r="3"></circle>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="7" style="text-align: center; padding: 20px;">
+                                        Nenhuma venda registrada
+                                    </td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
