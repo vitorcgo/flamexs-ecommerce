@@ -88,8 +88,6 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Flamexs</h3>
-                    <p>Sua loja de moda online com as melhores tendências e qualidade excepcional. Estilo e conforto em
-                        cada peça.</p>
                     <div class="redes-sociais">
                         <a href="#" class="rede-social facebook">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
