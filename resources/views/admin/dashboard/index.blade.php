@@ -10,14 +10,6 @@
                 <h1 class="titulo-boas-vindas">Bem vindo ao painel!</h1>
                 <p class="subtitulo-boas-vindas">Cuide do seu site comigo!</p>
             </div>
-                <button class="botao-download">
-                    <span>Download</span>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                        <polyline points="7,10 12,15 17,10"/>
-                        <line x1="12" y1="15" x2="12" y2="3"/>
-                    </svg>
-                </button>
             </div>
         </div>
     </section>
@@ -109,11 +101,6 @@
             <div class="card-grafico">
                 <div class="cabecalho-grafico">
                     <h2 class="titulo-grafico">Dashboard</h2>
-                    <select class="dropdown-grafico">
-                        <option>Mês atual</option>
-                        <option>Último trimestre</option>
-                        <option>Último ano</option>
-                    </select>
                 </div>
                 <div class="container-grafico">
                     <canvas id="grafico-painel"></canvas>
@@ -126,36 +113,61 @@
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-// Inicializar gráfico
-const ctx = document.getElementById('grafico-painel').getContext('2d');
+    const chartLabels = @json($chartLabels ?? []);
+    const chartData = @json($chartData ?? []);
 
-new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
-        datasets: [{
-            label: 'Vendas',
-            data: [0, 0, 0, 0, 0, 0],
-            borderColor: '#8B5CF6',
-            backgroundColor: 'rgba(139, 92, 246, 0.1)',
-            tension: 0.4
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: {
-                display: false
-            }
+    const ctx = document.getElementById('grafico-painel').getContext('2d');
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            // Usa os dados do Controller
+            labels: chartLabels, 
+            datasets: [{
+                label: 'Valor Total de Vendas Diárias',
+                data: chartData, 
+                borderColor: '#8B5CF6',
+                backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                fill: true,
+                tension: 0.4
+            }]
         },
-        scales: {
-            y: {
-                beginAtZero: true
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        // Formata o valor na tooltip para R$
+                        label: function(context) {
+                            let label = context.dataset.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            if (context.parsed.y !== null) {
+                                label += new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(context.parsed.y);
+                            }
+                            return label;
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    // Formata a escala Y para mostrar como moeda (R$)
+                    ticks: {
+                        callback: function(value, index, ticks) {
+                            return 'R$' + value.toLocaleString('pt-BR');
+                        }
+                    }
+                }
             }
         }
-    }
-});
+    });
 </script>
 
 <script src="/js/admin/dashboard.js"></script>
