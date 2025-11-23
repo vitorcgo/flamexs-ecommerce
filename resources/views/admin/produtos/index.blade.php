@@ -98,37 +98,7 @@
             </div>
         </div>
 
-        <div class="rodape-paginacao">
-            <div class="dropdown-showing">
-                <span>Mostrando</span>
-                <select class="select-showing">
-                    <option value="10" selected>10</option>
-                    <option value="25">25</option>
-                    <option value="50">50</option>
-                    <option value="100">100</option>
-                </select>
-                <span>itens</span>
-                <svg class="icone-dropdown" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="6,9 12,15 18,9"></polyline>
-                </svg>
-            </div>
 
-            <div class="controles-paginacao">
-                <button class="botao-paginacao">
-                    <svg class="icone-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="15,18 9,12 15,6"></polyline>
-                    </svg>
-                </button>
-                <button class="numero-pagina ativo">1</button>
-                <button class="numero-pagina">2</button>
-                <button class="numero-pagina">3</button>
-                <button class="numero-pagina">4</button>
-                <button class="botao-paginacao">
-                    <svg class="icone-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="9,18 15,12 9,6"></polyline>
-                    </svg>
-                </button>
-            </div>
         </div>
 
         <!-- Modal de Filtros -->

@@ -24,7 +24,7 @@
     <header>
         <nav class="barra-navegacao">
             <div class="secao-logo">
-                <img src="{{ asset('images/logo.gif') }}" alt="">
+                <a href="/"><img src="{{ asset('images/logo.gif') }}" alt=""></a>
             </div>
 
             <div class="links-navegacao">

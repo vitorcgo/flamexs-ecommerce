@@ -37,10 +37,7 @@
                         <td class="celula-id">#{{ str_pad($order->id, 4, '0', STR_PAD_LEFT) }}</td>
                         <td>
                             <div class="info-cliente">
-                                <div class="avatar-cliente">
-                                    {{ strtoupper(substr($order->user->full_name ?? 'U', 0, 1)) }}
-                                </div>
-                                <span>{{ $order->user->full_name ?? 'Usuário Deletado' }}</span>
+                                <span>{{ $order->user->full_name ?? 'S/N' }}</span>
                             </div>
                         </td>
                         <td>{{ $order->user->email ?? 'N/A' }}</td>

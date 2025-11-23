@@ -5,10 +5,10 @@
 <!-- Usado para puxar o conteudo principal da pagina, sendo ele qualquer conteudo que esteja fora do footer e do navbar -->
 @section('content')
 
-<head>
-    <link rel="stylesheet" href="{{ asset('css/produto-detalhes.css') }}">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-</head>
+    <head>
+        <link rel="stylesheet" href="{{ asset('css/produto-detalhes.css') }}">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    </head>
 
     <!-- Faixa de Frete Grátis -->
     <div id="faixa-frete-gratis" class="faixa-frete-gratis">
@@ -34,13 +34,16 @@
             <!-- Galeria de Imagens -->
             <section class="galeria-produto">
                 <div class="imagem-destaque">
-                    @if($product->media->first())
-                        <img src="{{ $product->media->first()->image_data_url }}" alt="{{ $product->name }}" id="imagem-principal" class="img-principal">
+                    @if ($product->media->first())
+                        <img src="{{ $product->media->first()->image_data_url }}" alt="{{ $product->name }}"
+                            id="imagem-principal" class="img-principal">
                     @else
-                        <img src="{{ $product->first_image }}" alt="{{ $product->name }}" id="imagem-principal" class="img-principal">
+                        <img src="{{ $product->first_image }}" alt="{{ $product->name }}" id="imagem-principal"
+                            class="img-principal">
                     @endif
                     <button class="btn-zoom" onclick="abrirModalZoom(document.getElementById('imagem-principal').src)">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
                             <circle cx="11" cy="11" r="8"></circle>
                             <path d="21 21l-4.35-4.35"></path>
                             <line x1="11" y1="8" x2="11" y2="14"></line>
@@ -48,10 +51,11 @@
                         </svg>
                     </button>
                 </div>
-                
+
                 <div class="miniaturas-grid">
                     @forelse($product->media as $index => $media)
-                        <div class="miniatura-item {{ $index === 0 ? 'ativa' : '' }}" onclick="trocarImagem('{{ $media->image_data_url }}')">
+                        <div class="miniatura-item {{ $index === 0 ? 'ativa' : '' }}"
+                            onclick="trocarImagem('{{ $media->image_data_url }}')">
                             <img src="{{ $media->image_data_url }}" alt="Vista {{ $index + 1 }}">
                         </div>
                     @empty
@@ -70,29 +74,26 @@
                         <div class="estrelas">
                             <span>★★★★★</span>
                         </div>
-                        <span class="rating-text">(127 avaliações)</span>
                     </div>
                 </div>
 
                 @php
                     $preco = $product->price;
                     $precoParcelado = $preco / 3;
-                    $precoPixDesconto = $preco * 0.9;
                 @endphp
 
                 <div class="preco-container">
                     <span class="preco-atual">R$ {{ number_format($preco, 2, ',', '.') }}</span>
                     <div class="preco-info">
-                        <span class="parcelas">ou 3x de R$ {{ number_format($precoParcelado, 2, ',', '.') }} sem juros</span>
-                        <span class="pix-desconto">R$ {{ number_format($precoPixDesconto, 2, ',', '.') }} no PIX (10% off)</span>
-                    </div>
+                        <span class="parcelas">ou 3x de R$ {{ number_format($precoParcelado, 2, ',', '.') }} sem
+                            juros</span>
                 </div>
 
                 <!-- Descrição do Produto -->
-                @if($product->description)
-                <div class="produto-descricao">
-                    <p>{{ $product->description }}</p>
-                </div>
+                @if ($product->description)
+                    <div class="produto-descricao">
+                        <p>{{ $product->description }}</p>
+                    </div>
                 @endif
 
                 <!-- Seleções -->
@@ -103,13 +104,15 @@
                             @php
                                 $todosOsTamanhos = ['P', 'M', 'G', 'GG'];
                             @endphp
-                            @foreach($todosOsTamanhos as $size)
-                                @if(isset($sizes[$size]) && $sizes[$size] > 0)
-                                    <button class="tamanho-btn {{ $loop->first ? 'ativo' : '' }}" data-tamanho="{{ $size }}" data-estoque="{{ $sizes[$size] }}">
+                            @foreach ($todosOsTamanhos as $size)
+                                @if (isset($sizes[$size]) && $sizes[$size] > 0)
+                                    <button class="tamanho-btn {{ $loop->first ? 'ativo' : '' }}"
+                                        data-tamanho="{{ $size }}" data-estoque="{{ $sizes[$size] }}">
                                         {{ $size }}
                                     </button>
                                 @else
-                                    <button class="tamanho-btn indisponivel" data-tamanho="{{ $size }}" data-estoque="0" disabled title="Fora de estoque">
+                                    <button class="tamanho-btn indisponivel" data-tamanho="{{ $size }}"
+                                        data-estoque="0" disabled title="Fora de estoque">
                                         {{ $size }} <span class="badge-indisponivel">Indisponível</span>
                                     </button>
                                 @endif
@@ -122,21 +125,24 @@
                         <label class="selecao-label">Quantidade</label>
                         <div class="quantidade-container">
                             <button class="qty-btn" onclick="diminuirQuantidade()">−</button>
-                            <input type="number" id="quantidade" value="1" min="1" max="{{ $product->stock }}" readonly>
+                            <input type="number" id="quantidade" value="1" min="1" max="{{ $product->stock }}"
+                                readonly>
                             <button class="qty-btn" onclick="aumentarQuantidade()">+</button>
                         </div>
                         @php
                             $primeiroTamanho = array_key_first($sizes) ?? 'G';
                             $primeiroEstoque = $sizes[$primeiroTamanho] ?? 0;
                         @endphp
-                        <span class="estoque-info">{{ $primeiroEstoque }} unidades disponíveis em {{ $primeiroTamanho }}</span>
+                        <span class="estoque-info">{{ $primeiroEstoque }} unidades disponíveis em
+                            {{ $primeiroTamanho }}</span>
                     </div>
 
                     <!-- Seção de Frete -->
                     <div class="secao-frete">
                         <h3 class="frete-titulo">Calcular Frete</h3>
                         <div class="frete-input-container">
-                            <input type="text" id="cep-input" class="frete-input" placeholder="Digite seu CEP" maxlength="9">
+                            <input type="text" id="cep-input" class="frete-input" placeholder="Digite seu CEP"
+                                maxlength="9">
                             <button class="btn-calcular-frete" onclick="calcularFrete()">Calcular</button>
                         </div>
                         <div id="frete-resultados" class="frete-resultados" style="display: none;"></div>
@@ -150,7 +156,8 @@
                         <span>Comprar Agora</span>
                     </button>
                     <button class="btn-adicionar-carrinho">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
                             <circle cx="9" cy="21" r="1"></circle>
                             <circle cx="20" cy="21" r="1"></circle>
                             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
@@ -163,21 +170,8 @@
                 <div class="beneficios-produto">
                     <div class="beneficio-item">
                         <div class="beneficio-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                                <polyline points="3.27,6.96 12,12.01 20.73,6.96"></polyline>
-                                <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                            </svg>
-                        </div>
-                        <div class="beneficio-texto">
-                            <strong>Frete Grátis</strong>
-                            <span>Acima de R$ 599</span>
-                        </div>
-                    </div>
-
-                    <div class="beneficio-item">
-                        <div class="beneficio-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
                                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                                 <polyline points="9,22 9,12 15,12 15,22"></polyline>
                             </svg>
@@ -190,7 +184,8 @@
 
                     <div class="beneficio-item">
                         <div class="beneficio-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
                                 <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                                 <circle cx="12" cy="16" r="1"></circle>
                                 <path d="m7 11V7a5 5 0 0 1 10 0v4"></path>
@@ -216,27 +211,27 @@
             border-radius: 8px;
             border-left: 4px solid #007bff;
         }
-        
+
         .produto-descricao p {
             margin: 0;
             color: #666;
             line-height: 1.6;
         }
-        
+
         .estoque-info {
             font-size: 12px;
             color: #28a745;
             margin-top: 5px;
             display: block;
         }
-        
+
         .tamanho-btn[data-estoque="0"] {
             opacity: 0.5;
             cursor: not-allowed;
             background-color: #e9ecef;
             color: #6c757d;
         }
-        
+
         .tamanho-btn[data-estoque="0"]:hover {
             background-color: #e9ecef;
             color: #6c757d;

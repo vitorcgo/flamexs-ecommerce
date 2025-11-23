@@ -30,7 +30,7 @@
     <header class="cabecalho-navegacao">
         <div class="container-navegacao">
             <div class="logo">
-                <img src="/images/FLAMES.png" alt="FLAMES" class="logo-imagem">
+                <img src="/images/logo.gif" alt="FLAMES" class="logo-imagem">
             </div>
 
             {{-- Só mostramos o menu se o admin estiver logado --}}
@@ -57,14 +57,6 @@
                         // Pegamos a primeira letra do nome de usuário
                         $initial = strtoupper(substr($admin->user, 0, 1));
                     @endphp
-
-                    {{-- MODIFICADO: Lógica do Avatar (Foto ou Inicial) --}}
-                    @if ($admin->profile_photo_path)
-                        {{-- Trocamos 'asset' por 'Storage::url' --}}
-                        <img src="{{ Storage::url($admin->profile_photo_path) }}" alt="Foto" class="avatar-usuario">
-                    @else
-                        <div class="avatar-usuario">{{ $initial }}</div>
-                    @endif
 
                     <div class="info-usuario">
                         {{-- MODIFICADO: Nome do Admin --}}

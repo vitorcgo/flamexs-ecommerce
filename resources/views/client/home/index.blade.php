@@ -75,7 +75,7 @@
                                             $nomeCategoria = strtolower(str_replace(' ', '', $categoria->name_category));
                                             $imagemPossivel = "./images/{$nomeCategoria}.png";
                                         @endphp
-                                        <img src="{{ $imagemPossivel }}" alt="{{ $categoria->name_category }}" onerror="this.src='./images/produto-exemplo.jpg'">
+                                        <img src="{{ $imagemPossivel }}" alt="{{ $categoria->name_category }}">
                                     </a>
                                 </div>
                             @endforeach
