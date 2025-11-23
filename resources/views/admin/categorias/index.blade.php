@@ -197,7 +197,6 @@
                                     <input type="checkbox" id="categoriaAtiva" name="ativo" checked>
                                     <span class="slider-modal"></span>
                                 </div>
-                                <span>Categoria ativa</span>
                             </div>
                         </div>
                     </form>
