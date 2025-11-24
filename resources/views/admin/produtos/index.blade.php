@@ -28,21 +28,15 @@
                 <input type="text" class="entrada-busca" placeholder="Pesquisar produtos...">
             </div>
 
-            <div class="botoes-acao">
-                <button class="botao-filtros" onclick="abrirModalFiltros()">
-                    <svg class="icone-filtros" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polygon points="22,3 2,3 10,12.46 10,19 14,21 14,12.46"></polygon>
-                    </svg>
-                    Filtros
-                </button>
-                <a href="{{ route('admin.produtos.create') }}" class="botao-adicionar">
+            <div>
+            <a href="{{ route('admin.produtos.create') }}" class="botao-adicionar">
                     <svg class="icone-adicionar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <line x1="12" y1="5" x2="12" y2="19"></line>
                         <line x1="5" y1="12" x2="19" y2="12"></line>
                     </svg>
                     Adicionar
                 </a>
-            </div>
+                </div>
         </div>
 
         <div class="container-produtos">
@@ -101,7 +95,7 @@
 
         </div>
 
-        <!-- Modal de Filtros -->
+        {{-- <!-- Modal de Filtros -->
         <div class="modal-overlay-filtros" id="modalFiltros">
             <div class="modal-container-filtros">
                 <div class="modal-header-filtros">
@@ -132,7 +126,7 @@
                                 <label class="checkbox-filtro">
                                     <input type="checkbox" name="categoria" value="camisetas">
                                     <span class="checkmark"></span>
-                                    Camisetas
+                                    {{}}
                                 </label>
                                 <label class="checkbox-filtro">
                                     <input type="checkbox" name="categoria" value="shorts">
@@ -196,10 +190,10 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </main>
 
-    <script>
+    {{-- <script>
         function abrirModalFiltros() {
             document.getElementById('modalFiltros').classList.add('ativo');
             document.body.style.overflow = 'hidden';
@@ -251,7 +245,7 @@
                 fecharModalFiltros();
             }
         });
-    </script>
+    </script> --}}
 
     <script src="/js/admin/produtos.js"></script>
 

@@ -21,7 +21,7 @@
         <div class="cabecalho-categorias">
             <h1 class="titulo-categorias">Categorias</h1>
         </div>
-
+        <div class="arrumando">
         <div class="container-pesquisa-categorias">
             <div class="campo-pesquisa-categorias">
                 <svg class="icone-pesquisa-categorias" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -44,6 +44,7 @@
                     Adicionar
                 </button>
             </div>
+        </div>
         </div>
 
         <div class="container-lista-categorias">

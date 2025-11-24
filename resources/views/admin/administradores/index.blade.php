@@ -6,8 +6,8 @@
         <div class="cabecalho-administradores">
             <h1 class="titulo-administradores">Administradores</h1>
         </div>
-
-        <div class="container-pesquisa-admin">
+        
+        {{-- <div class="container-pesquisa-admin">
             <div class="campo-pesquisa-admin">
                 <svg class="icone-pesquisa-admin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="11" cy="11" r="8"></circle>
@@ -15,7 +15,7 @@
                 </svg>
                 <input type="text" class="input-pesquisa-admin" placeholder="Pesquisar administradores...">
             </div>
-        </div>
+        </div> --}}
 
         <div class="container-acoes-gerais">
             <div class="botoes-acoes-gerais">
@@ -29,6 +29,7 @@
                 </a>
             </div>
         </div>
+        
 
         <div class="container-tabela-administradores">
             <table class="tabela-administradores">

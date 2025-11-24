@@ -28,7 +28,11 @@
     transform: translateX(-30px);
     animation: fadeInSlideLeft 0.8s ease-out forwards;
 }
-
+.arrumando {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 /* Barra de Pesquisa */
 .container-pesquisa-categorias {
     margin-bottom: 30px;
