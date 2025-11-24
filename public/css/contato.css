@@ -55,8 +55,12 @@ body {
     letter-spacing: -1.4px;
 }
 
+.container p {
+    text-align: justify;
+    max-width: 60%;
+}
+
 p {
-    max-width: 50%;
     padding: 2rem;
 }
 
