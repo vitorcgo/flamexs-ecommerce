@@ -153,7 +153,7 @@
                 <div class="faq-item">
                     <button class="faq-pergunta" data-faq="1">
                         <span>Quais formas de pagamento a loja aceita?</span>
-                        <span class="faq-icone">▼</span>
+                        <span class="faq-icone"><img src="./images/Vector.svg" alt=""></span>
                     </button>
                     <div class="faq-resposta" id="faq-1">
                         <p>Aceitamos cartões de crédito, débito, PIX e boleto bancário.</p>
@@ -163,7 +163,7 @@
                 <div class="faq-item">
                     <button class="faq-pergunta" data-faq="2">
                         <span>Quanto tempo demora para meu pedido chegar?</span>
-                        <span class="faq-icone">▼</span>
+                        <span class="faq-icone"><img src="./images/Vector.svg" alt=""></span>
                     </button>
                     <div class="faq-resposta" id="faq-2">
                         <p>O prazo de entrega varia de acordo com a sua região. Normalmente, as entregas levam entre 3 a 10 dias úteis após a confirmação do pagamento.</p>
@@ -173,7 +173,7 @@
                 <div class="faq-item">
                     <button class="faq-pergunta" data-faq="3">
                         <span>Posso trocar ou devolver um produto?</span>
-                        <span class="faq-icone">▼</span>
+                        <span class="faq-icone"><img src="./images/Vector.svg" alt=""></span>
                     </button>
                     <div class="faq-resposta" id="faq-3">
                         <p>Sim! Você pode solicitar a troca ou devolução em até 7 dias corridos após o recebimento do pedido, desde que a peça esteja sem uso e com etiqueta.</p>
@@ -183,7 +183,7 @@
                 <div class="faq-item">
                     <button class="faq-pergunta" data-faq="4">
                         <span>Como descubro meu tamanho ideal?</span>
-                        <span class="faq-icone">▼</span>
+                        <span class="faq-icone"><img src="./images/Vector.svg" alt=""></span>
                     </button>
                     <div class="faq-resposta" id="faq-4">
                         <p>Disponibilizamos uma tabela de medidas em cada produto para ajudar na escolha. Se ainda tiver dúvidas, nossa equipe de atendimento pode auxiliar.</p>
@@ -193,7 +193,7 @@
                 <div class="faq-item">
                     <button class="faq-pergunta" data-faq="5">
                         <span>Vocês oferecem frete grátis?</span>
-                        <span class="faq-icone">▼</span>
+                        <span class="faq-icone"><img src="./images/Vector.svg" alt=""></span>
                     </button>
                     <div class="faq-resposta" id="faq-5">
                         <p>Sim, oferecemos frete grátis em compras acima de R$ 599,00.</p>
