@@ -75,6 +75,9 @@
                                     <span class="valor-campo">{{ auth()->user()->address->neighborhood }}</span>
                                 </div>
                                 <div class="campo-exibicao">
+                                    <span class="valor-campo">{{ auth()->user()->address->state }}</span>
+                                </div>
+                                <div class="campo-exibicao">
                                     <span class="valor-campo">{{ auth()->user()->address->city }}</span>
                                 </div>
                                 <div class="campo-exibicao">

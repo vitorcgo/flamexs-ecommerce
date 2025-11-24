@@ -58,6 +58,9 @@
                                 <div class="campo-exibicao">
                                     <input type="text" name="city" class="valor-campo" value="{{ old('city', auth()->user()->address->city ?? '') }}" placeholder="Cidade" required>
                                 </div>
+                                <div class="campo-exibicao">
+                                    <input type="text" name="state" class="valor-campo" value="{{ old('state', auth()->user()->address->state ?? '') }}" placeholder="Estado" required>
+                                </div>
                             </div>
 
                             <div class="btn-caixa">

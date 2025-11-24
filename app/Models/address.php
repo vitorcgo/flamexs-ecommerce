@@ -15,6 +15,7 @@ class address extends Model
         'number',
         'complement',
         'neighborhood',
+        'state',
         'city'
     ];
     public function user(): BelongsTo

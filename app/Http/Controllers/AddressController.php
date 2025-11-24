@@ -15,6 +15,7 @@ class AddressController extends Controller
             'complement' => ['nullable', 'string', 'max:255'],
             'neighborhood' => ['required', 'string', 'max:255'],
             'city' => ['required', 'string', 'max:255'],
+            'state' => ['required', 'string', 'max:2']
         ]);
 
         // Esta é a mágica: ele procura um endereço para o usuário.
