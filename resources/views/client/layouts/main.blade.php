@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{ asset('css/perfil-usuario.css') }}">
     <link rel="stylesheet" href="{{ asset('css/perfil-edit-usuario.css') }}">
     <title>@yield('title')</title>
+    <link rel="icon" href="./images/logo.gif">
 </head>
 
 <body>
