@@ -8,18 +8,18 @@
     <!-- Faixa de Frete Grátis -->
     <div id="faixa-frete-gratis" class="faixa-frete-gratis">
         <div class="conteudo-faixa-rolante">
-            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
-            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
-            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
-            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
-            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
-            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
-            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
-            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
-            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
-            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
-            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
-            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
+            <span class="texto-frete">FRETE GRÁTIS NA BLACK FRIDAY</span>
+            <span class="texto-frete">FRETE GRÁTIS NA BLACK FRIDAY</span>
+            <span class="texto-frete">FRETE GRÁTIS NA BLACK FRIDAY</span>
+            <span class="texto-frete">FRETE GRÁTIS NA BLACK FRIDAY</span>
+            <span class="texto-frete">FRETE GRÁTIS NA BLACK FRIDAY</span>
+            <span class="texto-frete">FRETE GRÁTIS NA BLACK FRIDAY</span>
+            <span class="texto-frete">FRETE GRÁTIS NA BLACK FRIDAY</span>
+            <span class="texto-frete">FRETE GRÁTIS NA BLACK FRIDAY</span>
+            <span class="texto-frete">FRETE GRÁTIS NA BLACK FRIDAY</span>
+            <span class="texto-frete">FRETE GRÁTIS NA BLACK FRIDAY</span>
+            <span class="texto-frete">FRETE GRÁTIS NA BLACK FRIDAY</span>
+            <span class="texto-frete">FRETE GRÁTIS NA BLACK FRIDAY</span>
         </div>
     </div>
 
@@ -27,6 +27,17 @@
     <!-- Produtos -->
     <section id="sessao-produtos">
         <h2 class="titulo-produtos">PRODUTOS</h2>
+
+        <!-- Barra de Pesquisa -->
+        <div class="container-pesquisa-produtos">
+            <div class="campo-pesquisa-produtos">
+                <svg class="icone-pesquisa-produtos" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <input type="text" class="input-pesquisa-produtos" placeholder="Pesquisar produtos..." id="pesquisaProdutos">
+            </div>
+        </div>
 
          <!-- Filtro de Categorias -->
     <div class="container-filtro-categorias">
@@ -84,6 +95,49 @@
     </section>
 
     <style>
+        .container-pesquisa-produtos {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .campo-pesquisa-produtos {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .icone-pesquisa-produtos {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            color: #999;
+            pointer-events: none;
+        }
+
+        .input-pesquisa-produtos {
+            width: 100%;
+            padding: 12px 15px 12px 45px;
+            border: 2px solid #E0E0E0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Lexend', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .input-pesquisa-produtos:focus {
+            outline: none;
+            border-color: #FF0000;
+            box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.1);
+        }
+
+        .input-pesquisa-produtos::placeholder {
+            color: #999;
+        }
+
         .produto {
             cursor: pointer;
             transition: transform 0.3s ease;
@@ -137,6 +191,49 @@
             // Redirecionar para a página do produto para o usuário escolher o tamanho
             window.location.href = '/produto/' + productId;
         }
+
+        // Pesquisa de produtos em tempo real
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputPesquisa = document.getElementById('pesquisaProdutos');
+            const produtos = document.querySelectorAll('.produto');
+            const gridProdutos = document.querySelector('.grid-produtos');
+
+            if (inputPesquisa) {
+                inputPesquisa.addEventListener('keyup', function(e) {
+                    const termo = e.target.value.toLowerCase().trim();
+                    let produtosVisiveis = 0;
+
+                    produtos.forEach(produto => {
+                        const nome = produto.querySelector('.produto-nome').textContent.toLowerCase();
+                        const preco = produto.querySelector('.produto-preco').textContent.toLowerCase();
+                        const tamanhos = produto.querySelector('.produto-tamanhos').textContent.toLowerCase();
+
+                        if (nome.includes(termo) || preco.includes(termo) || tamanhos.includes(termo) || termo === '') {
+                            produto.style.display = '';
+                            produtosVisiveis++;
+                        } else {
+                            produto.style.display = 'none';
+                        }
+                    });
+
+                    // Mostrar mensagem se nenhum produto foi encontrado
+                    const semProdutos = gridProdutos.querySelector('.sem-produtos');
+                    if (produtosVisiveis === 0 && termo !== '') {
+                        if (!semProdutos) {
+                            const mensagem = document.createElement('div');
+                            mensagem.className = 'sem-produtos';
+                            mensagem.innerHTML = `
+                                <h3>Nenhum produto encontrado</h3>
+                                <p>Tente buscar por outro termo</p>
+                            `;
+                            gridProdutos.appendChild(mensagem);
+                        }
+                    } else if (semProdutos && termo === '') {
+                        semProdutos.remove();
+                    }
+                });
+            }
+        });
     </script>
 
 @endsection

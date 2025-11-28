@@ -255,6 +255,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const cvvCartao = document.querySelector('input[name="cvv_cartao"]');
     const cepInput = document.querySelector('input[name="cep"]');
     const telefoneInput = document.querySelector('input[name="telefone"]');
+    const cpfInput = document.querySelector('input[name="cpf"]');
     const cpfPixInput = document.querySelector('input[name="cpf_pix"]');
     
     // Máscara para número do cartão
@@ -306,6 +307,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 value = value.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
             } else {
                 value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+            }
+            e.target.value = value;
+        });
+    }
+    
+    // Máscara para CPF do formulário de checkout
+    if (cpfInput) {
+        cpfInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length <= 11) {
+                value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
             }
             e.target.value = value;
         });
@@ -412,8 +424,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const formData = {
                 email: document.querySelector('input[name="email"]').value,
                 nome: document.querySelector('input[name="nome"]').value,
+                cpf: document.querySelector('input[name="cpf"]').value,
                 cep: document.querySelector('input[name="cep"]').value,
                 endereco: document.querySelector('input[name="endereco"]').value,
+                numero: document.querySelector('input[name="numero"]').value,
                 complemento: document.querySelector('input[name="complemento"]').value,
                 cidade: document.querySelector('input[name="cidade"]').value,
                 estado: document.querySelector('select[name="estado"]').value,

@@ -62,6 +62,7 @@
                 <div class="info-item">
                     <span class="label">Endereço:</span>
                     <span class="valor">
+                        <br>
                         {{ $orderData['endereco'] ?? 'N/A' }}, 
                         {{ $orderData['complemento'] ?? '' }}
                         {{ $orderData['cidade'] ?? 'N/A' }} - 

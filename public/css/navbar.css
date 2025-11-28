@@ -100,6 +100,22 @@
     align-items: center;
 }
 
+.usuario-logado {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.saudacao-usuario {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+    white-space: nowrap;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .secao-usuario a {
     padding: 0.5rem;
     border-radius: 8px;
@@ -264,6 +280,15 @@ body.menu-aberto::before {
     .secao-usuario img {
         width: 24px;
         height: 24px;
+    }
+
+    .saudacao-usuario {
+        font-size: 12px;
+        max-width: 100px;
+    }
+
+    .usuario-logado {
+        gap: 0.5rem;
     }
 
     /* Carrossel responsivo */

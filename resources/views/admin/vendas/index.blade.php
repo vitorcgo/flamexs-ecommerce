@@ -187,7 +187,7 @@ function abrirModalVenda(orderId) {
             // Preencher endereço de entrega
             const endereco = order.user?.address;
             if (endereco) {
-                const enderecoCompleto = `${endereco.street}, ${endereco.city} - ${endereco.state}, ${endereco.zip_code}`;
+                const enderecoCompleto = `${endereco.street}, ${endereco.number} - ${endereco.city} - ${endereco.state}, ${endereco.zip_code}`;
                 document.getElementById('modalEndereco').textContent = enderecoCompleto;
             } else {
                 document.getElementById('modalEndereco').textContent = 'Endereço não informado';

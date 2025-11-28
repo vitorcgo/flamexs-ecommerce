@@ -92,7 +92,7 @@ class AdminDashboardController extends Controller
 
     public function getOrderDetails($id)
     {
-        $order = Order::with('user', 'items.product')
+        $order = Order::with(['user.address', 'items.product'])
             ->findOrFail($id);
 
         return response()->json($order);

@@ -33,18 +33,18 @@
             <!-- Faixa de Frete Grátis -->
     <div id="faixa-frete-gratis" class="faixa-frete-gratis">
         <div class="conteudo-faixa-rolante">
-            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
-            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
-            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
-            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
-            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
-            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
-            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
-            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
-            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
-            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
-            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
-            <span class="texto-frete">FRETE GRÁTIS PARA COMPRAS ACIMA DE R$599</span>
+            <span class="texto-frete">FRETE GRÁTIS NA BLACK FRIDAY</span>
+            <span class="texto-frete">FRETE GRÁTIS NA BLACK FRIDAY</span>
+            <span class="texto-frete">FRETE GRÁTIS NA BLACK FRIDAY</span>
+            <span class="texto-frete">FRETE GRÁTIS NA BLACK FRIDAY</span>
+            <span class="texto-frete">FRETE GRÁTIS NA BLACK FRIDAY</span>
+            <span class="texto-frete">FRETE GRÁTIS NA BLACK FRIDAY</span>
+            <span class="texto-frete">FRETE GRÁTIS NA BLACK FRIDAY</span>
+            <span class="texto-frete">FRETE GRÁTIS NA BLACK FRIDAY</span>
+            <span class="texto-frete">FRETE GRÁTIS NA BLACK FRIDAY</span>
+            <span class="texto-frete">FRETE GRÁTIS NA BLACK FRIDAY</span>
+            <span class="texto-frete">FRETE GRÁTIS NA BLACK FRIDAY</span>
+            <span class="texto-frete">FRETE GRÁTIS NA BLACK FRIDAY</span>
         </div>
     </div>
 

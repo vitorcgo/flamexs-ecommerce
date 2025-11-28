@@ -24,6 +24,14 @@
                 @error('email')
                     <span class="erro-campo">{{ $message }}</span>
                 @enderror
+                
+                <!-- CPF -->
+                <div class="campo-grupo-contato">
+                    <input type="text" name="cpf" class="campo-input" placeholder="CPF" value="{{ old('cpf', Auth::user()->cpf ?? '') }}" maxlength="14" required>
+                </div>
+                @error('cpf')
+                    <span class="erro-campo">{{ $message }}</span>
+                @enderror
             </div>
 
             <!-- Seção Entrega -->
@@ -46,12 +54,20 @@
                         @enderror
                     </div>
                     
-                    <!-- Linha 3: Endereço -->
-                    <div class="campo-grupo">
-                        <input type="text" name="endereco" class="campo-input" placeholder="Endereço (endereço e rua)" value="{{ old('endereco') }}" required>
-                        @error('endereco')
-                            <span class="erro-campo">{{ $message }}</span>
-                        @enderror
+                    <!-- Linha 3: Endereço e Número -->
+                    <div class="campo-grupo-duplo">
+                        <div class="campo-endereco">
+                            <input type="text" name="endereco" class="campo-input" placeholder="Endereço (rua)" value="{{ old('endereco') }}" required>
+                            @error('endereco')
+                                <span class="erro-campo">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="campo-numero">
+                            <input type="text" name="numero" class="campo-input" placeholder="Número" value="{{ old('numero') }}" required>
+                            @error('numero')
+                                <span class="erro-campo">{{ $message }}</span>
+                            @enderror
+                        </div>
                     </div>
                     
                     <!-- Linha 4: Complemento -->
@@ -117,12 +133,6 @@
                         @enderror
                     </div>
                 </div>
-            </div>
-
-            <!-- Seção Frete -->
-            <div class="secao-formulario">
-                <h3 class="titulo-secao">Frete:</h3>
-                <p class="descricao-frete">Insira o endereço de entrega para ver as formas de frete disponíveis.</p>
             </div>
 
             <!-- Seção Pagamento -->
@@ -251,7 +261,7 @@
             </div>
             <div class="linha-valor">
                 <span class="label-valor">Frete:</span>
-                <span class="valor-frete">Inserir endereço de entrega.</span>
+                <span class="valor-frete">Grátis</span>
             </div>
             <div class="linha-valor linha-total">
                 <span class="label-valor">Total:</span>

@@ -25,7 +25,7 @@
                     <circle cx="11" cy="11" r="8"></circle>
                     <path d="m21 21-4.35-4.35"></path>
                 </svg>
-                <input type="text" class="entrada-busca" placeholder="Pesquisar produtos...">
+                <input type="text" class="entrada-busca" placeholder="Pesquisar produtos..." id="pesquisaProdutosAdmin">
             </div>
 
             <div>
@@ -113,6 +113,49 @@
                     }, 500);
                 }, 5000);
             });
+
+            // Pesquisa de produtos em tempo real
+            const inputPesquisa = document.getElementById('pesquisaProdutosAdmin');
+            const cards = document.querySelectorAll('.card-produto');
+            const gradeProdutos = document.querySelector('.grade-produtos');
+
+            if (inputPesquisa) {
+                inputPesquisa.addEventListener('keyup', function(e) {
+                    const termo = e.target.value.toLowerCase().trim();
+                    let produtosVisiveis = 0;
+
+                    cards.forEach(card => {
+                        const nome = card.querySelector('.nome-produto').textContent.toLowerCase();
+                        const id = card.querySelector('.id-produto').textContent.toLowerCase();
+                        const preco = card.querySelector('.preco-atual').textContent.toLowerCase();
+
+                        if (nome.includes(termo) || id.includes(termo) || preco.includes(termo) || termo === '') {
+                            card.style.display = '';
+                            produtosVisiveis++;
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+
+                    // Mostrar mensagem se nenhum produto foi encontrado
+                    let semProdutos = gradeProdutos.querySelector('.sem-produtos-pesquisa');
+                    if (produtosVisiveis === 0 && termo !== '') {
+                        if (!semProdutos) {
+                            semProdutos = document.createElement('div');
+                            semProdutos.className = 'sem-produtos-pesquisa';
+                            semProdutos.style.cssText = 'grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: #666;';
+                            semProdutos.innerHTML = `
+                                <div style="font-size: 48px; margin-bottom: 20px;">🔍</div>
+                                <h3 style="font-size: 24px; margin-bottom: 10px; color: #333;">Nenhum produto encontrado</h3>
+                                <p style="font-size: 16px;">Tente buscar por outro termo</p>
+                            `;
+                            gradeProdutos.appendChild(semProdutos);
+                        }
+                    } else if (semProdutos && termo === '') {
+                        semProdutos.remove();
+                    }
+                });
+            }
         });
     </script>
 @endsection

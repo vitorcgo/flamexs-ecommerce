@@ -38,15 +38,16 @@
             </div>
 
             <div class="secao-usuario">
-                
-                {{-- Lógica para o ícone de usuário --}}
+                {{-- Lógica para o ícone de usuário com saudação --}}
                 @auth
-                    {{-- Se o usuário ESTIVER LOGADO, o link leva para a página de perfil --}}
-                    <a href="/user"><img src="{{ asset('images/user.svg') }}" alt="Meu Perfil"></a>
+                    <div class="usuario-logado">
+                        <span class="saudacao-usuario">Olá, {{ Auth::user()->full_name ?? 'Usuário' }}</span>
+                        <a href="/user"><img src="{{ asset('images/user.svg') }}" alt="Meu Perfil"></a>
+                    </div>
                 @else
                     {{-- Se o usuário NÃO ESTIVER LOGADO, o link leva para a página de login --}}
                     <a href="{{ route('login') }}"><img src="{{ asset('images/user.svg') }}" alt="Login"></a>
-                @endguest
+                @endauth
 
                 {{-- O ícone do carrinho continua o mesmo --}}
                 <a href="#" id="icone-carrinho" style="position: relative;">
@@ -141,14 +142,6 @@
                     <div class="contato-item email">contato@flamexs.com.br</div>
                     <div class="contato-item telefone">(11) 99999-9999</div>
                     <div class="contato-item endereco">São Paulo, SP - Brasil</div>
-
-                    <div class="newsletter">
-                        <p>Receba nossas novidades:</p>
-                        <form class="newsletter-form">
-                            <input type="email" class="newsletter-input" placeholder="Seu e-mail">
-                            <button type="submit" class="newsletter-btn">Inscrever</button>
-                        </form>
-                    </div>
                 </div>
             </div>
 

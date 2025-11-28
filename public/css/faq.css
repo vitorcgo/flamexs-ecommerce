@@ -203,6 +203,7 @@
     .faq-pergunta {
         padding: 1.5rem 2rem;
         border-radius: 16px;
+        font-size: 13px;
     }
     
     .faq-pergunta.ativo {

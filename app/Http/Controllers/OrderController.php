@@ -20,8 +20,10 @@ class OrderController extends Controller
         $validated = $request->validate([
             'email' => 'required|email',
             'nome' => 'required|string',
+            'cpf' => 'required|string',
             'cep' => 'required|string',
             'endereco' => 'required|string',
+            'numero' => 'required|string',
             'complemento' => 'nullable|string',
             'cidade' => 'required|string',
             'estado' => 'required|string',
@@ -44,6 +46,7 @@ class OrderController extends Controller
             $user->update([
                 'full_name' => $validated['nome'],
                 'phone' => $validated['telefone'],
+                'cpf' => $validated['cpf'],
             ]);
 
             // Atualizar ou criar endereço do usuário
@@ -51,7 +54,7 @@ class OrderController extends Controller
                 ['user_id' => $user->id],
                 [
                     'street' => $validated['endereco'],
-                    'number' => '',
+                    'number' => $validated['numero'],
                     'neighborhood' => '',
                     'city' => $validated['cidade'],
                     'state' => $validated['estado'],
