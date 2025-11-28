@@ -5,8 +5,8 @@
 <link rel="stylesheet" href="{{ asset('css/perfil-usuario.css') }}">
 
 <div class="container-perfil">
-    <div class="sidebar-perfil">
-        <div class="menu-perfil">
+    <aside class="sidebar-perfil">
+        <nav class="menu-perfil">
             <a href="{{ route('user.index') }}" class="item-menu">Meu Perfil</a>
             <a href="{{ route('user.orders.index') }}" class="item-menu ativo">Meus Pedidos</a>
             <a href="{{ route('user.info.edit') }}" class="item-menu">Editar Informações</a>
@@ -16,11 +16,11 @@
                 @csrf
                 <button type="submit" class="item-menu logout">Sair</button>
             </form>
-        </div>
-    </div>
+        </nav>
+    </aside>
 
-    <div class="conteudo-perfil">
-        <h1>Meus Pedidos</h1>
+    <section class="conteudo-perfil">
+        <h1 class="titulo-pagina">Meus Pedidos</h1>
 
         @if($orders->count() > 0)
             <div class="tabela-pedidos">
@@ -41,13 +41,13 @@
                                 <td>{{ $order->created_at->format('d/m/Y H:i') }}</td>
                                 <td>R$ {{ number_format($order->total_amount, 2, ',', '.') }}</td>
                                 <td>
-                                    <span class="badge badge-{{ $order->status }}">
+                                    <span class="badge-status status-{{ $order->status }}">
                                         {{ ucfirst($order->status) }}
                                     </span>
                                 </td>
                                 <td>
-                                    <a href="{{ route('user.orders.show', $order->id) }}" class="btn-detalhes">
-                                        Ver Detalhes
+                                    <a href="{{ route('user.orders.show', $order->id) }}" class="botao-acompanhar">
+                                        VER DETALHES
                                     </a>
                                 </td>
                             </tr>
@@ -58,202 +58,75 @@
 
             <!-- Paginação -->
             <div class="paginacao">
-                {{ $orders->links() }}
+                {{ $orders->links('pagination::simple-default') }}
             </div>
         @else
             <div class="mensagem-vazia">
                 <p>Você ainda não fez nenhum pedido.</p>
-                <a href="{{ route('client.produtos.index') }}" class="btn-primario">
-                    Começar a Comprar
+                <a href="{{ route('client.produtos.index') }}" class="botaoPreto">
+                    VOLTAR ÀS COMPRAS
                 </a>
             </div>
         @endif
-    </div>
+    </section>
 </div>
 
 <style>
+    /* Estrutura geral alinhada ao layout do site */
     .container-perfil {
         display: flex;
-        gap: 2rem;
-        padding: 2rem;
+        gap: 32px;
+        padding: 32px 16px;
         max-width: 1200px;
         margin: 0 auto;
     }
 
-    .sidebar-perfil {
-        flex: 0 0 250px;
-    }
-
-    .menu-perfil {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
+    .sidebar-perfil { flex: 0 0 260px; }
+    .menu-perfil { display: flex; flex-direction: column; gap: 8px; }
 
     .item-menu {
-        padding: 0.75rem 1rem;
-        background: #f5f5f5;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
+        padding: 12px 14px;
+        background: #f3f3f3;
+        border-radius: 6px;
+        color: #111;
         text-decoration: none;
-        color: #333;
-        transition: all 0.3s;
+        transition: transform .2s ease, background .2s ease;
+        display: block;
     }
+    .item-menu:hover { background: #e8e8e8; transform: translateY(-1px); }
+    .item-menu.ativo { background: #111; color: #fff; }
+    .item-menu.logout { background: #c0392b; color: #fff; }
 
-    .item-menu:hover,
-    .item-menu.ativo {
-        background: #007bff;
-        color: white;
-    }
+    .conteudo-perfil { flex: 1; }
+    .titulo-pagina { font-size: 28px; margin: 0 0 24px; letter-spacing: .5px; }
 
-    .item-menu.logout {
-        background: #dc3545;
-        color: white;
-    }
+    .tabela-pedidos { overflow-x: auto; margin-bottom: 24px; }
+    .tabela { width: 100%; border-collapse: collapse; background: #fff; }
+    .tabela thead { background: #fafafa; }
+    .tabela th, .tabela td { padding: 14px 12px; text-align: left; border-bottom: 1px solid #eee; }
+    .tabela tbody tr:hover { background: #fafafa; }
 
-    .conteudo-perfil {
-        flex: 1;
-    }
+    /* Badges custom do site (sem Bootstrap) */
+    .badge-status { padding: 4px 10px; border-radius: 999px; font-size: 13px; font-weight: 600; display: inline-block; }
+    .status-pendente { background: #fff4cc; color: #805800; }
+    .status-processando { background: #e6f0ff; color: #0a3d91; }
+    .status-enviado { background: #d7f5e8; color: #0b5d3b; }
+    .status-entregue { background: #d7f5e8; color: #0b5d3b; }
+    .status-cancelado { background: #ffe1e1; color: #8a1f1f; }
 
-    .conteudo-perfil h1 {
-        margin-bottom: 2rem;
-        font-size: 1.8rem;
-    }
+    /* Botões padrão do site */
+    .botao-acompanhar { display: inline-block; padding: 10px 14px; background: #111; color: #fff; border-radius: 6px; text-decoration: none; letter-spacing: .5px; }
+    .botao-acompanhar:hover { opacity: .9; }
 
-    .tabela-pedidos {
-        overflow-x: auto;
-        margin-bottom: 2rem;
-    }
+    .mensagem-vazia { text-align: center; padding: 40px; background: #fafafa; border-radius: 8px; }
 
-    .tabela {
-        width: 100%;
-        border-collapse: collapse;
-        background: white;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .tabela thead {
-        background: #f8f9fa;
-    }
-
-    .tabela th,
-    .tabela td {
-        padding: 1rem;
-        text-align: left;
-        border-bottom: 1px solid #dee2e6;
-    }
-
-    .tabela tbody tr:hover {
-        background: #f8f9fa;
-    }
-
-    .badge {
-        padding: 0.25rem 0.75rem;
-        border-radius: 20px;
-        font-size: 0.85rem;
-        font-weight: 600;
-    }
-
-    .badge-pendente {
-        background: #fff3cd;
-        color: #856404;
-    }
-
-    .badge-processando {
-        background: #cfe2ff;
-        color: #084298;
-    }
-
-    .badge-enviado {
-        background: #d1e7dd;
-        color: #0f5132;
-    }
-
-    .badge-entregue {
-        background: #d1e7dd;
-        color: #0f5132;
-    }
-
-    .badge-cancelado {
-        background: #f8d7da;
-        color: #842029;
-    }
-
-    .btn-detalhes {
-        padding: 0.5rem 1rem;
-        background: #007bff;
-        color: white;
-        text-decoration: none;
-        border-radius: 4px;
-        transition: background 0.3s;
-    }
-
-    .btn-detalhes:hover {
-        background: #0056b3;
-    }
-
-    .mensagem-vazia {
-        text-align: center;
-        padding: 3rem;
-        background: #f8f9fa;
-        border-radius: 8px;
-    }
-
-    .mensagem-vazia p {
-        font-size: 1.1rem;
-        color: #666;
-        margin-bottom: 1.5rem;
-    }
-
-    .btn-primario {
-        display: inline-block;
-        padding: 0.75rem 1.5rem;
-        background: #007bff;
-        color: white;
-        text-decoration: none;
-        border-radius: 4px;
-        transition: background 0.3s;
-    }
-
-    .btn-primario:hover {
-        background: #0056b3;
-    }
-
-    .paginacao {
-        display: flex;
-        justify-content: center;
-        gap: 0.5rem;
-        margin-top: 2rem;
-    }
+    .paginacao { display: flex; justify-content: center; margin-top: 16px; }
 
     @media (max-width: 768px) {
-        .container-perfil {
-            flex-direction: column;
-        }
-
-        .sidebar-perfil {
-            flex: 1;
-        }
-
-        .menu-perfil {
-            flex-direction: row;
-            flex-wrap: wrap;
-        }
-
-        .item-menu {
-            flex: 1;
-            min-width: 150px;
-        }
-
-        .tabela {
-            font-size: 0.9rem;
-        }
-
-        .tabela th,
-        .tabela td {
-            padding: 0.5rem;
-        }
+        .container-perfil { flex-direction: column; }
+        .menu-perfil { flex-direction: row; flex-wrap: wrap; }
+        .item-menu { flex: 1; min-width: 150px; text-align: center; }
+        .tabela th, .tabela td { padding: 10px; }
     }
 </style>
 
