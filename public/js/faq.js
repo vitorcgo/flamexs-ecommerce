@@ -43,10 +43,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.classList.add('ativo');
                 resposta.classList.add('ativo');
                 
-                // Calcula a altura necessária
+                // Força o reflow para garantir que o scrollHeight seja calculado corretamente
+                resposta.style.maxHeight = 'none';
+                resposta.style.visibility = 'hidden';
                 const alturaConteudo = resposta.scrollHeight;
-                resposta.style.maxHeight = alturaConteudo + 'px';
-                resposta.style.padding = '0 2rem 2rem 2rem';
+                resposta.style.visibility = 'visible';
+                resposta.style.maxHeight = '0';
+                
+                // Usa requestAnimationFrame para garantir que a animação funcione
+                requestAnimationFrame(() => {
+                    resposta.style.maxHeight = alturaConteudo + 'px';
+                    resposta.style.padding = '0 2rem 2rem 2rem';
+                });
                 
                 // Rotaciona o ícone
                 icone.style.transform = 'rotate(180deg)';

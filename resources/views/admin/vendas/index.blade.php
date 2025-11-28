@@ -116,6 +116,10 @@
                             <span class="valor-info" id="modalTelefone"></span>
                         </div>
                         <div class="campo-info">
+                            <span class="label-info">CPF:</span>
+                            <span class="valor-info" id="modalCpf"></span>
+                        </div>
+                        <div class="campo-info">
                             <span class="label-info">Data:</span>
                             <span class="valor-info" id="modalData"></span>
                         </div>
@@ -131,6 +135,12 @@
                             <span class="label-info">Valor Total:</span>
                             <span class="valor-info valor-destaque" id="modalValorTotal"></span>
                         </div>
+                    </div>
+
+                    <!-- Endereço de Entrega -->
+                    <div class="campo-endereco-venda">
+                        <span class="label-info">Endereço de Entrega:</span>
+                        <span class="valor-info" id="modalEndereco"></span>
                     </div>
                 </div>
 
@@ -168,10 +178,20 @@ function abrirModalVenda(orderId) {
             document.getElementById('modalCliente').textContent = order.user?.full_name || 'Usuário Deletado';
             document.getElementById('modalEmail').textContent = order.user?.email || 'N/A';
             document.getElementById('modalTelefone').textContent = order.user?.phone || 'N/A';
+            document.getElementById('modalCpf').textContent = order.user?.cpf || 'Não informado';
             document.getElementById('modalData').textContent = new Date(order.created_at).toLocaleDateString('pt-BR');
             document.getElementById('modalQtdProdutos').textContent = order.items?.length || 0;
             document.getElementById('modalValorTotal').textContent = `R$ ${parseFloat(order.total_amount).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
             document.getElementById('modalTotalProdutos').textContent = `R$ ${parseFloat(order.total_amount).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+            // Preencher endereço de entrega
+            const endereco = order.user?.address;
+            if (endereco) {
+                const enderecoCompleto = `${endereco.street}, ${endereco.city} - ${endereco.state}, ${endereco.zip_code}`;
+                document.getElementById('modalEndereco').textContent = enderecoCompleto;
+            } else {
+                document.getElementById('modalEndereco').textContent = 'Endereço não informado';
+            }
 
             // Preencher lista de produtos
             const listaProdutos = document.getElementById('listaProdutos');

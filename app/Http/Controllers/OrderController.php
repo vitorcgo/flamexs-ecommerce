@@ -39,6 +39,27 @@ class OrderController extends Controller
         try {
             DB::beginTransaction();
 
+            // Atualizar dados do usuário com informações do checkout
+            $user = Auth::user();
+            $user->update([
+                'full_name' => $validated['nome'],
+                'phone' => $validated['telefone'],
+            ]);
+
+            // Atualizar ou criar endereço do usuário
+            $user->address()->updateOrCreate(
+                ['user_id' => $user->id],
+                [
+                    'street' => $validated['endereco'],
+                    'number' => '',
+                    'neighborhood' => '',
+                    'city' => $validated['cidade'],
+                    'state' => $validated['estado'],
+                    'zip_code' => $validated['cep'],
+                    'complement' => $validated['complemento'] ?? '',
+                ]
+            );
+
             // Criar novo pedido
             $order = Order::create([
                 'user_id' => Auth::id(),

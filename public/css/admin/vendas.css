@@ -342,6 +342,29 @@
     font-weight: 700;
 }
 
+/* Campo de Endereço */
+.campo-endereco-venda {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #FF0000;
+    margin-top: 16px;
+}
+
+.campo-endereco-venda .label-info {
+    font-weight: 600;
+    color: #333;
+}
+
+.campo-endereco-venda .valor-info {
+    color: #000;
+    line-height: 1.5;
+    word-break: break-word;
+}
+
 /* Seção de Produtos */
 .secao-produtos-venda {
     margin-top: 30px;

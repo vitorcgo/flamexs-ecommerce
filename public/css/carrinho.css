@@ -511,10 +511,29 @@
     color: #000;
 }
 
-/* Responsividade */
+/* Responsividade para Notebooks (1000px - 1400px) */
+@media (max-width: 1400px) and (min-width: 1001px) {
+    .coluna-esquerda,
+    .coluna-direita {
+        padding: 32px;
+    }
+    
+    .titulo-secao {
+        font-size: 16px;
+    }
+    
+    .campo-input,
+    .campo-select {
+        font-size: 13px;
+        padding: 12px 14px;
+    }
+}
+
+/* Responsividade para Tablets e Notebooks Pequenos */
 @media (max-width: 1000px) {
     .container-carrinho {
         grid-template-columns: 1fr;
+        min-height: auto;
     }
     
     .container-carrinho::before {
@@ -523,7 +542,7 @@
     
     .coluna-esquerda,
     .coluna-direita {
-        padding: 20px;
+        padding: 24px;
     }
     
     /* Mostrar item do pedido mobile */
@@ -531,7 +550,7 @@
         display: flex;
     }
     
-    /* Ocultar coluna direita em mobile */
+    /* Ocultar coluna direita em tablet */
     .coluna-direita {
         display: none;
     }
@@ -551,19 +570,31 @@
         max-width: 280px;
         height: auto;
     }
+    
+    .titulo-secao {
+        font-size: 16px;
+        margin-bottom: 14px;
+    }
+    
+    .campo-input,
+    .campo-select {
+        font-size: 14px;
+        padding: 12px 14px;
+    }
 }
 
+/* Responsividade para Tablets */
 @media (max-width: 768px) {
     .coluna-esquerda {
-        padding: 16px;
+        padding: 18px;
     }
     
     .cabecalho-esquerda {
-        margin-bottom: 20px;
+        margin-bottom: 18px;
     }
     
     .secao-formulario {
-        margin-bottom: 30px;
+        margin-bottom: 28px;
     }
     
     .campo-grupo-contato {
@@ -583,16 +614,17 @@
     
     .item-pedido-mobile {
         padding: 12px;
-        margin-bottom: 20px;
+        margin-bottom: 18px;
     }
     
     .item-pedido-mobile .imagem-produto img {
-        width: 60px;
-        height: 60px;
+        width: 70px;
+        height: 70px;
     }
     
     .item-pedido-mobile .nome-produto {
         font-size: 14px;
+        font-weight: 600;
     }
     
     .item-pedido-mobile .variacao-produto {
@@ -607,13 +639,18 @@
     .campo-input,
     .campo-select {
         padding: 12px 14px;
-        font-size: 16px; /* Evita zoom no iOS */
+        font-size: 16px;
+    }
+    
+    .titulo-secao {
+        font-size: 15px;
+        margin-bottom: 12px;
     }
     
     .botao-pagar {
-        padding: 16px 24px;
-        font-size: 16px;
-        font-weight: 800;
+        padding: 14px 24px;
+        font-size: 15px;
+        font-weight: 700;
     }
     
     .accordion-content.active {
@@ -627,38 +664,40 @@
     }
 }
 
-@media (max-width: 480px) {
+/* Responsividade para Celulares Grandes */
+@media (max-width: 600px) {
     .coluna-esquerda {
-        padding: 12px;
+        padding: 14px;
     }
     
     .cabecalho-esquerda {
-        margin-bottom: 16px;
+        margin-bottom: 14px;
     }
     
     .icone-voltar {
         width: 36px;
         height: 36px;
+        font-size: 18px;
     }
     
     .titulo-secao {
-        font-size: 16px;
-        margin-bottom: 12px;
+        font-size: 14px;
+        margin-bottom: 10px;
     }
     
     .secao-formulario {
-        margin-bottom: 24px;
+        margin-bottom: 20px;
     }
     
     .item-pedido-mobile {
         padding: 10px;
-        margin-bottom: 16px;
-        gap: 12px;
+        margin-bottom: 14px;
+        gap: 10px;
     }
     
     .item-pedido-mobile .imagem-produto img {
-        width: 50px;
-        height: 50px;
+        width: 60px;
+        height: 60px;
     }
     
     .item-pedido-mobile .nome-produto {
@@ -677,20 +716,21 @@
     
     .campo-input,
     .campo-select {
-        padding: 10px 12px;
-        border-radius: 8px;
+        padding: 11px 12px;
+        font-size: 15px;
+        border-radius: 10px;
     }
     
     .campo-grupo-duplo {
-        gap: 8px;
+        gap: 10px;
     }
     
     .label-pagamento {
-        padding: 12px 16px;
+        padding: 12px 14px;
     }
     
     .texto-opcao {
-        font-size: 14px;
+        font-size: 13px;
     }
     
     .icones-pagamento {
@@ -713,8 +753,125 @@
     }
     
     .botao-pagar {
-        padding: 14px 20px;
-        font-size: 14px;
+        padding: 12px 20px;
+        font-size: 13px;
         font-weight: 700;
+    }
+}
+
+/* Responsividade para Celulares Pequenos */
+@media (max-width: 480px) {
+    .coluna-esquerda {
+        padding: 12px;
+    }
+    
+    .cabecalho-esquerda {
+        margin-bottom: 12px;
+    }
+    
+    .icone-voltar {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+    }
+    
+    .titulo-secao {
+        font-size: 13px;
+        margin-bottom: 10px;
+    }
+    
+    .secao-formulario {
+        margin-bottom: 18px;
+    }
+    
+    .item-pedido-mobile {
+        padding: 8px;
+        margin-bottom: 12px;
+        gap: 8px;
+    }
+    
+    .item-pedido-mobile .imagem-produto img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .item-pedido-mobile .nome-produto {
+        font-size: 12px;
+        margin-bottom: 2px;
+    }
+    
+    .item-pedido-mobile .variacao-produto {
+        font-size: 10px;
+        margin-bottom: 3px;
+    }
+    
+    .item-pedido-mobile .preco-produto {
+        font-size: 12px;
+    }
+    
+    .campo-input,
+    .campo-select {
+        padding: 10px 11px;
+        font-size: 14px;
+        border-radius: 8px;
+    }
+    
+    .campo-grupo-duplo {
+        gap: 8px;
+    }
+    
+    .label-pagamento {
+        padding: 10px 12px;
+    }
+    
+    .texto-opcao {
+        font-size: 12px;
+    }
+    
+    .icones-pagamento {
+        flex-wrap: wrap;
+        gap: 3px;
+    }
+    
+    .icone-bandeira {
+        height: 16px;
+    }
+    
+    .accordion-content.active {
+        padding: 10px;
+    }
+    
+    .imagem-cartao {
+        width: 100%;
+        max-width: 180px;
+        height: auto;
+    }
+    
+    .botao-pagar {
+        padding: 11px 18px;
+        font-size: 12px;
+        font-weight: 700;
+    }
+}
+
+/* Responsividade para Celulares Muito Pequenos */
+@media (max-width: 360px) {
+    .coluna-esquerda {
+        padding: 10px;
+    }
+    
+    .titulo-secao {
+        font-size: 12px;
+    }
+    
+    .campo-input,
+    .campo-select {
+        padding: 9px 10px;
+        font-size: 13px;
+    }
+    
+    .botao-pagar {
+        padding: 10px 16px;
+        font-size: 11px;
     }
 }
