@@ -68,7 +68,7 @@
                 >
             </div>
 
-            <div class="campo-grupo-admin">
+  <!--         <div class="campo-grupo-admin">
                 <label class="campo-label-admin" for="profile_photo_path">Upload Foto</label>
                 <div class="area-upload" id="areaUpload">
                     <input type="file" class="input-arquivo" id="inputArquivo" name="profile_photo_path" accept="image/jpeg,image/png" hidden>
@@ -94,7 +94,7 @@
                     </div>
                 </div>
             </div>
-
+-->
             <div class="botoes-formulario-admin">
                 <a href="/admin/administradores" class="botao-cancelar-admin">
                     Cancelar

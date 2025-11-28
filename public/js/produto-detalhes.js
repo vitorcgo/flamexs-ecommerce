@@ -7,9 +7,9 @@ let freteSelecionado = null;
 function trocarImagem(src) {
     const imagemPrincipal = document.getElementById('imagem-principal');
     const miniaturas = document.querySelectorAll('.miniatura-item');
-    
+
     imagemPrincipal.src = src;
-    
+
     // Atualizar miniatura ativa
     miniaturas.forEach(miniatura => {
         miniatura.classList.remove('ativa');
@@ -24,24 +24,24 @@ document.addEventListener('DOMContentLoaded', function() {
     const tamanhos = document.querySelectorAll('.tamanho-btn:not(.indisponivel)');
     const estoqueInfo = document.querySelector('.estoque-info');
     const quantidadeInput = document.getElementById('quantidade');
-    
+
     tamanhos.forEach(tamanho => {
         tamanho.addEventListener('click', function() {
             // Remove ativo de todos
             document.querySelectorAll('.tamanho-btn').forEach(t => t.classList.remove('ativo'));
             // Adiciona ativo ao clicado
             this.classList.add('ativo');
-            
+
             // Atualizar quantidade disponível baseado no tamanho selecionado
             const estoque = parseInt(this.getAttribute('data-estoque')) || 0;
             const tamanhoSelecionado = this.getAttribute('data-tamanho');
-            
+
             // Atualizar o input de quantidade máxima
             quantidadeInput.max = estoque;
-            
+
             // Resetar quantidade para 1
             quantidadeInput.value = 1;
-            
+
             // Atualizar texto de estoque
             if (estoqueInfo) {
                 if (estoque > 0) {
@@ -52,11 +52,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     estoqueInfo.style.color = '#dc3545';
                 }
             }
-            
+
             console.log(`Tamanho selecionado: ${tamanhoSelecionado}, Estoque: ${estoque}`);
         });
     });
-    
+
     // Inicializar com o primeiro tamanho disponível
     const primeiroTamanhoDisponivel = document.querySelector('.tamanho-btn:not(.indisponivel)');
     if (primeiroTamanhoDisponivel) {
@@ -75,7 +75,7 @@ function aumentarQuantidade() {
     const quantidadeInput = document.getElementById('quantidade');
     const valorAtual = parseInt(quantidadeInput.value);
     const maximo = parseInt(quantidadeInput.max) || 10;
-    
+
     if (valorAtual < maximo) {
         quantidadeInput.value = valorAtual + 1;
     }
@@ -85,7 +85,7 @@ function diminuirQuantidade() {
     const quantidadeInput = document.getElementById('quantidade');
     const valorAtual = parseInt(quantidadeInput.value);
     const minimo = parseInt(quantidadeInput.min) || 1;
-    
+
     if (valorAtual > minimo) {
         quantidadeInput.value = valorAtual - 1;
     }
@@ -99,7 +99,7 @@ function abrirGuiaTamanhos() {
 // Máscara para CEP
 document.addEventListener('DOMContentLoaded', function() {
     const cepInput = document.getElementById('cep-input');
-    
+
     if (cepInput) {
         cepInput.addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, '');
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             e.target.value = value;
         });
-        
+
         cepInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 calcularFrete();
@@ -124,21 +124,21 @@ function calcularFrete() {
     const resultadosDiv = document.getElementById('frete-resultados');
     const erroDiv = document.getElementById('frete-erro');
     const botaoCalcular = document.querySelector('.btn-calcular-frete');
-    
+
     // Limpar resultados anteriores
     resultadosDiv.style.display = 'none';
     erroDiv.style.display = 'none';
-    
+
     // Validar CEP
     if (cep.length !== 8) {
         mostrarErroFrete('Por favor, digite um CEP válido com 8 dígitos.');
         return;
     }
-    
+
     // Mostrar loading
     botaoCalcular.disabled = true;
     botaoCalcular.textContent = 'Calculando...';
-    
+
     // Simulação de dados de frete
     setTimeout(() => {
         const dadosSimulados = {
@@ -161,7 +161,7 @@ function calcularFrete() {
                 }
             ]
         };
-        
+
         processarResultadoFrete(dadosSimulados);
         botaoCalcular.disabled = false;
         botaoCalcular.textContent = 'Calcular';
@@ -170,10 +170,10 @@ function calcularFrete() {
 
 function processarResultadoFrete(data) {
     const resultadosDiv = document.getElementById('frete-resultados');
-    
+
     if (data.success && data.data && data.data.length > 0) {
         let html = '';
-        
+
         data.data.forEach((opcao, index) => {
             html += `
                 <div class="frete-opcao" onclick="selecionarFrete(${index}, '${opcao.nome}', ${opcao.preco})">
@@ -185,7 +185,7 @@ function processarResultadoFrete(data) {
                 </div>
             `;
         });
-        
+
         resultadosDiv.innerHTML = html;
         resultadosDiv.style.display = 'block';
     } else {
@@ -198,16 +198,16 @@ function selecionarFrete(index, nome, preco) {
     document.querySelectorAll('.frete-opcao').forEach(opcao => {
         opcao.classList.remove('selecionada');
     });
-    
+
     // Adiciona seleção atual
     document.querySelectorAll('.frete-opcao')[index].classList.add('selecionada');
-    
+
     // Armazena frete selecionado
     freteSelecionado = {
         nome: nome,
         preco: preco
     };
-    
+
     console.log('Frete selecionado:', freteSelecionado);
 }
 
@@ -221,34 +221,34 @@ function mostrarErroFrete(mensagem) {
 document.addEventListener('DOMContentLoaded', function() {
     const btnAdicionarCarrinho = document.querySelector('.btn-adicionar-carrinho');
     const btnComprarAgora = document.querySelector('.btn-comprar-agora');
-    
+
     if (btnAdicionarCarrinho) {
         btnAdicionarCarrinho.addEventListener('click', function() {
             // Validar se um tamanho foi selecionado
             const tamanhoSelecionado = document.querySelector('.tamanho-btn.ativo')?.dataset.tamanho;
-            
+
             if (!tamanhoSelecionado) {
                 // Mostrar mensagem de erro
                 alert('Por favor, selecione um tamanho antes de adicionar ao carrinho.');
                 return;
             }
-            
+
             // Obter ID do produto do atributo data
             const produtoContainer = document.querySelector('.produto-container');
             const productId = produtoContainer ? produtoContainer.getAttribute('data-product-id') : null;
-            
+
             // Coletar informações do produto
             const nome = document.querySelector('.produto-titulo').textContent;
             const precoTexto = document.querySelector('.preco-atual').textContent;
             const quantidade = parseInt(document.getElementById('quantidade').value);
             const imagem = document.getElementById('imagem-principal').src;
-            
+
             // Converter preço para número
             const precoNumerico = parseFloat(precoTexto.replace('R$', '').replace(',', '.').trim());
-            
+
             // Criar ID único combinando product_id e tamanho
             const idUnico = productId ? `produto-${productId}-${tamanhoSelecionado}` : `produto-${Date.now()}-${tamanhoSelecionado}`;
-            
+
             // Criar objeto do produto
             const produto = {
                 id: idUnico,
@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 quantidade: quantidade,
                 frete: freteSelecionado // Incluir frete selecionado
             };
-            
+
             // Usar o sistema de carrinho existente se disponível
             if (window.carrinho && typeof window.carrinho.adicionarAoCarrinho === 'function') {
                 for (let i = 0; i < quantidade; i++) {
@@ -272,20 +272,20 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 // Fallback: usar localStorage diretamente
                 let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-                
-                const produtoExistente = carrinho.find(item => 
-                    item.id === produto.id && 
+
+                const produtoExistente = carrinho.find(item =>
+                    item.id === produto.id &&
                     item.tamanhos === produto.tamanhos
                 );
-                
+
                 if (produtoExistente) {
                     produtoExistente.quantidade += produto.quantidade;
                 } else {
                     carrinho.push(produto);
                 }
-                
+
                 localStorage.setItem('carrinho', JSON.stringify(carrinho));
-                
+
                 // Atualizar contador
                 const contadorCarrinho = document.getElementById('contador-carrinho');
                 if (contadorCarrinho) {
@@ -293,7 +293,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     contadorCarrinho.textContent = totalItens;
                     contadorCarrinho.classList.add('ativo');
                 }
-                
+
                 // Abrir modal
                 const modalCarrinho = document.getElementById('modal-carrinho');
                 if (modalCarrinho) {
@@ -301,7 +301,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.body.style.overflow = 'hidden';
                 }
             }
-            
+
             // Feedback visual
             this.style.transform = 'scale(0.95)';
             setTimeout(() => {
@@ -309,34 +309,34 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 150);
         });
     }
-    
+
     if (btnComprarAgora) {
         btnComprarAgora.addEventListener('click', function() {
             // Validar se um tamanho foi selecionado
             const tamanhoSelecionado = document.querySelector('.tamanho-btn.ativo')?.dataset.tamanho;
-            
+
             if (!tamanhoSelecionado) {
                 // Mostrar mensagem de erro
                 alert('Por favor, selecione um tamanho antes de comprar.');
                 return;
             }
-            
+
             // Obter ID do produto do atributo data
             const produtoContainer = document.querySelector('.produto-container');
             const productId = produtoContainer ? produtoContainer.getAttribute('data-product-id') : null;
-            
+
             // Coletar informações do produto
             const nome = document.querySelector('.produto-titulo').textContent;
             const precoTexto = document.querySelector('.preco-atual').textContent;
             const quantidade = parseInt(document.getElementById('quantidade').value);
             const imagem = document.getElementById('imagem-principal').src;
-            
+
             // Converter preço para número
             const precoNumerico = parseFloat(precoTexto.replace('R$', '').replace(',', '.').trim());
-            
+
             // Criar ID único combinando product_id e tamanho
             const idUnico = productId ? `produto-${productId}-${tamanhoSelecionado}` : `produto-${Date.now()}-${tamanhoSelecionado}`;
-            
+
             // Criar objeto do produto
             const produto = {
                 id: idUnico,
@@ -349,23 +349,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 quantidade: quantidade,
                 frete: freteSelecionado
             };
-            
+
             // Adicionar ao carrinho
             let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-            
-            const produtoExistente = carrinho.find(item => 
-                item.id === produto.id && 
+
+            const produtoExistente = carrinho.find(item =>
+                item.id === produto.id &&
                 item.tamanhos === produto.tamanhos
             );
-            
+
             if (produtoExistente) {
                 produtoExistente.quantidade += produto.quantidade;
             } else {
                 carrinho.push(produto);
             }
-            
+
             localStorage.setItem('carrinho', JSON.stringify(carrinho));
-            
+
             // Redirecionar para o checkout
             window.location.href = '/user/carrinho/comprar';
         });
@@ -393,7 +393,7 @@ function abrirModalZoom(srcImagem) {
         transition: opacity 0.3s ease;
         backdrop-filter: blur(10px);
     `;
-    
+
     // Criar container da imagem
     const imagemContainer = document.createElement('div');
     imagemContainer.style.cssText = `
@@ -404,20 +404,20 @@ function abrirModalZoom(srcImagem) {
         justify-content: center;
         align-items: center;
     `;
-    
+
     // Criar imagem ampliada
     const imagemZoom = document.createElement('img');
     imagemZoom.src = srcImagem;
     imagemZoom.style.cssText = `
-        max-width: 100%;
-        max-height: 100%;
+        max-width: 50%;
+        max-height: 50%;
         object-fit: contain;
         border-radius: 12px;
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         cursor: pointer;
         transition: transform 0.3s ease;
     `;
-    
+
     // Criar botão de fechar
     const botaoFechar = document.createElement('button');
     botaoFechar.innerHTML = `
@@ -444,18 +444,18 @@ function abrirModalZoom(srcImagem) {
         backdrop-filter: blur(10px);
         z-index: 10001;
     `;
-    
+
     // Hover effect no botão fechar
     botaoFechar.addEventListener('mouseenter', function() {
         this.style.background = 'rgba(255, 255, 255, 1)';
         this.style.transform = 'scale(1.1)';
     });
-    
+
     botaoFechar.addEventListener('mouseleave', function() {
         this.style.background = 'rgba(255, 255, 255, 0.9)';
         this.style.transform = 'scale(1)';
     });
-    
+
     // Criar indicador de carregamento
     const loadingIndicator = document.createElement('div');
     loadingIndicator.innerHTML = `
@@ -483,33 +483,33 @@ function abrirModalZoom(srcImagem) {
         align-items: center;
         gap: 1rem;
     `;
-    
+
     // Montar estrutura
     imagemContainer.appendChild(loadingIndicator);
     modalOverlay.appendChild(imagemContainer);
     document.body.appendChild(modalOverlay);
-    
+
     // Animar entrada
     setTimeout(() => {
         modalOverlay.style.opacity = '1';
     }, 10);
-    
+
     // Quando a imagem carregar
     imagemZoom.addEventListener('load', function() {
         loadingIndicator.remove();
         imagemContainer.appendChild(imagemZoom);
         imagemContainer.appendChild(botaoFechar);
-        
+
         // Adicionar efeito de zoom ao passar mouse
         imagemZoom.addEventListener('mouseenter', function() {
             this.style.transform = 'scale(1.05)';
         });
-        
+
         imagemZoom.addEventListener('mouseleave', function() {
             this.style.transform = 'scale(1)';
         });
     });
-    
+
     // Função para fechar modal
     function fecharModal() {
         modalOverlay.style.opacity = '0';
@@ -520,19 +520,19 @@ function abrirModalZoom(srcImagem) {
         }, 300);
         document.body.style.overflow = '';
     }
-    
+
     // Eventos para fechar
     modalOverlay.addEventListener('click', function(e) {
         if (e.target === modalOverlay) {
             fecharModal();
         }
     });
-    
+
     botaoFechar.addEventListener('click', function(e) {
         e.stopPropagation();
         fecharModal();
     });
-    
+
     // Fechar com ESC
     const handleEscape = function(e) {
         if (e.key === 'Escape') {
@@ -540,9 +540,9 @@ function abrirModalZoom(srcImagem) {
             document.removeEventListener('keydown', handleEscape);
         }
     };
-    
+
     document.addEventListener('keydown', handleEscape);
-    
+
     // Prevenir scroll do body
     document.body.style.overflow = 'hidden';
 }
@@ -550,7 +550,7 @@ function abrirModalZoom(srcImagem) {
 // Lazy loading para imagens
 document.addEventListener('DOMContentLoaded', function() {
     const images = document.querySelectorAll('img');
-    
+
     const imageObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -560,7 +560,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
+
     images.forEach(img => {
         imageObserver.observe(img);
     });
@@ -569,7 +569,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Smooth scroll para âncoras
 document.addEventListener('DOMContentLoaded', function() {
     const links = document.querySelectorAll('a[href^="#"]');
-    
+
     links.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -587,7 +587,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Adicionar efeitos de hover nos botões
 document.addEventListener('DOMContentLoaded', function() {
     const buttons = document.querySelectorAll('button, .btn');
-    
+
     buttons.forEach(button => {
         button.addEventListener('mouseenter', function() {
             this.style.transition = 'all 0.3s ease';
